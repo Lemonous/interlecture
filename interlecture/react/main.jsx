@@ -1,10 +1,11 @@
-import React from "react"
-import { render } from "react-dom"
+import React from "react";
+import { render } from "react-dom";
+import Test from './test.jsx';
 
 class App1 extends React.Component {
   render() {
     return (
-      <h1>HELLO</h1>
+      <Test color='#459CD4' size='40px' text='Hello!'/>
     )
   }
 }
