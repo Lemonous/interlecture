@@ -1,1 +1,9 @@
-Run requirements.sh to install reqired packages.
+Make sure pip3 and yarn is installed, then run requirements.sh to install reqired packages.
+
+
+The frontend is in interlecture/react/main.jsx.
+
+To rebuild frontend:
+cd interlecture
+./node_modules/.bin/webpack
+
