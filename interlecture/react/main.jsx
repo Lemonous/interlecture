@@ -6,12 +6,8 @@ function clickButton() {
   console.log("button clicked");
 }
 
-class App1 extends React.Component {
-  render() {
-    return (
-      <Test color='#459CD4' size='40px' text='Hello!' clickButton={clickButton}/>
-    )
-  }
-}
+const Main = () => (
+  <Test color='#459CD4' size='40px' text='Hello!' clickButton={clickButton}/>
+);
 
-render(<App1/>, document.getElementById('main'))
+render(<Main/>, document.getElementById('main'))
