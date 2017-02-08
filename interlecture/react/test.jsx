@@ -1,4 +1,5 @@
 import React from 'react';
+import { Button } from 'react-bootstrap';
 
 const test = props => (
   <div style={{
@@ -6,6 +7,9 @@ const test = props => (
       fontSize: props.size,
     }}>
     {props.text}
+    <Button onClick={() => props.clickButton()}>
+      click me plz
+    </Button>
   </div>
 );
 
