@@ -1,11 +1,13 @@
 import React from 'react';
 import { Button } from 'react-bootstrap';
 
-const test = props => (
-  <div style={{
+const Test = props => (
+  <div
+    style={{
       backgroundColor: props.color,
       fontSize: props.size,
-    }}>
+    }}
+  >
     {props.text}
     <Button onClick={() => props.clickButton()}>
       click me plz
@@ -13,4 +15,11 @@ const test = props => (
   </div>
 );
 
-export default test;
+Test.propTypes = {
+  color: React.PropTypes.string.isRequired,
+  size: React.PropTypes.string.isRequired,
+  text: React.PropTypes.string.isRequired,
+  clickButton: React.PropTypes.func.isRequired,
+};
+
+export default Test;
