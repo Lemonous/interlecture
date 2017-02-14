@@ -16,8 +16,9 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 from django.views import generic
+from interlecture.views import templateViewWithContext
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^app$',generic.TemplateView.as_view(template_name='app.html')),
+    url(r'^app$',templateViewWithContext('base.html',app='app')),
 ]

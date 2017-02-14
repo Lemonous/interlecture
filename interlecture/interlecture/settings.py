@@ -58,7 +58,6 @@ TEMPLATES = [
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
             os.path.join(BASE_DIR, 'interlecture/templates'),
-            os.path.join(BASE_DIR, 'engine/templates')
           ],
         'APP_DIRS': True,
         'OPTIONS': {

@@ -1,10 +1,12 @@
+{% load render_bundle from webpack_loader %}
+
 <!doctype html>
 <html>
   <head>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css">
-    {% block head %}{% endblock %}
   </head>
   <body>
-    {% block main %}{% endblock %}
+    <div id=main> </div>
+    {% render_bundle 'main' %}
   </body>
 </html>
