@@ -4,10 +4,10 @@ var webpack = require('webpack')
 module.exports = {
   context: __dirname,
 
-  entry: './react/main',
+  entry: './engine/js/main',
 
   output: {
-      path: path.resolve('./react/static/bundles/'),
+      path: path.resolve('./static/bundles/'),
       filename: "[name]-[hash].js"
   },
 
@@ -28,7 +28,7 @@ module.exports = {
   },
 
   resolve: {
-    modules: ["node_modules"],
+    modules: ["node_modules","."],
     extensions: ['.js', '.jsx'],
   },
 }

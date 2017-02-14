@@ -19,5 +19,5 @@ from django.views import generic
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^$',generic.TemplateView.as_view(template_name='application.html')),
+    url(r'^app$',generic.TemplateView.as_view(template_name='app.html')),
 ]

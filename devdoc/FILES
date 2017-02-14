@@ -1,0 +1,7 @@
+/                               Repository root
+/interlecture/                  Django project
+/interlecture/interlecture/     Global project config
+/interlecture/*/                Django app (corresponds to one independent feature)
+/interlecture/*/js/             Javascript files goes here
+            ./engine            Application engine and websocket multiplexing
+/devdoc/                        Developers' documentation
