@@ -20,5 +20,5 @@ from interlecture.views import templateViewWithContext
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^app$',templateViewWithContext('base.html',app='app')),
+    url(r'^app$',templateViewWithContext('base.html',app_name='app')),
 ]

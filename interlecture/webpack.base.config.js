@@ -4,7 +4,10 @@ var webpack = require('webpack')
 module.exports = {
   context: __dirname,
 
-  entry: './engine/js/main',
+  entry: {
+      app: './engine/js/main',
+      login: './login/js/main',
+  },
 
   output: {
       path: path.resolve('./static/bundles/'),
