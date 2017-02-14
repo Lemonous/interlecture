@@ -7,3 +7,6 @@ To rebuild frontend:
 cd interlecture
 ./node_modules/.bin/webpack
 
+
+In order to be able to log in you must first create a user by running
+./manage.py createsuperuser

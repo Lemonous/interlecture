@@ -1,17 +1,22 @@
 from channels import Group
+from channels.sessions import channel_session
+from channels.auth import channel_session_user, channel_session_user_from_http
 
-
+@channel_session_user_from_http
 def ws_add(message):
-    message.reply_channel.send({"accept": True})
-    message.reply_channel.send({"text": "Welcome"})
-    Group("chat").add(message.reply_channel)
+    if(message.user.is_authenticated()):
+        message.reply_channel.send({"accept": True})
+        message.reply_channel.send({"text": "Welcome"})
+        Group("chat").add(message.reply_channel)
+    else:
+        message.reply_channel.send({"accept": False})
 
-
+@channel_session_user
 def ws_message(message):
     """Incoming messages are handled here - see routing.py."""
-    Group("chat").send({"text": "> " + message.content["text"]})
+    Group("chat").send({"text": message.user.username + "> " + message.content["text"]})
 
-
+@channel_session_user
 def ws_disconnect(message):
     Group("chat").discard(message.reply_channel)
 
