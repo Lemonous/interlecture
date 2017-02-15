@@ -14,3 +14,10 @@ def ws_message(message):
 
 def ws_disconnect(message):
     Group("chat").discard(message.reply_channel)
+
+import channels.routing
+channel_routing = [
+    channels.routing.route("websocket.receive", ws_message),
+    channels.routing.route("websocket.connect", ws_add),
+    channels.routing.route("websocket.disconnect", ws_disconnect),
+  ]

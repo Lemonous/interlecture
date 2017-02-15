@@ -1,7 +1,7 @@
 import React from 'react';
 import { render } from 'react-dom';
-import Chat from './chat.jsx';
-import Test from './test';
+import Chat from 'js-common/chat';
+import Test from 'js-common/test';
 
 function clickButton() {
   console.log('button clicked');

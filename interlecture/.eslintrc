@@ -30,4 +30,8 @@
     'import/no-extraneous-dependencies': 0,
     'import/extensions': [1, "never"],
   },
+
+  settings: {
+    'import/resolver': 'webpack'
+  }
 }
