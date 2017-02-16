@@ -16,9 +16,13 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 from django.views import generic
-from interlecture.views import templateViewWithContext
+from login.views import login_view,logout_view
+from engine.views import app_view
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^app$',templateViewWithContext('base.html',app_name='app')),
+    url(r'^app/$',app_view),
+    url(r'^login/$',login_view),
+    url(r'^logout/$',logout_view),
+    url(r'^$',generic.base.RedirectView.as_view(url='login/')),
 ]

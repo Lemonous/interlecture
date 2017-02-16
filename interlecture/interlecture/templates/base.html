@@ -4,8 +4,23 @@
 <html>
   <head>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css">
+  
+    <style>
+        html, body, body>#main {
+          padding: 0;
+          margin: 0;
+          width: 100%;
+          height: 100%;
+        }
+    </style>
+  
   </head>
+  
   <body>
+    <script>
+      window.django2react={{args}};
+      window.django2react.csrfToken="{{ csrf_token }}";
+    </script>
     <div id=main> </div>
     {% render_bundle app_name %}
   </body>

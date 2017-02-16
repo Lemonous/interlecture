@@ -39,6 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'channels',
     'webpack_loader',
+    'engine',
+    'login',
 ]
 
 MIDDLEWARE = [
