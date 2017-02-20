@@ -1,37 +1,33 @@
-var path = require("path")
-var webpack = require('webpack')
+const path = require('path');
+const webpack = require('webpack');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
   context: __dirname,
 
   entry: {
-      app: './engine/js/main',
-      login: './login/js/main',
+    app: './engine/js/main',
+    login: './login/js/main',
   },
 
   output: {
-      path: path.resolve('./static/bundles/'),
-      filename: "[name]-[hash].js"
+    path: path.resolve('./static/bundles/'),
+    filename: '[name]-[hash].js',
   },
 
   externals: [
   ], // add all vendor libs
 
   plugins: [
+    new ExtractTextPlugin('style.css'),
   ], // add all common plugins here
 
   module: {
-    loaders: [
-         {
-             test: /\.js$/,
-             exclude: /node_modules/,
-             loader: 'babel-loader'
-         }
-      ] // add all common loaders here
+    rules: require('./webpack.loaders.js'),
   },
 
   resolve: {
-    modules: ["node_modules","."],
+    modules: ['node_modules', '.'],
     extensions: ['.js', '.jsx'],
   },
-}
+};
