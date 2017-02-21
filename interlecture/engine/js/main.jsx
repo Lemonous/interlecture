@@ -3,6 +3,12 @@ import { render } from 'react-dom';
 import Chat from 'js-common/chat';
 import Classroom from 'js-common/classroom';
 
+const classroom = {
+  id: 0,
+  lecturer: 'Kristian',
+  title: 'test',
+};
+
 const questions = [
   {
     id: 1,
@@ -30,7 +36,7 @@ const Main = () => (
   <div style={{ margin: '5pt 5%' }}>
     <a href="/logout/">Logout</a>
     <Chat server={`ws://${window.location.host}`} />
-    <Classroom questions={questions} />
+    <Classroom classroom={classroom} questions={questions} />
   </div>
 );
 
