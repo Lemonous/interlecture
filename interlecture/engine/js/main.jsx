@@ -1,15 +1,22 @@
 import React from 'react';
 import { render } from 'react-dom';
-import Chat from 'js-common/chat';
 import Classroom from 'js-common/classroom';
-import { classroom, questions } from './fixtures';
+import { Provider } from 'react-redux';
+import SocketHandler from 'js-common/socketHandler';
+import { createStore } from 'redux';
+import questions from 'js-common/reducers';
+import { classroom } from './fixtures';
+
+const store = createStore(questions);
+const sock = new SocketHandler(`ws://${window.location.host}`, store);
 
 const Main = () => (
-  <div style={{ margin: '5pt 5%' }}>
-    <a href="/logout/">Logout</a>
-    <Chat server={`ws://${window.location.host}`} />
-    <Classroom classroom={classroom} questions={questions} />
-  </div>
+  <Provider store={store}>
+    <div style={{ margin: '5pt 5%' }}>
+      <a href="/logout/">Logout</a>
+      <Classroom classroom={classroom} />
+    </div>
+  </Provider>
 );
 
 render(<Main />, document.getElementById('main'));

@@ -1,8 +1,10 @@
 import React from 'react';
-import { ListGroup, ListGroupItem, Grid, Row, Col } from 'react-bootstrap';
+import { ListGroup, ListGroupItem, Grid, Row, Col, Panel, Form, FormGroup, FormControl, InputGroup, Button } from 'react-bootstrap';
 import FontAwesome from 'react-fontawesome';
 import 'static/css/font-awesome.css';
 // import 'static/fonts/fontawesome-webfont.eot';
+
+import { connect } from 'react-redux';
 
 const Question = ({ question }) => (
   <div style={{ padding: '10px' }}>
@@ -25,6 +27,11 @@ const listGroupItemStyle = {
   marginBottom: '30px',
 };
 
+function mapStateToProps(state) {
+  return {
+    questions: state,
+  };
+}
 
 const Classroom = ({ questions, classroom }) => (
   <div style={{ marginTop: '50px' }}>
@@ -59,4 +66,4 @@ Classroom.propTypes = {
   }),
 };
 
-export default Classroom;
+export default connect(mapStateToProps)(Classroom);
