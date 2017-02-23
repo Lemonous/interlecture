@@ -3,20 +3,22 @@
 import React from 'react';
 import { Button } from 'react-bootstrap';
 
-const Test = props => ( // 1 objekt
-  //   vi velger å kalle det props.
+
+const Test = ({
+  size,
+  color,
+  text,
+  clickButton,
+}) => (
   <div
     style={{
-      backgroundColor: props.color,
-      fontSize: props.size,
+      backgroundColor: color,
+      fontSize: size,
     }}
   >
-    {props.text}
-    <Button onClick={() => props.clickButton()}>
-      B1
-    </Button>
-    <Button onClick={() => props.clickButton()}>
-      B2
+    { text }
+    <Button onClick={() => clickButton()}>
+      click me plz
     </Button>
   </div>
 );

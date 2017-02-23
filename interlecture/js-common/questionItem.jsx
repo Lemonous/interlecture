@@ -1,20 +1,29 @@
 import React from 'react';
 import { Button } from 'react-bootstrap';
 
-const QuestionItem = props => (
+function changeLook() {
+  console.log('changeLookClicked');
+}
+
+const QuestionItem = ({
+  color,
+  size,
+  //  clickButton,
+}) => (
   <div
     style={{
-      backgroundColor: props.color,
-      fontSize: props.size,
+      backgroundColor: color,
+      fontSize: size,
     }}
   >
-    <Button onClick={() => props.clickButton()}>
+    <Button onClick={() => changeLook()}>
       newButton
     </Button>
   </div>
 );
-Test.propTypes = {
+QuestionItem.propTypes = {
   color: React.PropTypes.string.isRequired,
   size: React.PropTypes.string.isRequired,
-  clickButton: React.PropTypes.func.isRequired,
 };
+export default QuestionItem;
+//  clickButton: React.PropTypes.func.isRequired,
