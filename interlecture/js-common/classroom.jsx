@@ -1,10 +1,13 @@
 import React from 'react';
-import { ListGroup, ListGroupItem } from 'react-bootstrap';
+import { ListGroup, ListGroupItem, Grid, Row, Col, Panel, Form, FormGroup, FormControl, InputGroup, Button } from 'react-bootstrap';
 import FontAwesome from 'react-fontawesome';
 import 'static/css/font-awesome.css';
 // import 'static/fonts/fontawesome-webfont.eot';
 
-const Question = ({ questions }) => (
+import { connect } from 'react-redux';
+
+const Question = ({ question }) => (
+
   <div style={{ padding: '10px' }}>
     <p>
       <FontAwesome name="user" />
@@ -25,9 +28,24 @@ const listGroupItemStyle = {
   marginBottom: '30px',
 };
 
+function mapStateToProps(state) {
+  return {
+    questions: state,
+  };
+}
 
-const Classroom = ({ questions }) => (
+const Classroom = ({ questions, classroom }) => (
   <div style={{ marginTop: '50px' }}>
+    <h2>{classroom.title}</h2>
+    <Grid>
+      <Row>
+        <Col sm={4} />
+        <Col sm={4} />
+        <Col sm={4}>
+          <p><b>lecturer: {classroom.lecturer}</b></p>
+        </Col>
+      </Row>
+    </Grid>
     <ListGroup>
       {
         questions.map(question => (
@@ -42,6 +60,11 @@ const Classroom = ({ questions }) => (
 
 Classroom.propTypes = {
   questions: React.PropTypes.arrayOf(React.PropTypes.object),
+  classroom: React.PropTypes.shape({
+    id: React.PropTypes.number,
+    title: React.PropTypes.string,
+    lecturer: React.PropTypes.string,
+  }),
 };
 
-export default Classroom;
+export default connect(mapStateToProps)(Classroom);
