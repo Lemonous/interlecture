@@ -38,7 +38,7 @@ class Chat extends React.Component {
   handleSubmit(event) {
     // må ta med prevent.def
     event.preventDefault();
-    console.log(event);
+    console.log(event.target.value);
     if ('' !== '') this.socket.send(this.state.msg);
   }
 

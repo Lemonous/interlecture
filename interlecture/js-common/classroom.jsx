@@ -54,16 +54,10 @@ const Classroom = ({ questions, classroom, onSubmit }) => (
           </ListGroupItem>
         ))
       }
+
     </ListGroup>
-    <Form onSubmit={onSubmit}>
-      <InputGroup>
-        <FormControl
-          type="text" placeholder="Enter message"
-        />
-        <InputGroup.Button> <Button onClick={onSubmit}>
-        Send
-      </Button> </InputGroup.Button>
-      </InputGroup>
+    <Form onSubmit={onSubmit} id="post">
+      <input type="text" placeholder="Enter message" className="form-control" />
     </Form>
   </div>
 );

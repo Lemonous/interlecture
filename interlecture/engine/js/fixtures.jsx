@@ -24,7 +24,7 @@ const questions = [
 const classroom = {
   id: 0,
   title: 'testklasserom',
-  lecturer: 'Kristian',
+  lecturer: 'gruppe 69',
 };
 
 export { classroom, questions };

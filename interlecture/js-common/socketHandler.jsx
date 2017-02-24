@@ -16,16 +16,18 @@ class SocketHandler {
   }
   handleSubmit(event) {
     event.preventDefault();
-    console.log(event);
-    // if (this.state.msg != '') this.socket.send(this.state.msg);
+    // console.log(event.getElementById('post'));
+    // console.log(event.target.value);
+    // console.log(event.target[0].value);
+    if (event.target[0].value && event.target[0].value !== '') this.socket.send(event.target[0].value);
   }
 
   handleOpen(event) {
-    this.store.dispatch(addQuestion({
-      id: 0,
-      user: 'SocketHandler',
-      body: `Connected to ws://${window.location.host}`,
-    }));
+    // this.store.dispatch(addQuestion({
+    //   id: 0,
+    //   user: 'SocketHandler',
+    //   body: `Connected to ws://${window.location.host}`,
+    // }));
   }
 }
 
