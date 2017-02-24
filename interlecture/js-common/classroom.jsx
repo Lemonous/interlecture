@@ -34,7 +34,7 @@ function mapStateToProps(state) {
   };
 }
 
-const Classroom = ({ questions, classroom }) => (
+const Classroom = ({ questions, classroom, onSubmit }) => (
   <div style={{ marginTop: '50px' }}>
     <h2>{classroom.title}</h2>
     <Grid>
@@ -55,6 +55,16 @@ const Classroom = ({ questions, classroom }) => (
         ))
       }
     </ListGroup>
+    <Form onSubmit={onSubmit}>
+      <InputGroup>
+        <FormControl
+          type="text" placeholder="Enter message"
+        />
+        <InputGroup.Button> <Button onClick={onSubmit}>
+        Send
+      </Button> </InputGroup.Button>
+      </InputGroup>
+    </Form>
   </div>
 );
 

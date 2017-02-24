@@ -27,11 +27,16 @@ import { classroom } from './fixtures';
 const store = createStore(questions);
 const sock = new SocketHandler(`ws://${window.location.host}`, store);
 
+function onSubmit(event) {
+  sock.handleSubmit(event);
+}
+
 const Main = () => (
   <Provider store={store}>
     <div style={{ margin: '5pt 5%' }}>
       <a href="/logout/">Logout</a>
-      <Classroom classroom={classroom} />
+      <Classroom classroom={classroom} onSubmit={onSubmit} />
+
     </div>
   </Provider>
 );
