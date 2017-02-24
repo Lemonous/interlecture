@@ -14,6 +14,11 @@ class SocketHandler {
   handleRecieve(event) {
     this.store.dispatch(addQuestion(JSON.parse(event.data)));
   }
+  handleSubmit(event) {
+    event.preventDefault();
+    console.log(event);
+    // if (this.state.msg != '') this.socket.send(this.state.msg);
+  }
 
   handleOpen(event) {
     this.store.dispatch(addQuestion({
