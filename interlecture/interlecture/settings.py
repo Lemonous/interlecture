@@ -10,7 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.10/ref/settings/
 """
 
-from interlecture.local_settings import SECRET_KEY, DEBUG, DBNAME, DBUSER, DBPASSWORD, DBHOST, DBPORT
+from interlecture.local_settings import SECRET_KEY, DEBUG, DATABASE
 
 import os
 
@@ -79,14 +79,7 @@ WSGI_APPLICATION = 'interlecture.wsgi.application'
 # https://docs.djangoproject.com/en/1.10/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': DBNAME,
-        'USER': DBUSER,
-        'PASSWORD': DBPASSWORD,
-        'HOST': DBHOST,
-        'PORT': DBPORT,
-    }
+    'default': DATABASE
 }
 
 # Password validation
