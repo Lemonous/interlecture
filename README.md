@@ -39,11 +39,17 @@ env LDFLAGS="-I/usr/local/opt/openssl/include -L/usr/local/opt/openssl/lib" pip 
 
 _Install on Ubuntu / Mac OS_
 
-Install postgres: `brew install postgres` _or_ `apt-get install postgres`
+Install postgres: `brew install postgres` _or_ `apt-get install postgresql`
 
-Initialise a database (set the password to whatever you want): `initdb -D interlecture/ -U interlecture -W`
+On linux based systems you may need to follow theese instructions: http://dba.stackexchange.com/questions/52849/how-do-i-install-postgresql-in-debian-ubuntu
+
+Initialise a database (set the password to whatever you want): `initdb -D  ~/dbs/interlecture/ -U interlecture -W`
 
 Start the database: `pg_ctl -D ~/dbs/interlecture/ -l postgresql.log start`
+
+If the command pg_ctl is not found insert `PATH=$PATH:/usr/lib/postgresql/9.5/bin
+export PATH`
+into .profile and run `. .profile` (or exchange 9.5 with correct version number)
 
 Go into postgres with the new user, then create a new database:
 ```
