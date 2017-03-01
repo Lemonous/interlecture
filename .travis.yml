@@ -1,0 +1,45 @@
+language: python
+python:
+    - "3.6"
+sudo: true
+
+env:
+    - TRAVIS_NODE_VERSION="6"
+
+notifications:
+    slack: pu-69:FKDlXX5A52bGE9VOxo4T3BzR
+
+install:
+    # Install django prerequisites
+    - pip install -q -r interlecture/requirements.txt
+
+    # Add yarn support on the travis machine (which is Ubuntu 12.04)
+    - curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
+    - echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
+    - sudo apt-get -q -y update
+
+    # Install newer clang to support node >=6.0
+    - sudo apt-get -q -y install clang-3.4
+    - CC=/usr/bin/clang
+    - export CC
+    - CXX=/usr/bin/clang++
+    - export CXX
+
+    # Install js prerequisites
+    - rm -rf ~/.nvm && git clone https://github.com/creationix/nvm.git ~/.nvm && (cd ~/.nvm && git checkout `git describe --abbrev=0 --tags`) && source ~/.nvm/nvm.sh && nvm install $TRAVIS_NODE_VERSION
+    - sudo apt-get -q -y install yarn
+    - cd interlecture
+    - yarn
+
+    # Make localsettings
+    - echo -e "DEBUG=True\nSECRET_KEY='dhaskdjhaskjda'\nDBNAME=None\nDBUSER=None\nDBPASSWORD=None\nDBHOST=None\nDBPORT=None\n" > interlecture/local_settings.py
+
+before_script:
+    - python manage.py migrate
+    - ./node_modules/.bin/webpack
+script:
+    - npm test
+    - coverage run manage.py test
+
+after_success:
+    - codecov
