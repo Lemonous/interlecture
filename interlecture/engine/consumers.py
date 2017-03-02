@@ -1,20 +1,35 @@
 from channels import Group
 from channels.sessions import channel_session
 from channels.auth import channel_session_user, channel_session_user_from_http
+import json
+
+id = 2
+def getId():
+    global id
+    id = id + 1
+    return id
 
 @channel_session_user_from_http
 def ws_add(message):
     if(message.user.is_authenticated()):
         message.reply_channel.send({"accept": True})
-        message.reply_channel.send({"text": "Welcome"})
+        # message.reply_channel.send({"text": json.dumps({
+        #     "id": 1,
+        #     "user": "server",
+        #     "body": "Welcome"
+        # })})
         Group("chat").add(message.reply_channel)
     else:
         message.reply_channel.send({"accept": False})
 
 @channel_session_user
 def ws_message(message):
-    """Incoming messages are handled here - see routing.py."""
-    Group("chat").send({"text": message.user.username + "> " + message.content["text"]})
+    """Incoming messages are handled here"""
+    Group("chat").send({"text": json.dumps({
+        "id": getId(),
+        "user": message.user.username,
+        "body": message.content["text"]
+    })})
 
 @channel_session_user
 def ws_disconnect(message):
