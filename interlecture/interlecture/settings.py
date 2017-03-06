@@ -134,7 +134,7 @@ CHANNEL_LAYERS = {
 
 if DEBUG:
     CHANNEL_LAYERS['default']["BACKEND"] = "asgiref.inmemory.ChannelLayer"
-else:# codecov skip start
+else:# pragma: no cover
     raise Exception("We are in production, but no channel backend is set up!!!")# codecov skip end
 
 WEBPACK_LOADER = {

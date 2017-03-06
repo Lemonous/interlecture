@@ -45,4 +45,4 @@ script:
     - coverage run manage.py test
 
 after_success:
-    - codecov --flag-feature skip
+    - codecov
