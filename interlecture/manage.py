@@ -6,7 +6,7 @@ if __name__ == "__main__":
     os.environ.setdefault("DJANGO_SETTINGS_MODULE", "interlecture.settings")
     try:
         from django.core.management import execute_from_command_line
-    except ImportError:
+    except ImportError:# codecov skip start
         # The above import may fail for some other reason. Ensure that the
         # issue is really that Django is missing to avoid masking other
         # exceptions on Python 2.
@@ -18,5 +18,5 @@ if __name__ == "__main__":
                 "available on your PYTHONPATH environment variable? Did you "
                 "forget to activate a virtual environment?"
             )
-        raise
+        raise# codecov skip end
     execute_from_command_line(sys.argv)
