@@ -1,13 +1,7 @@
-const ADD_QUESTION = 'ADD_QUESTION';
-
-function addQuestion(question) {
-  return {
-    type: 'ADD_QUESTION',
-    question,
-  };
+function serverAction(action) {
+  return action
 }
 
 export {
-  ADD_QUESTION,
-  addQuestion,
+  serverAction
 };

@@ -1,11 +1,10 @@
-import { ADD_QUESTION } from './actions';
 
 function questions(state = [], action) {
   switch (action.type) {
-    case ADD_QUESTION:
+    case 'ADD_QUESTIONS':
       return [
         ...state,
-        action.question,
+        ...action.data,
       ];
     default:
       return state;

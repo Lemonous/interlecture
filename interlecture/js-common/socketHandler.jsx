@@ -1,5 +1,5 @@
 // import { addQuestion } from './questions';
-import { addQuestion } from './actions';
+import { serverAction } from './actions';
 
 class SocketHandler {
   constructor(server, store) {
@@ -12,17 +12,22 @@ class SocketHandler {
   }
 
   handleRecieve(event) {
-    this.store.dispatch(addQuestion(JSON.parse(event.data)));
+    this.store.dispatch(serverAction(JSON.parse(event.data)));
   }
   handleSubmit(event) {
     event.preventDefault();
+    console.log('HELLO');
     // console.log(event.getElementById('post'));
     // console.log(event.target.value);
     // console.log(event.target[0].value);
-    if (event.target[0].value && event.target[0].value !== '') this.socket.send(event.target[0].value);
+    if (event.target[0].value && event.target[0].value !== '')
+        this.socket.send(JSON.stringify(
+            {app:'questions',command:'post_question','classroom':'test',message_text:event.target[0].value}));
   }
 
   handleOpen(event) {
+    this.socket.send(JSON.stringify(
+            {app:'questions',command:'subscribe','classroom':'test'}));
     // this.store.dispatch(addQuestion({
     //   id: 0,
     //   user: 'SocketHandler',
