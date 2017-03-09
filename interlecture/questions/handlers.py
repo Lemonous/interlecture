@@ -11,7 +11,9 @@ def access_classroom(required_access_rights):
     def decor(f):
         def _f(request,*args,**kwargs):
             try:request.classroom=Classroom.objects.get(name=request.json['classroom'])
-            except Classroom.DoesNotExist:print("     Error!!!",request.json['classroom']) #TODO: send error message.
+            except Classroom.DoesNotExist:
+                request.reportError('No such classroom.')
+                return
             #TODO:check access rights.
             return f(request,*args,**kwargs)
         return _f
