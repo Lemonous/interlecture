@@ -1,8 +1,7 @@
 import React from 'react';
-import { ListGroup, ListGroupItem, Grid, Row, Col, Panel, Form, FormGroup, FormControl, InputGroup, Button } from 'react-bootstrap';
+import { ListGroup, ListGroupItem, Grid, Row, Col, Form } from 'react-bootstrap';
 import FontAwesome from 'react-fontawesome';
 import 'static/css/font-awesome.css';
-// import 'static/fonts/fontawesome-webfont.eot';
 
 import { connect } from 'react-redux';
 
