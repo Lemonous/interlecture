@@ -8,5 +8,15 @@ class Request:
     
     def handle(self):
         try:handler=handlers[self.json['app']][self.json['command']]
-        except KeyError:pass #TODO: Error message
+        except KeyError:
+            self.reportError('Unknown command.') #TODO: Error message
+            return
         return handler(self)
+    
+    def reportError(self,msg):
+        if 'request_id' in self.json and self.json['request_id']:
+            self.message.reply_channel.send({'text': json.dumps({
+                'type':'INVALID_REQUEST',
+                'request_id':self.json['request_id'],
+                'message':msg
+              })})

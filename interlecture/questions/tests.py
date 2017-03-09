@@ -47,3 +47,8 @@ class QuestionsTests(ChannelTestCase):
                 'message_text':'I am here.'})
         self.check_msg(self.bob.client.receive(),[('bob','I am here.')])
         self.check_msg(self.alice.client.receive(),[('bob','I am here.')])
+    
+    def test_no_such_classroom(self):
+        self.alice.client.send_and_consume('websocket.receive',
+            text={'app':'questions','command':'subscribe','classroom':'nosuchclassroom','request_id':'foo'})
+        self.assertEqual(self.alice.client.receive()['type'],'INVALID_REQUEST')
