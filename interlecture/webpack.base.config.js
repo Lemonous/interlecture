@@ -6,8 +6,8 @@ module.exports = {
   context: __dirname,
 
   entry: {
-    app: './engine/js/main',
-    login: './login/js/main',
+    app: './client/core/main',
+    login: './client/core/login',
   },
 
   output: {
