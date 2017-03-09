@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'webpack_loader',
     'engine',
     'login',
+    'questions',
 ]
 
 MIDDLEWARE = [

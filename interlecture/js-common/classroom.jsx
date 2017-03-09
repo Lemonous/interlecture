@@ -14,7 +14,7 @@ const Question = ({ question }) => (
       &nbsp;
       <b>{ question.user }</b>
     </p>
-    <p>{ question.body }</p>
+    <p>{ question.text }</p>
   </div>
 );
 
