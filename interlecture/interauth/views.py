@@ -4,7 +4,7 @@ from django.shortcuts import render, reverse
 
 
 def login_view(request):
-    context = {'app_name': 'interauth'}
+    context = {'app_name': 'login'}
     if request.user.is_authenticated():
         return HttpResponseRedirect(reverse('app'))
     elif request.method == 'POST':
@@ -26,4 +26,8 @@ def logout_view(request):
 
 
 def register_view(request):
-    return render(request, 'base.html')
+    context = {
+        'app_name': 'login',
+        'args': '{failedLogin:false,}'
+    }
+    return render(request, 'base.html', context=context)
