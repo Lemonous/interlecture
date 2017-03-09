@@ -1,24 +1,30 @@
 import React from 'react';
 import { Button } from 'react-bootstrap';
+import FontAwesome from 'react-fontawesome';
+
 
 function changeLook() {
   console.log('changeLookClicked');
 }
 
 const QuestionItem = ({
+  question,
   color,
   size,
-  //  clickButton,
 }) => (
   <div
     style={{
+      padding: '10px',
       backgroundColor: color,
       fontSize: size,
     }}
   >
-    <Button onClick={() => changeLook()}>
-      newButton
-    </Button>
+    <p>
+      <FontAwesome name="user" />
+      &nbsp;
+      <b>{ question.user }</b>
+    </p>
+    <p>{ question.text }</p>
   </div>
 );
 QuestionItem.propTypes = {
