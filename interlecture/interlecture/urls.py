@@ -16,13 +16,13 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 from django.views import generic
-from login.views import login_view,logout_view
+from interauth.views import login_view, logout_view
 from engine.views import app_view
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^app/$',app_view),
-    url(r'^login/$',login_view),
-    url(r'^logout/$',logout_view),
-    url(r'^$',generic.base.RedirectView.as_view(url='login/')),
+    url(r'^app/$', app_view),
+    url(r'^login/$', login_view),
+    url(r'^logout/$', logout_view),
+    url(r'^$', generic.base.RedirectView.as_view(url='login/')),
 ]

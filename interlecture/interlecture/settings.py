@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'channels',
     'webpack_loader',
     'engine',
-    'login',
+    'interauth',
     'questions',
 ]
 
