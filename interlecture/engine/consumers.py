@@ -23,7 +23,7 @@ def ws_message(message):
     Request(message).handle()
 
 @channel_session_user
-def ws_disconnect(message):
+def ws_disconnect(message):# pragma: no cover
     pass
 
 import channels.routing
