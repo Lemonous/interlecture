@@ -1,4 +1,3 @@
-// import { addQuestion } from './questions';
 import { serverAction } from './actions';
 
 class SocketHandler {
@@ -16,10 +15,6 @@ class SocketHandler {
   }
   handleSubmit(event) {
     event.preventDefault();
-    console.log('HELLO');
-    // console.log(event.getElementById('post'));
-    // console.log(event.target.value);
-    // console.log(event.target[0].value);
     if (event.target[0].value && event.target[0].value !== '')
         this.socket.send(JSON.stringify(
             {app:'questions',command:'post_question','classroom':'test',message_text:event.target[0].value}));
@@ -27,12 +22,7 @@ class SocketHandler {
 
   handleOpen(event) {
     this.socket.send(JSON.stringify(
-            {app:'questions',command:'subscribe','classroom':'test'}));
-    // this.store.dispatch(addQuestion({
-    //   id: 0,
-    //   user: 'SocketHandler',
-    //   body: `Connected to ws://${window.location.host}`,
-    // }));
+        {app:'questions',command:'subscribe','classroom':'test'}));
   }
 }
 
