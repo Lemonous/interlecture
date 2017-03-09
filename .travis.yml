@@ -32,7 +32,10 @@ install:
     - yarn
 
     # Make localsettings
-    - echo -e "DEBUG=True\nSECRET_KEY='dhaskdjhaskjda'\nDBNAME=None\nDBUSER=None\nDBPASSWORD=None\nDBHOST=None\nDBPORT=None\n" > interlecture/local_settings.py
+    - echo -e "import os\nBASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))\nDEBUG=True\nSECRET_KEY='dhaskdjhaskjda'\nDATABASE={'ENGINE':'django.db.backends.sqlite3','NAME':os.path.join(BASE_DIR, 'db.sqlite3'),}" > interlecture/local_settings.py
+cache:
+    pip: true
+    yarn: true
 
 before_script:
     - python manage.py migrate
