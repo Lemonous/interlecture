@@ -7,13 +7,14 @@ import 'static/css/font-awesome.css';
 import { connect } from 'react-redux';
 
 const Question = ({ question }) => (
+
   <div style={{ padding: '10px' }}>
     <p>
       <FontAwesome name="user" />
       &nbsp;
       <b>{ question.user }</b>
     </p>
-    <p>{ question.body }</p>
+    <p>{ question.text }</p>
   </div>
 );
 
@@ -33,7 +34,7 @@ function mapStateToProps(state) {
   };
 }
 
-const Classroom = ({ questions, classroom }) => (
+const Classroom = ({ questions, classroom, onSubmit }) => (
   <div style={{ marginTop: '50px' }}>
     <h2>{classroom.title}</h2>
     <Grid>
@@ -53,7 +54,11 @@ const Classroom = ({ questions, classroom }) => (
           </ListGroupItem>
         ))
       }
+
     </ListGroup>
+    <Form onSubmit={onSubmit} id="post">
+      <input type="text" placeholder="Enter message" className="form-control" />
+    </Form>
   </div>
 );
 

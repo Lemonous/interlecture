@@ -1,4 +1,4 @@
-# Interlecture
+# Interlecture [![Travis branch](https://img.shields.io/travis/PU-69/interlecture.svg)]() [![Codecov branch](https://img.shields.io/codecov/c/github/PU-69/interlecture.svg)]()
 
 1. [Basic Setup](#basic-setup)
   1. [Installing Dependencies](#installing-dependencies)
@@ -66,6 +66,8 @@ Test run django with `python manage.py runserver`. If it works, run `python mana
 
 In order to be able to log in you must first create a user by running
 ./manage.py createsuperuser
+
+Create 'test' classroom using django-admin.
 
 You're done!
 

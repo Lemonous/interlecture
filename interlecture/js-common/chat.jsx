@@ -14,6 +14,7 @@ class Chat extends React.Component {
     this.socket.onopen = this.handleOpen;
     this.handleRecieve = this.handleRecieve.bind(this);
     this.socket.onmessage = this.handleRecieve;
+
     console.log(this.socket);
   }
 
@@ -35,8 +36,10 @@ class Chat extends React.Component {
   }
 
   handleSubmit(event) {
+    // må ta med prevent.def
     event.preventDefault();
-    if (this.state.msg != '') this.socket.send(this.state.msg);
+    console.log(event.target.value);
+    if ('' !== '') this.socket.send(this.state.msg);
   }
 
   render() {
