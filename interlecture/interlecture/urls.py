@@ -24,6 +24,7 @@ urlpatterns = [
     url(r'^app/$', app_view, name='app'),
     url(r'^login/$', login_view, name='login'),
     url(r'^logout/$', logout_view, name='logout'),
+    url(r'^register/$', register_view, name='register'),
     # TODO: Dynamically redirect
     url(r'^$', generic.base.RedirectView.as_view(url='login/')),
 ]
