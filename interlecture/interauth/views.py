@@ -27,7 +27,7 @@ def logout_view(request):
 
 def register_view(request):
     context = {
-        'app_name': 'login',
+        'app_name': 'register',
         'args': '{failedLogin:false,}'
     }
     return render(request, 'base.html', context=context)

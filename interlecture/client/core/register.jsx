@@ -1,5 +1,5 @@
 import React from 'react';
-import { render } from 'react-dom';
+import {render} from 'react-dom';
 
 import * as bs from 'react-bootstrap';
 
@@ -34,7 +34,10 @@ const Main = () => (
           <bs.FormControl type="password" name="passwd" placeholder="Password" />
         </bs.FormGroup>
         <bs.FormGroup>
-          <bs.Button bsStyle="primary" type="submit" block>Login</bs.Button>
+          <bs.FormControl type="password" name="passwd-check" placeholder="Verify Password" />
+        </bs.FormGroup>
+        <bs.FormGroup>
+          <bs.Button bsStyle="primary" type="submit" block>Register</bs.Button>
         </bs.FormGroup>
         <input type="hidden" name="csrfmiddlewaretoken" value={window.django2react.csrfToken} />
         {window.django2react.failedLogin &&
