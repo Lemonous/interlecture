@@ -12,11 +12,15 @@ class Post(models.Model):
     user = models.ForeignKey(auth.User,on_delete=models.CASCADE)
     text = models.CharField(max_length=255)
     parent_post = models.ForeignKey('self',on_delete=models.CASCADE,null=True)
+    
+    def dynid(self):
+        return '#'+repr(self.id)
+    
     def get(self):
         return {
-            'id':self.id,
+            'id':self.dynid(),
             'room':self.room.name,
             'user':self.user.username,
             'text':self.text,
-            'parent_post':self.parent_post.id if self.parent_post else None,
+            'parent_post':self.parent_post.dynid() if self.parent_post else None,
           }

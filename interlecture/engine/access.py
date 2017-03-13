@@ -1,18 +1,30 @@
-from engine.messaging import RequestKeyError
+from engine.messaging import RequestHandlingException,RequestKeyError,need
 
-def need_object(entity,access_rights=None,key=None,optional=True,by='id'):
+class RequestedObjectMissingException(RequestHandlingException):
+    reportString="No {} '{}' found."
+
+def Provider(entity,by=None,access_rights=None):
+
+    def by_static(request,value):
+        try:
+            obj=entity.objects.get(**{by:value})
+            return obj
+        except entity.DoesNotExist:
+            raise RequestedObjectMissingException(entity,value) from entity.DoesNotExist
+            
+    def by_universal(request,value):
+        if value[0]=='#':value=value[1:];by='id'
+        else:by='name'
+        try:
+            obj=entity.objects.get(**{by:value})
+            return obj
+        except entity.DoesNotExist:
+            raise RequestedObjectMissingException(entity,value) from entity.DoesNotExist
+            
+    return by_static if by else by_universal
+    
+
+def need_object(entity,access_rights=None,key=None,by=None,optional=False):
     if not key:key=entity.__name__.lower()
-    def decor(f):
-        def _f(request,*args,**kwargs):
-            try:obj_id=request.text[key]
-            except RequestKeyError:pass
-            else:
-                try:obj=entity.objects.get(**{by:obj_id})
-                except entity.DoesNotExist: return request.reply(
-                    type='INVALID_REQUEST',
-                    message='No {key} {name}.'.format(key=key,name=obj_id))
-                request.__setattr__(key,obj)
-                kwargs[key]=obj
-            return f(request,*args,**kwargs)
-        return _f
-    return decor
+    return need(key,optional=optional,provider=
+        Provider(entity,by=by,access_rights=access_rights))
