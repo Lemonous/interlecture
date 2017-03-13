@@ -8,53 +8,69 @@ from questions.models import *
 class MockUser:
     def __init__(self,name):
         self.client=HttpClient()
-        User.objects.create_user(username=name,
+        self.user=User.objects.create_user(username=name,
             email='test@example.com',password='top_secret')
-        self.client.force_login(User.objects.get(username=name))
+        self.user.save()
+        self.client.force_login(self.user)
         self.client.send_and_consume('websocket.connect',path='/')
 
-class QuestionsTests(ChannelTestCase):
+class PostTest(ChannelTestCase):
     def setUp(self):
         self.alice=MockUser('alice')
-        self.bob=MockUser('bob')
+        
         self.room=Room.objects.create(name='test');self.room.save()
+        self.p0=Post.objects.create(
+            room=self.room,user=self.alice.user,text="Bob, are you here?")
+        self.p0.save()
     
-    def check_msg(self,msg,expected):
-        self.assertEqual(msg['type'],'NEW_POSTS')
-        self.assertGreaterEqual(len(msg['posts']),len(expected))
-        for post,(user,text) in zip(msg['posts'],expected):
-          self.assertIn('id',post)
-          self.assertEqual(post['room'],self.room.name)
-          if user: self.assertEqual(post['user'],user)
-          else: self.assertNotIn('user',post)
-          self.assertEqual(post['text'],text)
     
-    def test_posts(self):
+    def test_subscribe_old(self):
         self.alice.client.send_and_consume('websocket.receive',
             text={'app':'questions','command':'subscribe','room':'test'})
-        self.assertEqual(self.alice.client.receive()['type'],'NEW_POSTS')
+        posts=self.alice.client.receive()
+        
+        self.assertEqual(posts['type'],'NEW_POSTS')
+        self.assertIn('posts',posts)
+        
+        self.assertEqual(len(posts['posts']),1)
+        self.assertEqual(posts['posts'][0],self.p0.get())
+    
+    
+    def test_subscribe_and_post(self):
+        self.alice.client.send_and_consume('websocket.receive',
+            text={'app':'questions','command':'subscribe','room':'test'})
+        self.alice.client.receive()
         
         self.alice.client.send_and_consume('websocket.receive',
-            text={'app':'questions','command':'post','room':'test',
-                'text':'Bob, are you here?'})
-        self.check_msg(self.alice.client.receive(),[('alice','Bob, are you here?')])
+            text={'app':'questions','command':'post','room':'test','text':'I am waiting for you.'})
+        posts=self.alice.client.receive()
         
-        self.bob.client.send_and_consume('websocket.receive',
-            text={'app':'questions','command':'subscribe','room':'test'})
-        post0=self.bob.client.receive()
-        self.check_msg(post0,[('alice','Bob, are you here?')])
-        post0_id=post0['posts'][0]['id']
-        self.assertEqual(post0['posts'][0]['parent_post'],None)
+        self.assertEqual(posts['type'],'NEW_POSTS')
         
-        self.bob.client.send_and_consume('websocket.receive',
-            text={'app':'questions','command':'post','room':'test',
-                'text':'I am here.','parent_post':post0_id})
-        post1=self.bob.client.receive()
-        self.check_msg(post1,[('bob','I am here.')])
-        self.check_msg(self.alice.client.receive(),[('bob','I am here.')])
-        self.assertEqual(post1['posts'][0]['parent_post'],post0_id)
+        self.assertEqual(len(posts['posts']),1)
+        self.assertEqual(posts['posts'][0],Post.objects.get(text='I am waiting for you.').get())
     
-    def test_no_such_room(self):
+    
+    def test_support(self):
+        self.alice.client.send_and_consume('websocket.receive',
+            text={'app':'questions','command':'support','post':self.p0.dynid()})
+        self.alice.client.receive()
+        
+        self.assertIn(self.alice.user,self.p0.supporters.all())
+        self.assertIn('supporters',self.p0.get())
+        self.assertEqual(self.p0.get()['supporters'],1)
+        
+        self.alice.client.send_and_consume('websocket.receive',
+            text={'app':'questions','command':'support','post':self.p0.dynid()})
+        self.alice.client.receive()
+        
+        self.assertEqual(self.p0.get()['supporters'],1)
+    
+    
+    def test_object_not_found(self):
         self.alice.client.send_and_consume('websocket.receive',
             text={'app':'questions','command':'subscribe','room':'nosuchroom','request_id':'foo'})
-        self.assertEqual(self.alice.client.receive()['type'],'INVALID_REQUEST')
+        reply=self.alice.client.receive()
+        
+        self.assertEqual(reply['type'],'INVALID_REQUEST')
+

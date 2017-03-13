@@ -52,9 +52,12 @@ def need(key,optional=False,provider=lambda r,x:x):
         return _f
     return decor
 
-        
+@need('foo')
+def test(request,foo=None):
+    request.reply(type='TEST',bar=foo)
 
 import questions.handlers
 handlers={
-    'questions':questions.handlers.handlers
+    'questions':questions.handlers.handlers,
+    'test':{'test':test}
   }
