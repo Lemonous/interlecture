@@ -41,8 +41,16 @@ correspond to a specific request, therefore notifications canot have
 
 # questions
 #### Supported requests
-* `questions.subscribe(classroom)`
-* `questions.post_question(classroom,text)`
+* `questions.subscribe(room)`
+* `questions.post(room,text)`
 
 #### Generated notifications
-* `ADD_QUESTION(data)`
+* `NEW_POSTS(data)`, where `data is a list of posts with following format:
+```
+  {
+    id: //Unique post id
+    room: //Room name
+    user: //Poster name (optional)
+    text: //Post body
+  }
+```

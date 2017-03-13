@@ -10,19 +10,18 @@ from engine.access import need_access
 def room_channel(room):
     return channels.Group('interlecture.questions.room%d'%room.id)
     
-@need_access(Classroom,'read')
-def subscribe(request,classroom=None):
-    room_channel(classroom).add(request.message.reply_channel)
-    request.send(type='ADD_QUESTIONS',
-        data=[question.dictize() for question in Question.objects.filter(classroom=classroom)])
+@need_access(Room,'read')
+def subscribe(request,room=None):
+    room_channel(room).add(request.message.reply_channel)
+    request.send(type='NEW_POSTS',posts=room.get_posts())
 
-@need_access(Classroom,'write')
-def post_question(request,classroom=None):
-    question=Question(classroom=classroom,user=request.message.user,text=request.text.message_text)
-    question.save()
-    serverMessage(room_channel(classroom),type='ADD_QUESTIONS',data=[question.dictize()])
+@need_access(Room,'write')
+def post(request,room=None):
+    post=Post(room=room,user=request.message.user,text=request.text.text)
+    post.save()
+    serverMessage(room_channel(room),type='NEW_POSTS',posts=[post.get()])
 
 handlers={
     'subscribe':subscribe,
-    'post_question':post_question
+    'post':post
   }
