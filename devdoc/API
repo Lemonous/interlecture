@@ -8,7 +8,8 @@
   {
     app:<app> //Module - to avoid request name conflicts
     command:<command> //Command
-    request_id:<request_id> //Optional - to identify responses.
+    request_id:<request_id> //Optional - to identify replies.
+                            //If not present, no reply will be sent.
     …
     arg:<arg>
     …

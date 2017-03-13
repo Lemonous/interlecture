@@ -1,40 +1,26 @@
 #Request handlers
 
-from channels import Group
+import channels
 from questions.models import *
 from django.core import serializers
 import json
+from engine.messaging import serverMessage
+from engine.access import need_access
 
-# A decorator for request handlers that access classroom.
-# Should check access rights and send an error message if anything is wrong.
-def access_classroom(required_access_rights):
-    def decor(f):
-        def _f(request,*args,**kwargs):
-            try:request.classroom=Classroom.objects.get(name=request.json['classroom'])
-            except Classroom.DoesNotExist:
-                request.reportError('No such classroom.')
-                return
-            #TODO:check access rights.
-            return f(request,*args,**kwargs)
-        return _f
-    return decor
+def room_channel(room):
+    return channels.Group('interlecture.questions.room%d'%room.id)
     
-@access_classroom('read')
-def subscribe(request):
-    Group('interlecture.questions.classroom%d'%request.classroom.id).add(request.message.reply_channel)
-    request.message.reply_channel.send({'text': json.dumps({
-        'type':'ADD_QUESTIONS',
-        'data':list(question.dictize() for question in Question.objects.filter(classroom=request.classroom))
-      })})
+@need_access(Classroom,'read')
+def subscribe(request,classroom=None):
+    room_channel(classroom).add(request.message.reply_channel)
+    request.send(type='ADD_QUESTIONS',
+        data=[question.dictize() for question in Question.objects.filter(classroom=classroom)])
 
-@access_classroom('write')
-def post_question(request):
-    question=Question(classroom=request.classroom,user=request.message.user,text=request.json['message_text'])
+@need_access(Classroom,'write')
+def post_question(request,classroom=None):
+    question=Question(classroom=classroom,user=request.message.user,text=request.text.message_text)
     question.save()
-    Group('interlecture.questions.classroom%d'%request.classroom.id).send({'text': json.dumps({
-        'type':'ADD_QUESTIONS',
-        'data':[question.dictize()]
-      })})
+    serverMessage(room_channel(classroom),type='ADD_QUESTIONS',data=[question.dictize()])
 
 handlers={
     'subscribe':subscribe,
