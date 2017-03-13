@@ -12,7 +12,7 @@ class MockUser:
             email='test@example.com',password='top_secret')
         self.client.force_login(User.objects.get(username=name))
         self.client.send_and_consume('websocket.connect',path='/')
-    
+
 class QuestionsTests(ChannelTestCase):
     def setUp(self):
         self.alice=MockUser('alice')
@@ -29,7 +29,7 @@ class QuestionsTests(ChannelTestCase):
           else: self.assertNotIn('user',post)
           self.assertEqual(post['text'],text)
     
-    def test_questions(self):
+    def test_posts(self):
         self.alice.client.send_and_consume('websocket.receive',
             text={'app':'questions','command':'subscribe','room':'test'})
         self.assertEqual(self.alice.client.receive()['type'],'NEW_POSTS')
@@ -41,13 +41,18 @@ class QuestionsTests(ChannelTestCase):
         
         self.bob.client.send_and_consume('websocket.receive',
             text={'app':'questions','command':'subscribe','room':'test'})
-        self.check_msg(self.bob.client.receive(),[('alice','Bob, are you here?')])
+        post0=self.bob.client.receive()
+        self.check_msg(post0,[('alice','Bob, are you here?')])
+        post0_id=post0['posts'][0]['id']
+        self.assertEqual(post0['posts'][0]['parent_post'],None)
         
         self.bob.client.send_and_consume('websocket.receive',
             text={'app':'questions','command':'post','room':'test',
-                'text':'I am here.'})
-        self.check_msg(self.bob.client.receive(),[('bob','I am here.')])
+                'text':'I am here.','parent_post':post0_id})
+        post1=self.bob.client.receive()
+        self.check_msg(post1,[('bob','I am here.')])
         self.check_msg(self.alice.client.receive(),[('bob','I am here.')])
+        self.assertEqual(post1['posts'][0]['parent_post'],post0_id)
     
     def test_no_such_room(self):
         self.alice.client.send_and_consume('websocket.receive',

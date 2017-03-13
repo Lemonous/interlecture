@@ -15,7 +15,8 @@
     …
   }
 ```
-Here and further denoted as `<app>.<command>(…,<arg>,…)`.
+Here and further denoted as `<app>.<command>(…,<arg>,…)`,
+optional arguments are marked with *.
 
 #### Replies and notifications
 
@@ -42,7 +43,7 @@ correspond to a specific request, therefore notifications canot have
 # questions
 #### Supported requests
 * `questions.subscribe(room)`
-* `questions.post(room,text)`
+* `questions.post(room,text,*parent_post)`, where parent_post is post to follow up.
 
 #### Generated notifications
 * `NEW_POSTS(data)`, where `data is a list of posts with following format:
@@ -52,5 +53,6 @@ correspond to a specific request, therefore notifications canot have
     room: //Room name
     user: //Poster name (optional)
     text: //Post body
+    parent_post: //Parent post id or None
   }
 ```
