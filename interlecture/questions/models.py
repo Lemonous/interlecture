@@ -21,16 +21,15 @@ class Post(models.Model):
     text = models.CharField(max_length=255)
     parent_post = models.ForeignKey('self',on_delete=models.CASCADE,null=True)
     supporters = models.ManyToManyField(auth.User,related_name='supported')
-    
-    def dynid(self):
-        return '#'+repr(self.id)
+    datetime = models.DateTimeField(auto_now_add=True)
     
     def get(self):
         return {
-            'id':self.dynid(),
+            'id':self.id,
             'room':self.room.name,
             'user':self.user.username,
             'text':self.text,
+            'datetime':str(self.datetime),
             'parent_post':self.parent_post.dynid() if self.parent_post else None,
             'supporters':self.supporters.count()
           }

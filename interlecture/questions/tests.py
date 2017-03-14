@@ -53,7 +53,7 @@ class PostTest(ChannelTestCase):
     
     def test_support(self):
         self.alice.client.send_and_consume('websocket.receive',
-            text={'app':'questions','command':'support','post':self.p0.dynid()})
+            text={'app':'questions','command':'support','post':self.p0.id})
         self.alice.client.receive()
         
         self.assertIn(self.alice.user,self.p0.supporters.all())
@@ -61,7 +61,7 @@ class PostTest(ChannelTestCase):
         self.assertEqual(self.p0.get()['supporters'],1)
         
         self.alice.client.send_and_consume('websocket.receive',
-            text={'app':'questions','command':'support','post':self.p0.dynid()})
+            text={'app':'questions','command':'support','post':self.p0.id})
         self.alice.client.receive()
         
         self.assertEqual(self.p0.get()['supporters'],1)
