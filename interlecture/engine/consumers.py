@@ -3,12 +3,7 @@ from channels.sessions import channel_session
 from channels.auth import channel_session_user, channel_session_user_from_http
 import json
 
-import questions.handlers
-
-handlers={
-    'questions':questions.handlers.handlers
-  }
-from engine.request import Request
+from engine.messaging import Request
 
 @channel_session_user_from_http
 def ws_add(message):

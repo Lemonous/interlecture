@@ -2,10 +2,7 @@ from django.contrib import admin
 
 # Register your models here.
 
-from questions.models import Question,Classroom
-class ClassroomAdmin(admin.ModelAdmin):
-    model=Classroom
-    readonly_fields=('id',)
+from questions.models import Room
 
-admin.site.register(Classroom)
+admin.site.register(Room)
 
