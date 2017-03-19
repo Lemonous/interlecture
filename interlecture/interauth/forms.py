@@ -68,16 +68,17 @@ class UserForm(Form):
                 error_string += 'noConfirmPassword:true,'
 
         if error_dict.get('__all__'):
-            if error_dict['__all__'][0]['code'] == 'noPasswordMatch':
+            code = error_dict['__all__'][0]['code']
+            if code == 'noPasswordMatch':
                 error_string += 'noPasswordMatch:true,'
 
-            if error_dict['__all__'][0]['code'] == 'notNtnuEmail':
+            if code == 'notNtnuEmail':
                 error_string += 'notNtnuEmail:true,'
 
-            if error_dict['__all__'][0]['code'] == 'emailInUse':
+            if code == 'emailInUse':
                 error_string += 'emailInUse:true,'
 
-            if error_dict['__all__'][0]['code'] == 'usernameInUse':
+            if code == 'usernameInUse':
                 error_string += 'usernameInUse:true,'
 
         return error_string + '}'
