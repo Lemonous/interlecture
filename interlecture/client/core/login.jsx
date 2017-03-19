@@ -34,15 +34,16 @@ const Main = () => (
           <bs.FormControl type="password" name="passwd" placeholder="Password" />
         </bs.FormGroup>
         <bs.FormGroup>
-          <bs.Button bsStyle="primary" type="submit" block>Login</bs.Button>
+          <bs.Button bsStyle="primary" type="submit">Login</bs.Button>
+          <bs.Button bsStyle="link" href="/register/">Register</bs.Button>
         </bs.FormGroup>
         <input type="hidden" name="csrfmiddlewaretoken" value={window.django2react.csrfToken} />
         {window.django2react.failedLogin &&
-          <bs.FormGroup>
-            <bs.Label bsStyle="danger" style={{ display: 'block' }}>
-              <strong>Invalid username or password.</strong>
-            </bs.Label>
-          </bs.FormGroup>
+        <bs.FormGroup>
+          <bs.Label bsStyle="danger" style={{ display: 'block' }}>
+            <strong>Invalid username or password.</strong>
+          </bs.Label>
+        </bs.FormGroup>
         }
       </bs.Form>
     </bs.Panel>
