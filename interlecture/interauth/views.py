@@ -39,7 +39,7 @@ def login_view(request):
 @login_required
 def logout(request):
     logout(request)
-    return HttpResponseRedirect(reverse('login_view'))
+    return HttpResponseRedirect(reverse('login'))
 
 
 def register(request):
@@ -107,8 +107,7 @@ def init_activation(user):
     activation = UserActivation()
     activation.user = user
     activation.activation_key = hashlib.sha3_512(str(salt + usernamesalt).encode('utf8')).hexdigest()
-    activation.key_expires = datetime.datetime.strftime(datetime.datetime.now() + datetime.timedelta(days=2),
-                                                        "%Y-%m-%d %H:%M:%S")
+    activation.key_expires = datetime.datetime.now(dateutil.tz.tzlocal()) + datetime.timedelta(days=2)
     activation.save()
 
     send_activation_mail(activation)

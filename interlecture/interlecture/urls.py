@@ -22,7 +22,7 @@ from engine.views import app_view
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^app/$', app_view, name='app'),
-    url(r'^login/$', login_view, name='login_view'),
+    url(r'^login/$', login_view, name='login'),
     url(r'^logout/$', logout, name='logout'),
     url(r'^register/$', register, name='register'),
     url(r'^activate/(?P<key>.+)$', activate, name='activate'),
