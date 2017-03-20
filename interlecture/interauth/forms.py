@@ -1,5 +1,5 @@
 from django.contrib.auth.models import User
-from django.forms import Form, EmailField, CharField, PasswordInput, ValidationError
+from django.forms import Form, EmailField, CharField, ValidationError
 from django.core.exceptions import ObjectDoesNotExist
 import re
 import json
@@ -21,8 +21,13 @@ class UserForm(Form):
 
         if not cleaned_data.get('email'):
             pass
-        elif not (re.match(r'[@.]ntnu(.edu|.no)', cleaned_data.get('email')[-7:])):
+        elif not re.search(r'[@.]ntnu(\.edu|\.no)', cleaned_data.get('email')):
+            print(re.search(r'[@.]ntnu(\.edu|\.no)', cleaned_data.get('email')))
+            print(cleaned_data.get('email'))
             self.add_error(None, ValidationError('Not an NTNU email', code='notNtnuEmail'))
+        else:
+            print(re.search(r'[@.]ntnu(\.edu|\.no)', cleaned_data.get('email')))
+            print(cleaned_data.get('email'))
 
         try:
             User.objects.get(email=cleaned_data.get('email'))
@@ -39,9 +44,8 @@ class UserForm(Form):
         return cleaned_data
 
     def d2r_friendly_errors(self):
-        error_string = '{'
+        error_string = ''
         error_dict = json.loads(self.errors.as_json())
-        print(error_dict)
 
         if error_dict.get('username'):
             if error_dict['username'][0]['code'] == 'required':
@@ -81,4 +85,27 @@ class UserForm(Form):
             if code == 'usernameInUse':
                 error_string += 'usernameInUse:true,'
 
-        return error_string + '}'
+        print(error_string)
+        return error_string
+
+    def safe_data(self):
+        data_string = ''
+        username = self.cleaned_data.get('username')
+        first_name = self.cleaned_data.get('first_name')
+        last_name = self.cleaned_data.get('last_name')
+        email = self.cleaned_data.get('email')
+        print(username, first_name, last_name, email)
+
+        if username:
+            data_string += 'username:"%s",' % username
+
+        if first_name:
+            data_string += 'firstName:"%s",' % first_name
+
+        if last_name:
+            data_string += 'lastName:"%s",' % last_name
+
+        if email:
+            data_string += 'email:"%s",' % email
+
+        return data_string
