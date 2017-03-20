@@ -2,6 +2,9 @@
   "scripts": {
     "test": "istanbul cover ./node_modules/.bin/_mocha -- --recursive --compilers js:babel-register"
   },
+  "jest": {
+    "modulePaths": ["<rootDir>"]
+  },
   "devDependencies": {
     "babel-cli": "^6.22.2",
     "babel-core": "^6.22.1",
