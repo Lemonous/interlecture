@@ -1,7 +1,7 @@
 // Link.react-test.js
 import React from 'react';
 import renderer from 'react-test-renderer';
-import Classroom from '../questions/classroom.jsx';
+import { Classroom } from '../questions/classroom.jsx';
 
 const questions = [
   {
