@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Link changes the class when hovered 1`] = `
+exports[`Classroom looks like it should 1`] = `
 <div
   style={
     Object {
@@ -135,6 +135,40 @@ exports[`Link changes the class when hovered 1`] = `
            
           <b>
             Kåre
+          </b>
+        </p>
+        <p />
+      </div>
+    </li>
+    <li
+      className="list-group-item"
+      style={
+        Object {
+          "border": "1px solid #888",
+          "borderRadius": 5,
+          "boxShadow": "0px 5px 35px rgba(0, 0, 0, .7)",
+          "marginBottom": "30px",
+          "marginLeft": "30px",
+          "marginRight": "30px",
+          "padding": "0px 0px",
+        }
+      }
+    >
+      <div
+        style={
+          Object {
+            "padding": "10px",
+          }
+        }
+      >
+        <p>
+          <span
+            aria-hidden={true}
+            className="fa fa-user"
+          />
+           
+          <b>
+            Bjarne
           </b>
         </p>
         <p />

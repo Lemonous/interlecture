@@ -24,6 +24,11 @@ const questions = [
     user: 'Bjarne',
     body: 'finnes egentlig julenissen?',
   },
+  {
+    id: 5,
+    user: 'Bjarne',
+    body: 'jeg skjønner ikke håndskriften din :(',
+  },
 ];
 
 function onSubmit(event) {
@@ -37,7 +42,7 @@ const classroom = {
   lecturer: 'gruppe69',
 };
 
-test('Link changes the class when hovered', () => {
+test('Classroom looks like it should', () => {
   const component = renderer.create(
     <Classroom classroom={classroom} onSubmit={onSubmit} questions={questions} />);
   const tree = component.toJSON();
