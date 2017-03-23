@@ -1,19 +1,9 @@
 import React from 'react';
-import { ListGroup, ListGroupItem, Grid, Row, Col, Form } from 'react-bootstrap';
+import { Grid, Row, Col } from 'react-bootstrap';
 import 'static/css/font-awesome.css';
 import { connect } from 'react-redux';
-import QuestionItem from './questionItem';
 import InputForm from './inputForm';
-
-const listGroupItemStyle = {
-  borderRadius: 5,
-  border: '1px solid #888',
-  boxShadow: '0px 5px 35px rgba(0, 0, 0, .7)',
-  padding: '0px 0px',
-  marginLeft: '30px',
-  marginRight: '30px',
-  marginBottom: '30px',
-};
+import PostList from './postList';
 
 function mapStateToProps(state) {
   return {
@@ -33,25 +23,7 @@ export const Classroom = ({ questions, classroom, submitQuestion, submitReply })
         </Col>
       </Row>
     </Grid>
-    <ListGroup>
-      {
-        questions.map(question => (
-          <ListGroupItem key={question.id} style={listGroupItemStyle}>
-            <QuestionItem question={question} />
-            <InputForm
-              onSubmit={submitReply}
-              id={`replyTo${question.id}`}
-              placeholder={'Enter reply'}
-              submitButtonText={'Submit Reply'}
-              onSubmitExtras={{ questionId: question.id }}
-            />
-            <Form onSubmit={event => submitReply(event, event.target[0].value, question.id)} id={`replyTo${question.id}`}>
-              <input type="text" placeholder="Enter reply" className="form-control" />
-            </Form>
-          </ListGroupItem>
-        ))
-      }
-    </ListGroup>
+    <PostList posts={questions} submitReply={submitReply} />
     <div
       style={{
         position: 'fixed',
