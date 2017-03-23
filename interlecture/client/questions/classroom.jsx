@@ -1,21 +1,8 @@
 import React from 'react';
 import { ListGroup, ListGroupItem, Grid, Row, Col, Form } from 'react-bootstrap';
-import FontAwesome from 'react-fontawesome';
 import 'static/css/font-awesome.css';
-
 import { connect } from 'react-redux';
-
-const Question = ({ question }) => (
-
-  <div style={{ padding: '10px' }}>
-    <p>
-      <FontAwesome name="user" />
-      &nbsp;
-      <b>{ question.user }</b>
-    </p>
-    <p>{ question.text }</p>
-  </div>
-);
+import QuestionItem from './questionItem';
 
 const listGroupItemStyle = {
   borderRadius: 5,
@@ -54,14 +41,13 @@ export const Classroom = ({ questions, classroom, onSubmit }) => (
       {
         questions.map(question => (
           <ListGroupItem key={question.id} style={listGroupItemStyle}>
-            <Question question={question} />
+            <QuestionItem question={question} />
             <Form onSubmit={event => onReplySubmit(event, question.id)} id={`replyTo${question.id}`}>
               <input type="text" placeholder="Enter reply" className="form-control" />
             </Form>
           </ListGroupItem>
         ))
       }
-
     </ListGroup>
     <Form onSubmit={onSubmit} id="post">
       <input type="text" placeholder="Enter message" className="form-control" />
@@ -70,12 +56,13 @@ export const Classroom = ({ questions, classroom, onSubmit }) => (
 );
 
 Classroom.propTypes = {
-  questions: React.PropTypes.arrayOf(React.PropTypes.object),
+  questions: React.PropTypes.arrayOf(React.PropTypes.object).isRequired,
   classroom: React.PropTypes.shape({
     id: React.PropTypes.number,
     title: React.PropTypes.string,
     lecturer: React.PropTypes.string,
-  }),
+  }).isRequired,
+  onSubmit: React.PropTypes.func.isRequired,
 };
 
 export default connect(mapStateToProps)(Classroom);
