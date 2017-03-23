@@ -33,6 +33,11 @@ function mapStateToProps(state) {
   };
 }
 
+function onReplySubmit(event, questionId) {
+  event.preventDefault();
+  console.log(questionId);
+}
+
 export const Classroom = ({ questions, classroom, onSubmit }) => (
   <div style={{ marginTop: '50px' }}>
     <h2>{classroom.title}</h2>
@@ -48,9 +53,16 @@ export const Classroom = ({ questions, classroom, onSubmit }) => (
     <ListGroup>
       {
         questions.map(question => (
-          <ListGroupItem key={question.id} style={listGroupItemStyle}>
-            <Question question={question} />
-          </ListGroupItem>
+          <div>
+            <ListGroupItem key={question.id} style={listGroupItemStyle}>
+              <Question question={question} />
+            </ListGroupItem>
+            <ListGroupItem key={question.id + 1000}>
+              <Form onSubmit={event => onReplySubmit(event, question.id)} id={`replyTo${question.id}`}>
+                <input type="text" placeholder="Enter reply" className="form-control" />
+              </Form>
+            </ListGroupItem>
+          </div>
         ))
       }
 
