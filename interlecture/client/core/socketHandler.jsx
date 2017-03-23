@@ -16,9 +16,8 @@ class SocketHandler {
     this.store.dispatch(serverAction(JSON.parse(event.data)));
   }
 
-  submitReply(event, replyText, questionId) {
-    event.preventDefault();
-    console.log(replyText);
+  submitReply({ value, questionId }) {
+    console.log(value);
     console.log(questionId);
   }
 
