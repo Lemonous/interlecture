@@ -7,11 +7,11 @@ import PostList from './postList';
 
 function mapStateToProps(state) {
   return {
-    questions: state,
+    questions: state.filter(v=>v),
   };
 }
 
-export const Classroom = ({ questions, classroom, submitQuestion, submitReply }) => (
+export const Classroom = ({ questions, classroom, submitQuestion, submitReply, submitLike }) => (
   <div style={{ marginTop: '50px' }}>
     <h2>{classroom.title}</h2>
     <Grid>
@@ -23,7 +23,7 @@ export const Classroom = ({ questions, classroom, submitQuestion, submitReply })
         </Col>
       </Row>
     </Grid>
-    <PostList posts={questions} submitReply={submitReply}/>
+    <PostList posts={questions} submitReply={submitReply} submitLike={submitLike}/>
     <Form onSubmit={submitQuestion} id="post">
       <input type="text" placeholder="Enter message" className="form-control" />
     </Form>
@@ -38,6 +38,7 @@ Classroom.propTypes = {
     lecturer: React.PropTypes.string,
   }).isRequired,
   submitQuestion: React.PropTypes.func.isRequired,
+  submitLike: React.PropTypes.func.isRequired,
 };
 
 export default connect(mapStateToProps)(Classroom);

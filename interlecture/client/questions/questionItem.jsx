@@ -10,6 +10,7 @@ function changeLook() {
 const QuestionItem = ({
   question,
   color,
+  submitLike,
 }) => (
   <div
     style={{
@@ -32,11 +33,12 @@ const QuestionItem = ({
               { question.text }
             </p>
             <Button
-              onClick={changeLook}
+              onClick={event => (submitLike(event,question.id))}
             >
                 Like
                 &nbsp;
                 <FontAwesome name="thumbs-up" />
+                {question.supporters}
             </Button>
             <Button
               onClick={changeLook}
@@ -64,6 +66,7 @@ QuestionItem.propTypes = {
     body: React.PropTypes.string,
   }).isRequired,
   color: React.PropTypes.string,
+  submitLike: React.PropTypes.func.isRequired,
 };
 
 QuestionItem.defaultProps = {

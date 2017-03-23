@@ -3,10 +3,12 @@ import { CLICK_REPLY } from './actions';
 function questions(state = [], action) {
   switch (action.type) {
     case 'NEW_POSTS':
-      return [
-        ...state,
-        ...action.data,
-      ];
+      var result=[...state];
+      for(var id in action.data) {
+          result[action.data[id].id]=action.data[id];
+        }
+      return result;
+      
 
     case CLICK_REPLY:
       return [

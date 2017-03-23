@@ -10,6 +10,7 @@ class SocketHandler {
     this.socket.onmessage = this.handleRecieve;
     this.submitQuestion = this.submitQuestion.bind(this);
     this.submitReply = this.submitReply.bind(this);
+    this.submitLike = this.submitLike.bind(this);
   }
 
   handleRecieve(event) {
@@ -18,10 +19,14 @@ class SocketHandler {
 
   submitReply(event, replyText, questionId) {
     event.preventDefault();
-    console.log(replyText);
-    console.log(questionId);
-      this.socket.send(JSON.stringify(
-            { app: 'questions', command: 'post', room: 'test', text: replyText, parent_post: questionId}));
+    this.socket.send(JSON.stringify(
+          { app: 'questions', command: 'post', room: 'test', text: replyText, parent_post: questionId}));
+  }
+
+  submitLike(event, postId) {
+    event.preventDefault();
+    this.socket.send(JSON.stringify(
+          { app: 'questions', command: 'support', post: postId}));
   }
 
   submitQuestion(event) {

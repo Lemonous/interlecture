@@ -13,14 +13,14 @@ const listGroupItemStyle = {
   marginBottom: '30px',
 };
 
-const PostList = ({ posts, parent_id, submitReply }) => (
+const PostList = ({ posts, parent_id, submitReply, submitLike }) => (
   <ListGroup>
     {
       posts.filter(post => (post.parent_post==parent_id))
         .map(post => (
           <ListGroupItem key={post.id} style={listGroupItemStyle}>
-            <QuestionItem question={post} />
-            <PostList posts={posts} parent_id={post.id} submitReply={submitReply}/>
+            <QuestionItem question={post} submitLike={submitLike} />
+            <PostList posts={posts} parent_id={post.id} submitReply={submitReply} submitLike={submitLike}/>
             <Form
                 onSubmit={event => submitReply(event, event.target[0].value, post.id)}
                 id={`replyTo${post.id}`}>
@@ -32,13 +32,14 @@ const PostList = ({ posts, parent_id, submitReply }) => (
   </ListGroup>
 );
 
-QuestionItem.propTypes = {
+PostList.propTypes = {
   posts: React.PropTypes.array.isRequired,
   parent_id: React.PropTypes.number,
   submitReply: React.PropTypes.func.isRequired,
+  submitLike: React.PropTypes.func.isRequired,
 };
 
-QuestionItem.defaultProps = {
+PostList.defaultProps = {
   parent_id: null,
 };
 
