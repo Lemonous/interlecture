@@ -53,16 +53,12 @@ export const Classroom = ({ questions, classroom, onSubmit }) => (
     <ListGroup>
       {
         questions.map(question => (
-          <div>
-            <ListGroupItem key={question.id} style={listGroupItemStyle}>
-              <Question question={question} />
-            </ListGroupItem>
-            <ListGroupItem key={question.id + 1000}>
-              <Form onSubmit={event => onReplySubmit(event, question.id)} id={`replyTo${question.id}`}>
-                <input type="text" placeholder="Enter reply" className="form-control" />
-              </Form>
-            </ListGroupItem>
-          </div>
+          <ListGroupItem key={question.id} style={listGroupItemStyle}>
+            <Question question={question} />
+            <Form onSubmit={event => onReplySubmit(event, question.id)} id={`replyTo${question.id}`}>
+              <input type="text" placeholder="Enter reply" className="form-control" />
+            </Form>
+          </ListGroupItem>
         ))
       }
 
