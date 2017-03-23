@@ -26,7 +26,7 @@ const questions = [
   },
   {
     id: 5,
-    user: 'Kåre',
+    user: 'Rolf',
     body: 'jeg skjønner ikke håndskriften din :(',
   },
 ];
