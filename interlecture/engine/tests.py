@@ -25,8 +25,27 @@ class EngineTest(ChannelTestCase):
         Channel('websocket.connect').send({'reply_channel':'bar','headers':self.eve.client.headers,'path':'/'})
         ws_add(self.get_next_message('websocket.connect'))
         self.assertFalse(self.get_next_message('bar').content['accept'])
+    
+    def test_test_request(self):
+        self.alice.client.send_and_consume('websocket.receive',
+            text={'app':'test','command':'test','foo':'zip','request_id':'foo'})
+        result=self.alice.client.receive()
+        self.assertIn('type',result)
+        self.assertEqual('TEST',result['type'])
+        self.assertIn('bar',result)
+        self.assertEqual('zip',result['bar'])
         
-    def test_errors(self):
+    def test_no_reply(self):
+        self.alice.client.send_and_consume('websocket.receive',
+            text={'app':'test','command':'test','foo':'zip'})
+        self.assertIsNone(self.alice.client.receive())
+    
+    def test_invalid_command(self):
         self.alice.client.send_and_consume('websocket.receive',
             text={'app':'you','command':'screw','request_id':'foo'})
+        self.assertEqual(self.alice.client.receive()['type'],'INVALID_REQUEST')
+     
+    def test_missing_argument(self):
+        self.alice.client.send_and_consume('websocket.receive',
+            text={'app':'test','command':'test','request_id':'foo'})
         self.assertEqual(self.alice.client.receive()['type'],'INVALID_REQUEST')
