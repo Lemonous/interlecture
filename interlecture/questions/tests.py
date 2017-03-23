@@ -30,10 +30,10 @@ class PostTest(ChannelTestCase):
         posts=self.alice.client.receive()
         
         self.assertEqual(posts['type'],'NEW_POSTS')
-        self.assertIn('posts',posts)
+        self.assertIn('data',posts)
         
-        self.assertEqual(len(posts['posts']),1)
-        self.assertEqual(posts['posts'][0],self.p0.get())
+        self.assertEqual(len(posts['data']),1)
+        self.assertEqual(posts['data'][0],self.p0.get())
     
     
     def test_subscribe_and_post(self):
@@ -47,8 +47,8 @@ class PostTest(ChannelTestCase):
         
         self.assertEqual(posts['type'],'NEW_POSTS')
         
-        self.assertEqual(len(posts['posts']),1)
-        self.assertEqual(posts['posts'][0],Post.objects.get(text='I am waiting for you.').get())
+        self.assertEqual(len(posts['data']),1)
+        self.assertEqual(posts['data'][0],Post.objects.get(text='I am waiting for you.').get())
     
     
     def test_support(self):
