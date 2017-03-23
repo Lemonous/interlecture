@@ -3,6 +3,7 @@ import { ListGroup, ListGroupItem, Grid, Row, Col, Form } from 'react-bootstrap'
 import 'static/css/font-awesome.css';
 import { connect } from 'react-redux';
 import QuestionItem from './questionItem';
+import InputForm from './inputForm';
 
 const listGroupItemStyle = {
   borderRadius: 5,
@@ -21,7 +22,7 @@ function mapStateToProps(state) {
 }
 
 export const Classroom = ({ questions, classroom, submitQuestion, submitReply }) => (
-  <div style={{ marginTop: '50px' }}>
+  <div style={{ marginTop: '50px', marginBottom: '40px' }}>
     <h2>{classroom.title}</h2>
     <Grid>
       <Row>
@@ -44,9 +45,25 @@ export const Classroom = ({ questions, classroom, submitQuestion, submitReply })
         ))
       }
     </ListGroup>
-    <Form onSubmit={submitQuestion} id="post">
-      <input type="text" placeholder="Enter message" className="form-control" />
-    </Form>
+    <div
+      style={{
+        position: 'fixed',
+        bottom: '0px',
+        width: '100%',
+        height: '50px',
+        paddingTop: '10px',
+        backgroundColor: '#fff',
+      }}
+    >
+      <div
+        style={{
+          width: '85%',
+          marginLeft: '30px',
+        }}
+      >
+        <InputForm onSubmit={submitQuestion} id={'submitQuestion'} />
+      </div>
+    </div>
   </div>
 );
 
