@@ -2,7 +2,7 @@ import { CLICK_REPLY } from './actions';
 
 function questions(state = [], action) {
   switch (action.type) {
-    case 'ADD_QUESTIONS':
+    case 'NEW_POSTS':
       return [
         ...state,
         ...action.data,

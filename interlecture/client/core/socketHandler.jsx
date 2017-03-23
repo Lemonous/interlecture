@@ -17,12 +17,12 @@ class SocketHandler {
     event.preventDefault();
     if (event.target[0].value && event.target[0].value !== '')
         this.socket.send(JSON.stringify(
-            {app:'questions',command:'post_question','classroom':'test',message_text:event.target[0].value}));
+            {app:'questions',command:'post','room':'test',text:event.target[0].value}));
   }
 
   handleOpen(event) {
     this.socket.send(JSON.stringify(
-        {app:'questions',command:'subscribe','classroom':'test'}));
+        {app:'questions',command:'subscribe','room':'test'}));
   }
 }
 

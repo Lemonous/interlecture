@@ -7,12 +7,12 @@ from engine.messaging import need,serverMessage
 from engine.access import need_object
 
 def broadcastPost(post):
-    serverMessage(post.room.channel(),type='NEW_POSTS',posts=[post.get()])
+    serverMessage(post.room.channel(),type='NEW_POSTS',data=[post.get()])
 
 @need_object(Room,access_rights='read',by='name')
 def subscribe(request,room=None):
     room.channel().add(request.message.reply_channel)
-    request.send(type='NEW_POSTS',posts=room.get_posts())
+    request.send(type='NEW_POSTS',data=room.get_posts())
 
 @need('text')
 @need_object(Room,access_rights='write',by='name')
