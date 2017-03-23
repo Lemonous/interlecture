@@ -18,6 +18,8 @@ class SocketHandler {
 
   submitReply(event, replyText, questionId) {
     event.preventDefault();
+    console.log(replyText);
+    console.log(questionId);
   }
 
   submitQuestion(event) {

@@ -19,7 +19,11 @@ const Main = () => (
   <Provider store={store}>
     <div style={{ margin: '5pt 5%' }}>
       <a href="/logout/">Logout</a>
-      <Classroom classroom={classroom} submitQuestion={sock.submitQuestion} />
+      <Classroom
+        classroom={classroom}
+        submitQuestion={sock.submitQuestion}
+        submitReply={sock.submitReply}
+      />
 
     </div>
   </Provider>
