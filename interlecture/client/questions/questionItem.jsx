@@ -50,7 +50,7 @@ const QuestionItem = ({
           <p>
             <FontAwesome name="clock-o" />
                 &nbsp;
-              TimeAndDate
+              {question.datetime.substr(0,19)}
           </p>}</Col>
 
       </Row>
