@@ -11,8 +11,13 @@ function clickReply(questionId) {
   };
 }
 
+function submitReply(replyText, questionId, socketHandler) {
+  socketHandler.submitReply(replyText, questionId);
+}
+
 export {
   serverAction,
   clickReply,
   CLICK_REPLY,
+  submitReply,
 };

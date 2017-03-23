@@ -25,7 +25,7 @@ function onReplySubmit(event, questionId) {
   console.log(questionId);
 }
 
-export const Classroom = ({ questions, classroom, onSubmit }) => (
+export const Classroom = ({ questions, classroom, submitQuestion }) => (
   <div style={{ marginTop: '50px' }}>
     <h2>{classroom.title}</h2>
     <Grid>
@@ -49,7 +49,7 @@ export const Classroom = ({ questions, classroom, onSubmit }) => (
         ))
       }
     </ListGroup>
-    <Form onSubmit={onSubmit} id="post">
+    <Form onSubmit={submitQuestion} id="post">
       <input type="text" placeholder="Enter message" className="form-control" />
     </Form>
   </div>
@@ -62,7 +62,7 @@ Classroom.propTypes = {
     title: React.PropTypes.string,
     lecturer: React.PropTypes.string,
   }).isRequired,
-  onSubmit: React.PropTypes.func.isRequired,
+  submitQuestion: React.PropTypes.func.isRequired,
 };
 
 export default connect(mapStateToProps)(Classroom);

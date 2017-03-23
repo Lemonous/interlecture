@@ -8,21 +8,29 @@ class SocketHandler {
     this.socket.onopen = this.handleOpen;
     this.handleRecieve = this.handleRecieve.bind(this);
     this.socket.onmessage = this.handleRecieve;
+    this.submitQuestion = this.submitQuestion.bind(this);
+    this.submitReply = this.submitReply.bind(this);
   }
 
   handleRecieve(event) {
     this.store.dispatch(serverAction(JSON.parse(event.data)));
   }
-  handleSubmit(event) {
+
+  submitReply(event, replyText, questionId) {
     event.preventDefault();
-    if (event.target[0].value && event.target[0].value !== '')
-        this.socket.send(JSON.stringify(
-            {app:'questions',command:'post','room':'test',text:event.target[0].value}));
+  }
+
+  submitQuestion(event) {
+    event.preventDefault();
+    if (event.target[0].value && event.target[0].value !== '') {
+      this.socket.send(JSON.stringify(
+            { app: 'questions', command: 'post', room: 'test', text: event.target[0].value }));
+    }
   }
 
   handleOpen(event) {
     this.socket.send(JSON.stringify(
-        {app:'questions',command:'subscribe','room':'test'}));
+        { app: 'questions', command: 'subscribe', room: 'test' }));
   }
 }
 
