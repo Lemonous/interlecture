@@ -4,6 +4,7 @@ import 'static/css/font-awesome.css';
 import { connect } from 'react-redux';
 import QuestionItem from './questionItem';
 import PostList from './postList';
+import InputForm from './inputForm';
 
 function mapStateToProps(state) {
   return {
