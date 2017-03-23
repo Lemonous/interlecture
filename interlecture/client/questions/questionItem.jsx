@@ -10,13 +10,11 @@ function changeLook() {
 const QuestionItem = ({
   question,
   color,
-  size,
 }) => (
   <div
     style={{
       padding: '10px',
       backgroundColor: color,
-      fontSize: size,
     }}
   >
     <Grid>
@@ -60,9 +58,15 @@ const QuestionItem = ({
   </div>
 );
 QuestionItem.propTypes = {
-  question: React.PropTypes.string.isRequired,
-  color: React.PropTypes.string.isRequired,
-  size: React.PropTypes.string.isRequired,
+  question: React.PropTypes.shape({
+    id: React.PropTypes.number,
+    user: React.PropTypes.string,
+    body: React.PropTypes.string,
+  }).isRequired,
+  color: React.PropTypes.string,
+};
+
+QuestionItem.defaultProps = {
+  color: '#fff',
 };
 export default QuestionItem;
-//  clickButton: React.PropTypes.func.isRequired,
