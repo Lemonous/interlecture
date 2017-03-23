@@ -17,10 +17,9 @@ class SocketHandler {
     this.store.dispatch(serverAction(JSON.parse(event.data)));
   }
 
-  submitReply(event, replyText, questionId) {
-    event.preventDefault();
+  submitReply({ value, postId }) {
     this.socket.send(JSON.stringify(
-          { app: 'questions', command: 'post', room: 'test', text: replyText, parent_post: questionId}));
+          { app: 'questions', command: 'post', room: 'test', text: value, parent_post: postId }));
   }
 
   submitLike(event, postId) {
@@ -29,11 +28,10 @@ class SocketHandler {
           { app: 'questions', command: 'support', post: postId}));
   }
 
-  submitQuestion(event) {
-    event.preventDefault();
-    if (event.target[0].value && event.target[0].value !== '') {
+  submitQuestion({ value }) {
+    if (value && value !== '') {
       this.socket.send(JSON.stringify(
-            { app: 'questions', command: 'post', room: 'test', text: event.target[0].value }));
+            { app: 'questions', command: 'post', room: 'test', text: value }));
     }
   }
 
