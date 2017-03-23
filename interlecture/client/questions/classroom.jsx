@@ -1,8 +1,8 @@
 import React from 'react';
-import { ListGroup, ListGroupItem, Grid, Row, Col, Form } from 'react-bootstrap';
+import { Grid, Row, Col } from 'react-bootstrap';
 import 'static/css/font-awesome.css';
 import { connect } from 'react-redux';
-import QuestionItem from './questionItem';
+import InputForm from './inputForm';
 import PostList from './postList';
 
 function mapStateToProps(state) {
@@ -12,7 +12,7 @@ function mapStateToProps(state) {
 }
 
 export const Classroom = ({ questions, classroom, submitQuestion, submitReply }) => (
-  <div style={{ marginTop: '50px' }}>
+  <div style={{ marginTop: '50px', marginBottom: '40px' }}>
     <h2>{classroom.title}</h2>
     <Grid>
       <Row>
@@ -23,10 +23,31 @@ export const Classroom = ({ questions, classroom, submitQuestion, submitReply })
         </Col>
       </Row>
     </Grid>
-    <PostList posts={questions} submitReply={submitReply}/>
-    <Form onSubmit={submitQuestion} id="post">
-      <input type="text" placeholder="Enter message" className="form-control" />
-    </Form>
+    <PostList posts={questions} submitReply={submitReply} />
+    <div
+      style={{
+        position: 'fixed',
+        bottom: '0px',
+        width: '100%',
+        height: '50px',
+        paddingTop: '10px',
+        backgroundColor: '#fff',
+      }}
+    >
+      <div
+        style={{
+          width: '85%',
+          marginLeft: '30px',
+        }}
+      >
+        <InputForm
+          onSubmit={submitQuestion}
+          id={'submitQuestion'}
+          placeholder={'Enter question'}
+          submitButtonText={'Submit Question'}
+        />
+      </div>
+    </div>
   </div>
 );
 

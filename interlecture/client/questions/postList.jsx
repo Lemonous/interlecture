@@ -1,7 +1,8 @@
 import React from 'react';
-import { ListGroup, ListGroupItem, Form } from 'react-bootstrap';
+import { ListGroup, ListGroupItem } from 'react-bootstrap';
 import 'static/css/font-awesome.css';
 import QuestionItem from './questionItem';
+import InputForm from './inputForm';
 
 const listGroupItemStyle = {
   borderRadius: 5,
@@ -11,34 +12,37 @@ const listGroupItemStyle = {
   marginLeft: '30px',
   marginRight: '30px',
   marginBottom: '30px',
+  paddingBottom: '5px',
 };
 
 const PostList = ({ posts, parent_id, submitReply }) => (
   <ListGroup>
     {
-      posts.filter(post => (post.parent_post==parent_id))
+      posts.filter(post => (post.parent_post === parent_id))
         .map(post => (
           <ListGroupItem key={post.id} style={listGroupItemStyle}>
             <QuestionItem question={post} />
-            <PostList posts={posts} parent_id={post.id} submitReply={submitReply}/>
-            <Form
-                onSubmit={event => submitReply(event, event.target[0].value, post.id)}
-                id={`replyTo${post.id}`}>
-              <input type="text" placeholder="Enter reply" className="form-control" />
-            </Form>
+            <InputForm
+              onSubmit={submitReply}
+              id={`replyTo${post.id}`}
+              placeholder={'Enter reply'}
+              submitButtonText={'Submit Reply'}
+              onSubmitExtras={{ postId: post.id }}
+            />
+            <PostList posts={posts} parent_id={post.id} submitReply={submitReply} />
           </ListGroupItem>
         ))
     }
   </ListGroup>
 );
 
-QuestionItem.propTypes = {
-  posts: React.PropTypes.array.isRequired,
+PostList.propTypes = {
+  posts: React.PropTypes.arrayOf(React.PropTypes.object).isRequired,
   parent_id: React.PropTypes.number,
   submitReply: React.PropTypes.func.isRequired,
 };
 
-QuestionItem.defaultProps = {
+PostList.defaultProps = {
   parent_id: null,
 };
 
