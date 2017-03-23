@@ -20,3 +20,4 @@ webpack-stats.json
 
 *coverage/
 htmlcov/
+*.DS_Store
