@@ -19,7 +19,7 @@ const QuestionItem = ({
   >
     <Grid>
       <Row className="show-grid">
-        <Col xs={12} md={8}>{
+        <Col xs={8} md={8}>{
           <div>
             <p>
               <FontAwesome name="user" />
@@ -46,7 +46,7 @@ const QuestionItem = ({
                 <FontAwesome name="reply" />
             </Button>
           </div>}</Col>
-        <Col xs={6} md={4}>{
+        <Col xs={4} md={4}>{
           <p>
             <FontAwesome name="clock-o" />
                 &nbsp;

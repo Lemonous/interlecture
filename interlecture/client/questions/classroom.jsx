@@ -20,12 +20,7 @@ function mapStateToProps(state) {
   };
 }
 
-function onReplySubmit(event, questionId) {
-  event.preventDefault();
-  console.log(questionId);
-}
-
-export const Classroom = ({ questions, classroom, onSubmit }) => (
+export const Classroom = ({ questions, classroom, submitQuestion, submitReply }) => (
   <div style={{ marginTop: '50px' }}>
     <h2>{classroom.title}</h2>
     <Grid>
@@ -42,14 +37,14 @@ export const Classroom = ({ questions, classroom, onSubmit }) => (
         questions.map(question => (
           <ListGroupItem key={question.id} style={listGroupItemStyle}>
             <QuestionItem question={question} />
-            <Form onSubmit={event => onReplySubmit(event, question.id)} id={`replyTo${question.id}`}>
+            <Form onSubmit={event => submitReply(event, event.target[0].value, question.id)} id={`replyTo${question.id}`}>
               <input type="text" placeholder="Enter reply" className="form-control" />
             </Form>
           </ListGroupItem>
         ))
       }
     </ListGroup>
-    <Form onSubmit={onSubmit} id="post">
+    <Form onSubmit={submitQuestion} id="post">
       <input type="text" placeholder="Enter message" className="form-control" />
     </Form>
   </div>
@@ -62,7 +57,7 @@ Classroom.propTypes = {
     title: React.PropTypes.string,
     lecturer: React.PropTypes.string,
   }).isRequired,
-  onSubmit: React.PropTypes.func.isRequired,
+  submitQuestion: React.PropTypes.func.isRequired,
 };
 
 export default connect(mapStateToProps)(Classroom);
