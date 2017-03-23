@@ -20,6 +20,8 @@ class SocketHandler {
     event.preventDefault();
     console.log(replyText);
     console.log(questionId);
+      this.socket.send(JSON.stringify(
+            { app: 'questions', command: 'post', room: 'test', text: replyText, parent_post: questionId}));
   }
 
   submitQuestion(event) {

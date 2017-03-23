@@ -30,6 +30,6 @@ class Post(models.Model):
             'user':self.user.username,
             'text':self.text,
             'datetime':str(self.datetime),
-            'parent_post':self.parent_post.dynid() if self.parent_post else None,
+            'parent_post':self.parent_post.id if self.parent_post else None,
             'supporters':self.supporters.count()
           }
