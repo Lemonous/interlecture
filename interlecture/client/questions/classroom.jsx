@@ -33,7 +33,7 @@ function mapStateToProps(state) {
   };
 }
 
-const Classroom = ({ questions, classroom, onSubmit }) => (
+export const Classroom = ({ questions, classroom, onSubmit }) => (
   <div style={{ marginTop: '50px' }}>
     <h2>{classroom.title}</h2>
     <Grid>

@@ -41,7 +41,7 @@ before_script:
     - python manage.py migrate
     - ./node_modules/.bin/webpack
 script:
-    - npm test
+    - yarn jest
     - coverage run manage.py test
 
 after_success:
