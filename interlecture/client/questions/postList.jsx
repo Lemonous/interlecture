@@ -15,13 +15,13 @@ const listGroupItemStyle = {
   paddingBottom: '5px',
 };
 
-const PostList = ({ posts, parent_id, submitReply }) => (
+const PostList = ({ posts, parent_id, submitReply, submitLike }) => (
   <ListGroup>
     {
-      posts.filter(post => (post.parent_post === parent_id))
+      posts.filter(post => (post.parent_post==parent_id))
         .map(post => (
           <ListGroupItem key={post.id} style={listGroupItemStyle}>
-            <QuestionItem question={post} />
+            <QuestionItem question={post} submitLike={submitLike} />
             <InputForm
               onSubmit={submitReply}
               id={`replyTo${post.id}`}
@@ -29,7 +29,7 @@ const PostList = ({ posts, parent_id, submitReply }) => (
               submitButtonText={'Submit Reply'}
               onSubmitExtras={{ postId: post.id }}
             />
-            <PostList posts={posts} parent_id={post.id} submitReply={submitReply} />
+            <PostList posts={posts} parent_id={post.id} submitReply={submitReply} submitLike={submitLike} />
           </ListGroupItem>
         ))
     }
@@ -40,6 +40,7 @@ PostList.propTypes = {
   posts: React.PropTypes.arrayOf(React.PropTypes.object).isRequired,
   parent_id: React.PropTypes.number,
   submitReply: React.PropTypes.func.isRequired,
+  submitLike: React.PropTypes.func.isRequired,
 };
 
 PostList.defaultProps = {

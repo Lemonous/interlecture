@@ -23,6 +23,7 @@ const Main = () => (
         classroom={classroom}
         submitQuestion={sock.submitQuestion}
         submitReply={sock.submitReply}
+        submitLike={sock.submitLike}
       />
 
     </div>
