@@ -3,6 +3,8 @@ from django.http import HttpResponseRedirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+from django.template.loader import render_to_string
+from django.core.mail import send_mail
 from django.shortcuts import render, reverse
 
 import datetime
@@ -37,7 +39,7 @@ def login_view(request):
 
 
 @login_required
-def logout(request):
+def logout_view(request):
     logout(request)
     return HttpResponseRedirect(reverse('login'))
 
@@ -95,9 +97,27 @@ def activate(request, key):
     return HttpResponseRedirect(reverse('app'))
 
 
-@login_required
 def resend_activation_link(request):
-    pass
+    if request.user.is_authenticated:
+        return HttpResponseRedirect(reverse('app'))
+
+    if request.method == 'POST':
+        try:
+            user = User.objects.get(email=request.POST['email'])
+            if user.is_active:
+                return HttpResponseRedirect(reverse('login'))
+            activation = UserActivation.objects.get(user=user)
+            activation.key_expires = datetime.datetime.now(dateutil.tz.tzlocal()) + datetime.timedelta(days=2)
+            send_activation_mail(activation)
+            return HttpResponseRedirect('login')
+        except ObjectDoesNotExist:
+            return HttpResponseRedirect(reverse('resend-activation'))
+
+    context = {
+        'app_name': 'resend_activation',
+        'args': '{}'
+    }
+    return render(request, 'base.html', context=context)
 
 
 def init_activation(user):
@@ -114,4 +134,11 @@ def init_activation(user):
 
 
 def send_activation_mail(activation):
-    pass
+    mail_body = render_to_string('activation_mail.html', context={'activation': activation})
+    _ = send_mail(
+        subject='Interlecture Account Activation',
+        message='',
+        from_email='activation@interlecture.no',
+        recipient_list=[activation.user.email],
+        html_message=mail_body
+    )

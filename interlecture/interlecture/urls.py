@@ -16,16 +16,17 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 from django.views import generic
-from interauth.views import login_view, logout, register, activate
+from interauth.views import login_view, logout_view, register, activate, resend_activation_link
 from engine.views import app_view
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^app/$', app_view, name='app'),
     url(r'^login/$', login_view, name='login'),
-    url(r'^logout/$', logout, name='logout'),
+    url(r'^logout/$', logout_view, name='logout'),
     url(r'^register/$', register, name='register'),
     url(r'^activate/(?P<key>.+)$', activate, name='activate'),
+    url(r'^resend-activation/$', resend_activation_link, name='resend-activation'),
     # TODO: Dynamically redirect
-    url(r'^$', generic.base.RedirectView.as_view(url='login_view/')),
+    url(r'^$', generic.base.RedirectView.as_view(url='login/')),
 ]
