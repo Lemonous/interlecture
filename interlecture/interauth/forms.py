@@ -22,12 +22,9 @@ class UserForm(Form):
         if not cleaned_data.get('email'):
             pass
         elif not re.search(r'[@.]ntnu(\.edu|\.no)', cleaned_data.get('email')):
-            print(re.search(r'[@.]ntnu(\.edu|\.no)', cleaned_data.get('email')))
-            print(cleaned_data.get('email'))
             self.add_error(None, ValidationError('Not an NTNU email', code='notNtnuEmail'))
         else:
-            print(re.search(r'[@.]ntnu(\.edu|\.no)', cleaned_data.get('email')))
-            print(cleaned_data.get('email'))
+            pass
 
         try:
             User.objects.get(email=cleaned_data.get('email'))
