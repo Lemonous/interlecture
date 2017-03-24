@@ -20,3 +20,6 @@ webpack-stats.json
 
 .coverage
 htmlcov/
+
+### macOS ###
+.DS_Store
