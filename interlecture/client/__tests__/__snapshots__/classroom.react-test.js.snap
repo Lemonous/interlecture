@@ -4,6 +4,7 @@ exports[`Classroom looks like it should 1`] = `
 <div
   style={
     Object {
+      "marginBottom": "40px",
       "marginTop": "50px",
     }
   }
@@ -49,6 +50,7 @@ exports[`Classroom looks like it should 1`] = `
           "marginLeft": "30px",
           "marginRight": "30px",
           "padding": "0px 0px",
+          "paddingBottom": "5px",
         }
       }
     >
@@ -117,23 +119,64 @@ exports[`Classroom looks like it should 1`] = `
                   aria-hidden={true}
                   className="fa fa-clock-o"
                 />
-                  TimeAndDate
+                 
+                whatever
               </p>
             </div>
           </div>
         </div>
       </div>
-      <form
-        className=""
-        id="replyTo1"
-        onSubmit={[Function]}
+      <div
+        style={
+          Object {
+            "paddingLeft": "5px",
+            "paddingRight": "5px",
+            "width": "100%",
+          }
+        }
       >
-        <input
-          className="form-control"
-          placeholder="Enter reply"
-          type="text"
-        />
-      </form>
+        <button
+          className="btn btn-primary"
+          form="replyTo1"
+          style={
+            Object {
+              "float": "right",
+            }
+          }
+          type="submit"
+          value="submitButton"
+        >
+          Submit Reply
+        </button>
+        <div
+          style={
+            Object {
+              "overflow": "hidden",
+              "paddingRight": "0.5rem",
+            }
+          }
+        >
+          <form
+            className=""
+            id="replyTo1"
+            onSubmit={[Function]}
+          >
+            <input
+              className="form-control"
+              placeholder="Enter reply"
+              style={
+                Object {
+                  "width": "100%",
+                }
+              }
+              type="text"
+            />
+          </form>
+        </div>
+      </div>
+      <ul
+        className="list-group"
+      />
     </li>
     <li
       className="list-group-item"
@@ -146,6 +189,7 @@ exports[`Classroom looks like it should 1`] = `
           "marginLeft": "30px",
           "marginRight": "30px",
           "padding": "0px 0px",
+          "paddingBottom": "5px",
         }
       }
     >
@@ -214,23 +258,64 @@ exports[`Classroom looks like it should 1`] = `
                   aria-hidden={true}
                   className="fa fa-clock-o"
                 />
-                  TimeAndDate
+                 
+                whatever
               </p>
             </div>
           </div>
         </div>
       </div>
-      <form
-        className=""
-        id="replyTo2"
-        onSubmit={[Function]}
+      <div
+        style={
+          Object {
+            "paddingLeft": "5px",
+            "paddingRight": "5px",
+            "width": "100%",
+          }
+        }
       >
-        <input
-          className="form-control"
-          placeholder="Enter reply"
-          type="text"
-        />
-      </form>
+        <button
+          className="btn btn-primary"
+          form="replyTo2"
+          style={
+            Object {
+              "float": "right",
+            }
+          }
+          type="submit"
+          value="submitButton"
+        >
+          Submit Reply
+        </button>
+        <div
+          style={
+            Object {
+              "overflow": "hidden",
+              "paddingRight": "0.5rem",
+            }
+          }
+        >
+          <form
+            className=""
+            id="replyTo2"
+            onSubmit={[Function]}
+          >
+            <input
+              className="form-control"
+              placeholder="Enter reply"
+              style={
+                Object {
+                  "width": "100%",
+                }
+              }
+              type="text"
+            />
+          </form>
+        </div>
+      </div>
+      <ul
+        className="list-group"
+      />
     </li>
     <li
       className="list-group-item"
@@ -243,6 +328,7 @@ exports[`Classroom looks like it should 1`] = `
           "marginLeft": "30px",
           "marginRight": "30px",
           "padding": "0px 0px",
+          "paddingBottom": "5px",
         }
       }
     >
@@ -311,23 +397,64 @@ exports[`Classroom looks like it should 1`] = `
                   aria-hidden={true}
                   className="fa fa-clock-o"
                 />
-                  TimeAndDate
+                 
+                whatever
               </p>
             </div>
           </div>
         </div>
       </div>
-      <form
-        className=""
-        id="replyTo3"
-        onSubmit={[Function]}
+      <div
+        style={
+          Object {
+            "paddingLeft": "5px",
+            "paddingRight": "5px",
+            "width": "100%",
+          }
+        }
       >
-        <input
-          className="form-control"
-          placeholder="Enter reply"
-          type="text"
-        />
-      </form>
+        <button
+          className="btn btn-primary"
+          form="replyTo3"
+          style={
+            Object {
+              "float": "right",
+            }
+          }
+          type="submit"
+          value="submitButton"
+        >
+          Submit Reply
+        </button>
+        <div
+          style={
+            Object {
+              "overflow": "hidden",
+              "paddingRight": "0.5rem",
+            }
+          }
+        >
+          <form
+            className=""
+            id="replyTo3"
+            onSubmit={[Function]}
+          >
+            <input
+              className="form-control"
+              placeholder="Enter reply"
+              style={
+                Object {
+                  "width": "100%",
+                }
+              }
+              type="text"
+            />
+          </form>
+        </div>
+      </div>
+      <ul
+        className="list-group"
+      />
     </li>
     <li
       className="list-group-item"
@@ -340,6 +467,7 @@ exports[`Classroom looks like it should 1`] = `
           "marginLeft": "30px",
           "marginRight": "30px",
           "padding": "0px 0px",
+          "paddingBottom": "5px",
         }
       }
     >
@@ -408,23 +536,64 @@ exports[`Classroom looks like it should 1`] = `
                   aria-hidden={true}
                   className="fa fa-clock-o"
                 />
-                  TimeAndDate
+                 
+                whatever
               </p>
             </div>
           </div>
         </div>
       </div>
-      <form
-        className=""
-        id="replyTo4"
-        onSubmit={[Function]}
+      <div
+        style={
+          Object {
+            "paddingLeft": "5px",
+            "paddingRight": "5px",
+            "width": "100%",
+          }
+        }
       >
-        <input
-          className="form-control"
-          placeholder="Enter reply"
-          type="text"
-        />
-      </form>
+        <button
+          className="btn btn-primary"
+          form="replyTo4"
+          style={
+            Object {
+              "float": "right",
+            }
+          }
+          type="submit"
+          value="submitButton"
+        >
+          Submit Reply
+        </button>
+        <div
+          style={
+            Object {
+              "overflow": "hidden",
+              "paddingRight": "0.5rem",
+            }
+          }
+        >
+          <form
+            className=""
+            id="replyTo4"
+            onSubmit={[Function]}
+          >
+            <input
+              className="form-control"
+              placeholder="Enter reply"
+              style={
+                Object {
+                  "width": "100%",
+                }
+              }
+              type="text"
+            />
+          </form>
+        </div>
+      </div>
+      <ul
+        className="list-group"
+      />
     </li>
     <li
       className="list-group-item"
@@ -437,6 +606,7 @@ exports[`Classroom looks like it should 1`] = `
           "marginLeft": "30px",
           "marginRight": "30px",
           "padding": "0px 0px",
+          "paddingBottom": "5px",
         }
       }
     >
@@ -505,35 +675,135 @@ exports[`Classroom looks like it should 1`] = `
                   aria-hidden={true}
                   className="fa fa-clock-o"
                 />
-                  TimeAndDate
+                 
+                whatever
               </p>
             </div>
           </div>
         </div>
       </div>
-      <form
-        className=""
-        id="replyTo5"
-        onSubmit={[Function]}
+      <div
+        style={
+          Object {
+            "paddingLeft": "5px",
+            "paddingRight": "5px",
+            "width": "100%",
+          }
+        }
       >
-        <input
-          className="form-control"
-          placeholder="Enter reply"
-          type="text"
-        />
-      </form>
+        <button
+          className="btn btn-primary"
+          form="replyTo5"
+          style={
+            Object {
+              "float": "right",
+            }
+          }
+          type="submit"
+          value="submitButton"
+        >
+          Submit Reply
+        </button>
+        <div
+          style={
+            Object {
+              "overflow": "hidden",
+              "paddingRight": "0.5rem",
+            }
+          }
+        >
+          <form
+            className=""
+            id="replyTo5"
+            onSubmit={[Function]}
+          >
+            <input
+              className="form-control"
+              placeholder="Enter reply"
+              style={
+                Object {
+                  "width": "100%",
+                }
+              }
+              type="text"
+            />
+          </form>
+        </div>
+      </div>
+      <ul
+        className="list-group"
+      />
     </li>
   </ul>
-  <form
-    className=""
-    id="post"
-    onSubmit={[Function]}
+  <div
+    style={
+      Object {
+        "backgroundColor": "#fff",
+        "bottom": "0px",
+        "height": "50px",
+        "paddingTop": "10px",
+        "position": "fixed",
+        "width": "100%",
+      }
+    }
   >
-    <input
-      className="form-control"
-      placeholder="Enter message"
-      type="text"
-    />
-  </form>
+    <div
+      style={
+        Object {
+          "marginLeft": "30px",
+          "width": "85%",
+        }
+      }
+    >
+      <div
+        style={
+          Object {
+            "paddingLeft": "5px",
+            "paddingRight": "5px",
+            "width": "100%",
+          }
+        }
+      >
+        <button
+          className="btn btn-primary"
+          form="submitQuestion"
+          style={
+            Object {
+              "float": "right",
+            }
+          }
+          type="submit"
+          value="submitButton"
+        >
+          Submit Question
+        </button>
+        <div
+          style={
+            Object {
+              "overflow": "hidden",
+              "paddingRight": "0.5rem",
+            }
+          }
+        >
+          <form
+            className=""
+            id="submitQuestion"
+            onSubmit={[Function]}
+          >
+            <input
+              className="form-control"
+              placeholder="Enter question"
+              style={
+                Object {
+                  "width": "100%",
+                }
+              }
+              type="text"
+            />
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 `;

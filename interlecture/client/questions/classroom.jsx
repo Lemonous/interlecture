@@ -8,7 +8,7 @@ import InputForm from './inputForm';
 
 function mapStateToProps(state) {
   return {
-    questions: state.filter(v=>v),
+    questions: state.filter(v => v),
   };
 }
 
@@ -61,6 +61,7 @@ Classroom.propTypes = {
   }).isRequired,
   submitQuestion: React.PropTypes.func.isRequired,
   submitLike: React.PropTypes.func.isRequired,
+  submitReply: React.PropTypes.func.isRequired,
 };
 
 export default connect(mapStateToProps)(Classroom);

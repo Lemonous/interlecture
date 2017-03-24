@@ -50,4 +50,18 @@ const InputForm = ({ onSubmit, id, placeholder, onSubmitExtras, submitButtonText
   </div>
 );
 
+InputForm.propTypes = {
+  onSubmit: React.PropTypes.func.isRequired,
+  id: React.PropTypes.string.isRequired,
+  placeholder: React.PropTypes.string,
+  onSubmitExtras: React.PropTypes.object,
+  submitButtonText: React.PropTypes.string,
+};
+
+InputForm.defaultProps = {
+  placeholder: 'Enter text',
+  onSubmitExtras: {},
+  submitButtonText: 'Submit',
+};
+
 export default InputForm;
