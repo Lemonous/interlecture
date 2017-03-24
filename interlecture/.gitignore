@@ -18,6 +18,8 @@ node_modules/
 bundles/
 webpack-stats.json
 
-*coverage/
+.coverage
 htmlcov/
-*.DS_Store
+
+### macOS ###
+.DS_Store
