@@ -10,18 +10,17 @@ function changeLook() {
 const QuestionItem = ({
   question,
   color,
-  size,
+  submitLike,
 }) => (
   <div
     style={{
       padding: '10px',
       backgroundColor: color,
-      fontSize: size,
     }}
   >
     <Grid>
       <Row className="show-grid">
-        <Col xs={12} md={8}>{
+        <Col xs={8} md={8}>{
           <div>
             <p>
               <FontAwesome name="user" />
@@ -34,11 +33,12 @@ const QuestionItem = ({
               { question.text }
             </p>
             <Button
-              onClick={changeLook}
+              onClick={event => (submitLike(event,question.id))}
             >
                 Like
                 &nbsp;
                 <FontAwesome name="thumbs-up" />
+                {question.supporters}
             </Button>
             <Button
               onClick={changeLook}
@@ -48,11 +48,11 @@ const QuestionItem = ({
                 <FontAwesome name="reply" />
             </Button>
           </div>}</Col>
-        <Col xs={6} md={4}>{
+        <Col xs={4} md={4}>{
           <p>
             <FontAwesome name="clock-o" />
                 &nbsp;
-              TimeAndDate
+              {question.datetime.substr(0,19)}
           </p>}</Col>
 
       </Row>
@@ -60,9 +60,16 @@ const QuestionItem = ({
   </div>
 );
 QuestionItem.propTypes = {
-  question: React.PropTypes.string.isRequired,
-  color: React.PropTypes.string.isRequired,
-  size: React.PropTypes.string.isRequired,
+  question: React.PropTypes.shape({
+    id: React.PropTypes.number,
+    user: React.PropTypes.string,
+    body: React.PropTypes.string,
+  }).isRequired,
+  color: React.PropTypes.string,
+  submitLike: React.PropTypes.func.isRequired,
+};
+
+QuestionItem.defaultProps = {
+  color: '#fff',
 };
 export default QuestionItem;
-//  clickButton: React.PropTypes.func.isRequired,

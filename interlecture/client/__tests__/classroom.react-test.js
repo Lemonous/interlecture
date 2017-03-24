@@ -43,7 +43,7 @@ const classroom = {
 
 test('Classroom looks like it should', () => {
   const component = renderer.create(
-    <Classroom classroom={classroom} onSubmit={onSubmit} questions={questions} />);
+    <Classroom classroom={classroom} submitQuestion={onSubmit} questions={questions} />);
   const tree = component.toJSON();
   expect(tree).toMatchSnapshot();
 });
