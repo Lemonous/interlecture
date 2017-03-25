@@ -145,7 +145,7 @@ WEBPACK_LOADER = {
     }
 }
 
-if not DEBUG:
+if not DEBUG:# pragma: no cover
     EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 else:
     EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
