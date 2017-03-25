@@ -2,11 +2,6 @@ import React from 'react';
 import { Button, Grid, Row, Col } from 'react-bootstrap';
 import FontAwesome from 'react-fontawesome';
 
-
-function changeLook() {
-  console.log('changeLookClicked');
-}
-
 const QuestionItem = ({
   question,
   color,
@@ -40,9 +35,7 @@ const QuestionItem = ({
                 <FontAwesome name="thumbs-up" />
                 {question.supporters}
             </Button>
-            <Button
-              onClick={changeLook}
-            >
+            <Button>
                 Reply
                 &nbsp;
                 <FontAwesome name="reply" />
