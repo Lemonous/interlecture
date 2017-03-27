@@ -18,9 +18,9 @@ const QuestionItem = ({
       backgroundColor: color,
     }}
   >
-    <Grid>
-      <Row className="show-grid">
-        <Col xs={8} md={8}>{
+    <Grid style={{ width: 'inherit' }}>
+      <Row className="show-grid" style={{ width: 'inherit' }}>
+        <Col xs={8} md={8} lg={8}>{
           <div>
             <p>
               <FontAwesome name="user" />
@@ -32,28 +32,22 @@ const QuestionItem = ({
                 &nbsp;
               { question.text }
             </p>
-            <Button
-              onClick={event => (submitLike(event,question.id))}
-            >
-                Like
-                &nbsp;
-                <FontAwesome name="thumbs-up" />
-                {question.supporters}
-            </Button>
-            <Button
-              onClick={changeLook}
-            >
-                Reply
-                &nbsp;
-                <FontAwesome name="reply" />
-            </Button>
           </div>}</Col>
-        <Col xs={4} md={4}>{
+        <Col xs={4} md={4} lg={4}>{
           <p>
             <FontAwesome name="clock-o" />
                 &nbsp;
-              {question.datetime.substr(0,19)}
-          </p>}</Col>
+              { question.datetime.substr(0, 19) }
+          </p>}
+          <Button
+            onClick={ event => (submitLike(event, question.id)) }
+          >
+            Like
+            &nbsp;
+            <FontAwesome name="thumbs-up" />
+            { question.supporters }
+          </Button>
+        </Col>
 
       </Row>
     </Grid>
