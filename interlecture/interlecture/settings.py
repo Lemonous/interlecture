@@ -10,7 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.10/ref/settings/
 """
 
-from interlecture.local_settings import SECRET_KEY, DEBUG, DATABASE
+from interlecture.local_settings import SECRET_KEY, DEBUG, DATABASE, EMAIL
 
 import os
 
@@ -26,7 +26,7 @@ SECRET_KEY = SECRET_KEY
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = DEBUG
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['interlecture.no', 'www.interlecture.no']
 
 # Application definition
 
@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'channels',
     'webpack_loader',
     'engine',
-    'login',
+    'interauth',
     'questions',
 ]
 
@@ -144,3 +144,13 @@ WEBPACK_LOADER = {
         'STATS_FILE': os.path.join(BASE_DIR, 'webpack-stats.json'),
     }
 }
+
+if not DEBUG:# pragma: no cover
+    EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+else:
+    EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+    EMAIL_HOST = EMAIL['HOST']
+    EMAIL_PORT = EMAIL['PORT']
+    EMAIL_HOST_USER = EMAIL['USER']
+    EMAIL_HOST_PASSWORD = EMAIL['PASSWORD']
+    EMAIL_USE_TLS = True
