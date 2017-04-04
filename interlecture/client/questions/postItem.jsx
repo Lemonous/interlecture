@@ -1,11 +1,16 @@
 import React from 'react';
 import { Button, Grid, Row, Col } from 'react-bootstrap';
 import FontAwesome from 'react-fontawesome';
+import InputForm from './inputForm';
+import PostList from './postList';
 
-const QuestionItem = ({
-  question,
+const PostItem = ({
+  post,
   color,
   submitLike,
+  submitReply,
+  submitDelete,
+  ...props
 }) => (
   <div
     style={{
@@ -20,49 +25,73 @@ const QuestionItem = ({
             <p>
               <FontAwesome name="user" />
                 &nbsp;
-              <b>{ question.user }</b>
+              <b>{ post.user }</b>
             </p>
             <p>
                 &nbsp;
                 &nbsp;
-              { question.text }
+              { post.text }
             </p>
             <Button
-              onClick={event => (submitLike(event,question.id))}
+              onClick={event => (submitLike(event,post.id))}
             >
                 Like
                 &nbsp;
                 <FontAwesome name="thumbs-up" />
-                {question.supporters}
+                {post.supporters}
             </Button>
             <Button>
                 Reply
                 &nbsp;
                 <FontAwesome name="reply" />
             </Button>
+            <Button
+              onClick={event => (submitDelete(event,post.id))}
+            >
+                Delete
+                &nbsp;
+                <FontAwesome name="remove-circle" />
+            </Button>
           </div>}</Col>
         <Col xs={4} md={4}>{
           <p>
             <FontAwesome name="clock-o" />
                 &nbsp;
-              {question.datetime.substr(0,19)}
+              {post.datetime.substr(0,19)}
           </p>}</Col>
 
       </Row>
     </Grid>
+    <InputForm
+      onSubmit={submitReply}
+      id={`replyTo${post.id}`}
+      placeholder={'Enter reply'}
+      submitButtonText={'Submit Reply'}
+      onSubmitExtras={{ postId: post.id }}
+    />
+    
+    <PostList
+        submitLike={submitLike}
+        submitReply={submitReply}
+        submitDelete={submitDelete}
+        parent_id={post.id}
+        {...props}/>
+        
   </div>
 );
-QuestionItem.propTypes = {
-  question: React.PropTypes.shape({
+PostItem.propTypes = {
+  post: React.PropTypes.shape({
     id: React.PropTypes.number,
     user: React.PropTypes.string,
     body: React.PropTypes.string,
   }).isRequired,
   color: React.PropTypes.string,
   submitLike: React.PropTypes.func.isRequired,
+  submitReply: React.PropTypes.func.isRequired,
+  submitDelete: React.PropTypes.func.isRequired,
 };
 
-QuestionItem.defaultProps = {
+PostItem.defaultProps = {
   color: '#fff',
 };
-export default QuestionItem;
+export default PostItem;

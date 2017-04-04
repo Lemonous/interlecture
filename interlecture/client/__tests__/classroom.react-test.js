@@ -53,7 +53,8 @@ test('Classroom looks like it should', () => {
       submitQuestion={onSubmit}
       submitReply={onSubmit}
       submitLike={onSubmit}
-      questions={questions}
+      submitDelete={onSubmit}
+      posts={questions}
     />);
   const tree = component.toJSON();
   expect(tree).toMatchSnapshot();

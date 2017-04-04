@@ -108,6 +108,18 @@ exports[`Classroom looks like it should 1`] = `
                     className="fa fa-reply"
                   />
                 </button>
+                <button
+                  className="btn btn-default"
+                  disabled={false}
+                  onClick={[Function]}
+                  type="button"
+                >
+                  Delete  
+                  <span
+                    aria-hidden={true}
+                    className="fa fa-remove-circle"
+                  />
+                </button>
               </div>
             </div>
             <div
@@ -124,58 +136,58 @@ exports[`Classroom looks like it should 1`] = `
             </div>
           </div>
         </div>
-      </div>
-      <div
-        style={
-          Object {
-            "paddingLeft": "5px",
-            "paddingRight": "5px",
-            "width": "100%",
-          }
-        }
-      >
-        <button
-          className="btn btn-primary"
-          form="replyTo1"
-          style={
-            Object {
-              "float": "right",
-            }
-          }
-          type="submit"
-          value="submitButton"
-        >
-          Submit Reply
-        </button>
         <div
           style={
             Object {
-              "overflow": "hidden",
-              "paddingRight": "0.5rem",
+              "paddingLeft": "5px",
+              "paddingRight": "5px",
+              "width": "100%",
             }
           }
         >
-          <form
-            className=""
-            id="replyTo1"
-            onSubmit={[Function]}
-          >
-            <input
-              className="form-control"
-              placeholder="Enter reply"
-              style={
-                Object {
-                  "width": "100%",
-                }
+          <button
+            className="btn btn-primary"
+            form="replyTo1"
+            style={
+              Object {
+                "float": "right",
               }
-              type="text"
-            />
-          </form>
+            }
+            type="submit"
+            value="submitButton"
+          >
+            Submit Reply
+          </button>
+          <div
+            style={
+              Object {
+                "overflow": "hidden",
+                "paddingRight": "0.5rem",
+              }
+            }
+          >
+            <form
+              className=""
+              id="replyTo1"
+              onSubmit={[Function]}
+            >
+              <input
+                className="form-control"
+                placeholder="Enter reply"
+                style={
+                  Object {
+                    "width": "100%",
+                  }
+                }
+                type="text"
+              />
+            </form>
+          </div>
         </div>
+        <ul
+          className="list-group"
+        />
       </div>
-      <ul
-        className="list-group"
-      />
     </li>
     <li
       className="list-group-item"
@@ -246,6 +258,18 @@ exports[`Classroom looks like it should 1`] = `
                     className="fa fa-reply"
                   />
                 </button>
+                <button
+                  className="btn btn-default"
+                  disabled={false}
+                  onClick={[Function]}
+                  type="button"
+                >
+                  Delete  
+                  <span
+                    aria-hidden={true}
+                    className="fa fa-remove-circle"
+                  />
+                </button>
               </div>
             </div>
             <div
@@ -262,58 +286,58 @@ exports[`Classroom looks like it should 1`] = `
             </div>
           </div>
         </div>
-      </div>
-      <div
-        style={
-          Object {
-            "paddingLeft": "5px",
-            "paddingRight": "5px",
-            "width": "100%",
-          }
-        }
-      >
-        <button
-          className="btn btn-primary"
-          form="replyTo2"
-          style={
-            Object {
-              "float": "right",
-            }
-          }
-          type="submit"
-          value="submitButton"
-        >
-          Submit Reply
-        </button>
         <div
           style={
             Object {
-              "overflow": "hidden",
-              "paddingRight": "0.5rem",
+              "paddingLeft": "5px",
+              "paddingRight": "5px",
+              "width": "100%",
             }
           }
         >
-          <form
-            className=""
-            id="replyTo2"
-            onSubmit={[Function]}
-          >
-            <input
-              className="form-control"
-              placeholder="Enter reply"
-              style={
-                Object {
-                  "width": "100%",
-                }
+          <button
+            className="btn btn-primary"
+            form="replyTo2"
+            style={
+              Object {
+                "float": "right",
               }
-              type="text"
-            />
-          </form>
+            }
+            type="submit"
+            value="submitButton"
+          >
+            Submit Reply
+          </button>
+          <div
+            style={
+              Object {
+                "overflow": "hidden",
+                "paddingRight": "0.5rem",
+              }
+            }
+          >
+            <form
+              className=""
+              id="replyTo2"
+              onSubmit={[Function]}
+            >
+              <input
+                className="form-control"
+                placeholder="Enter reply"
+                style={
+                  Object {
+                    "width": "100%",
+                  }
+                }
+                type="text"
+              />
+            </form>
+          </div>
         </div>
+        <ul
+          className="list-group"
+        />
       </div>
-      <ul
-        className="list-group"
-      />
     </li>
     <li
       className="list-group-item"
@@ -384,6 +408,18 @@ exports[`Classroom looks like it should 1`] = `
                     className="fa fa-reply"
                   />
                 </button>
+                <button
+                  className="btn btn-default"
+                  disabled={false}
+                  onClick={[Function]}
+                  type="button"
+                >
+                  Delete  
+                  <span
+                    aria-hidden={true}
+                    className="fa fa-remove-circle"
+                  />
+                </button>
               </div>
             </div>
             <div
@@ -400,58 +436,58 @@ exports[`Classroom looks like it should 1`] = `
             </div>
           </div>
         </div>
-      </div>
-      <div
-        style={
-          Object {
-            "paddingLeft": "5px",
-            "paddingRight": "5px",
-            "width": "100%",
-          }
-        }
-      >
-        <button
-          className="btn btn-primary"
-          form="replyTo3"
-          style={
-            Object {
-              "float": "right",
-            }
-          }
-          type="submit"
-          value="submitButton"
-        >
-          Submit Reply
-        </button>
         <div
           style={
             Object {
-              "overflow": "hidden",
-              "paddingRight": "0.5rem",
+              "paddingLeft": "5px",
+              "paddingRight": "5px",
+              "width": "100%",
             }
           }
         >
-          <form
-            className=""
-            id="replyTo3"
-            onSubmit={[Function]}
-          >
-            <input
-              className="form-control"
-              placeholder="Enter reply"
-              style={
-                Object {
-                  "width": "100%",
-                }
+          <button
+            className="btn btn-primary"
+            form="replyTo3"
+            style={
+              Object {
+                "float": "right",
               }
-              type="text"
-            />
-          </form>
+            }
+            type="submit"
+            value="submitButton"
+          >
+            Submit Reply
+          </button>
+          <div
+            style={
+              Object {
+                "overflow": "hidden",
+                "paddingRight": "0.5rem",
+              }
+            }
+          >
+            <form
+              className=""
+              id="replyTo3"
+              onSubmit={[Function]}
+            >
+              <input
+                className="form-control"
+                placeholder="Enter reply"
+                style={
+                  Object {
+                    "width": "100%",
+                  }
+                }
+                type="text"
+              />
+            </form>
+          </div>
         </div>
+        <ul
+          className="list-group"
+        />
       </div>
-      <ul
-        className="list-group"
-      />
     </li>
     <li
       className="list-group-item"
@@ -522,6 +558,18 @@ exports[`Classroom looks like it should 1`] = `
                     className="fa fa-reply"
                   />
                 </button>
+                <button
+                  className="btn btn-default"
+                  disabled={false}
+                  onClick={[Function]}
+                  type="button"
+                >
+                  Delete  
+                  <span
+                    aria-hidden={true}
+                    className="fa fa-remove-circle"
+                  />
+                </button>
               </div>
             </div>
             <div
@@ -538,58 +586,58 @@ exports[`Classroom looks like it should 1`] = `
             </div>
           </div>
         </div>
-      </div>
-      <div
-        style={
-          Object {
-            "paddingLeft": "5px",
-            "paddingRight": "5px",
-            "width": "100%",
-          }
-        }
-      >
-        <button
-          className="btn btn-primary"
-          form="replyTo4"
-          style={
-            Object {
-              "float": "right",
-            }
-          }
-          type="submit"
-          value="submitButton"
-        >
-          Submit Reply
-        </button>
         <div
           style={
             Object {
-              "overflow": "hidden",
-              "paddingRight": "0.5rem",
+              "paddingLeft": "5px",
+              "paddingRight": "5px",
+              "width": "100%",
             }
           }
         >
-          <form
-            className=""
-            id="replyTo4"
-            onSubmit={[Function]}
-          >
-            <input
-              className="form-control"
-              placeholder="Enter reply"
-              style={
-                Object {
-                  "width": "100%",
-                }
+          <button
+            className="btn btn-primary"
+            form="replyTo4"
+            style={
+              Object {
+                "float": "right",
               }
-              type="text"
-            />
-          </form>
+            }
+            type="submit"
+            value="submitButton"
+          >
+            Submit Reply
+          </button>
+          <div
+            style={
+              Object {
+                "overflow": "hidden",
+                "paddingRight": "0.5rem",
+              }
+            }
+          >
+            <form
+              className=""
+              id="replyTo4"
+              onSubmit={[Function]}
+            >
+              <input
+                className="form-control"
+                placeholder="Enter reply"
+                style={
+                  Object {
+                    "width": "100%",
+                  }
+                }
+                type="text"
+              />
+            </form>
+          </div>
         </div>
+        <ul
+          className="list-group"
+        />
       </div>
-      <ul
-        className="list-group"
-      />
     </li>
     <li
       className="list-group-item"
@@ -660,6 +708,18 @@ exports[`Classroom looks like it should 1`] = `
                     className="fa fa-reply"
                   />
                 </button>
+                <button
+                  className="btn btn-default"
+                  disabled={false}
+                  onClick={[Function]}
+                  type="button"
+                >
+                  Delete  
+                  <span
+                    aria-hidden={true}
+                    className="fa fa-remove-circle"
+                  />
+                </button>
               </div>
             </div>
             <div
@@ -676,58 +736,58 @@ exports[`Classroom looks like it should 1`] = `
             </div>
           </div>
         </div>
-      </div>
-      <div
-        style={
-          Object {
-            "paddingLeft": "5px",
-            "paddingRight": "5px",
-            "width": "100%",
-          }
-        }
-      >
-        <button
-          className="btn btn-primary"
-          form="replyTo5"
-          style={
-            Object {
-              "float": "right",
-            }
-          }
-          type="submit"
-          value="submitButton"
-        >
-          Submit Reply
-        </button>
         <div
           style={
             Object {
-              "overflow": "hidden",
-              "paddingRight": "0.5rem",
+              "paddingLeft": "5px",
+              "paddingRight": "5px",
+              "width": "100%",
             }
           }
         >
-          <form
-            className=""
-            id="replyTo5"
-            onSubmit={[Function]}
-          >
-            <input
-              className="form-control"
-              placeholder="Enter reply"
-              style={
-                Object {
-                  "width": "100%",
-                }
+          <button
+            className="btn btn-primary"
+            form="replyTo5"
+            style={
+              Object {
+                "float": "right",
               }
-              type="text"
-            />
-          </form>
+            }
+            type="submit"
+            value="submitButton"
+          >
+            Submit Reply
+          </button>
+          <div
+            style={
+              Object {
+                "overflow": "hidden",
+                "paddingRight": "0.5rem",
+              }
+            }
+          >
+            <form
+              className=""
+              id="replyTo5"
+              onSubmit={[Function]}
+            >
+              <input
+                className="form-control"
+                placeholder="Enter reply"
+                style={
+                  Object {
+                    "width": "100%",
+                  }
+                }
+                type="text"
+              />
+            </form>
+          </div>
         </div>
+        <ul
+          className="list-group"
+        />
       </div>
-      <ul
-        className="list-group"
-      />
     </li>
   </ul>
   <div

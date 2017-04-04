@@ -1,4 +1,5 @@
 const CLICK_REPLY = 'CLICK_REPLY';
+const DELETE_POST = 'DELETE_POST';
 
 /* Methods called from the server: */
 const NEW_POSTS = 'NEW_POSTS';
@@ -18,7 +19,8 @@ function clickReply(questionId) {
 export {
   serverAction,
   clickReply,
-  CLICK_REPLY,
   NEW_POSTS,
+  DELETE_POST,
+  CLICK_REPLY,
   GO_TO_COURSE,
 };
