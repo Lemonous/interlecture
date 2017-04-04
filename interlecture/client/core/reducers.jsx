@@ -1,6 +1,6 @@
 import { CLICK_REPLY } from './actions';
 
-function questions(state = [], action) {
+function posts(state = [], action) {
   switch (action.type) {
     case 'NEW_POSTS':
       var result=[...state];
@@ -19,4 +19,4 @@ function questions(state = [], action) {
   }
 }
 
-export default questions;
+export default posts;

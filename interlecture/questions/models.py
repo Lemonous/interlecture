@@ -33,3 +33,6 @@ class Post(models.Model):
             'parent_post':self.parent_post.id if self.parent_post else None,
             'supporters':self.supporters.count()
           }
+    
+    def request_access_rights(self,user,rights):
+        pass
