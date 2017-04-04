@@ -32,7 +32,7 @@ install:
     - yarn
 
     # Make localsettings
-    - echo -e "import os\nBASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))\nDEBUG=True\nSECRET_KEY='dhaskdjhaskjda'\nDATABASE={'ENGINE':'django.db.backends.sqlite3','NAME':os.path.join(BASE_DIR, 'db.sqlite3'),}\nEMAIL={'HOST':'smtp.gmail.com','PORT':587,'USER':'interlecturelearning@gmail.com','PASSWORD':'Intr4Lectur3'}" > interlecture/local_settings.py
+    - echo -e "import os\nBASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))\nDEBUG=True\nSECRET_KEY='dhaskdjhaskjda'\nDATABASE={'ENGINE':'django.db.backends.sqlite3','NAME':os.path.join(BASE_DIR, 'db.sqlite3'),}\nEMAIL={'HOST':'smtp.gmail.com','PORT':587,'USER':'interlecturelearning@gmail.com','PASSWORD':'Intr4Lectur3'}\nALLOWED_HOSTS=["localhost"]" > interlecture/local_settings.py
 cache:
     pip: true
     yarn: true
