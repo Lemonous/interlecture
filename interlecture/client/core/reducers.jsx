@@ -8,6 +8,11 @@ function posts(state = [], action) {
           result[action.data[id].id]=action.data[id];
         }
       return result;
+    
+    case 'DELETE_POST':
+      var result=[...state];
+      result.splice(action.post,1);
+      return result;
       
 
     case CLICK_REPLY:
