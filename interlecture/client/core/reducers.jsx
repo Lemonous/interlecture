@@ -1,7 +1,12 @@
-import { CLICK_REPLY } from './actions';
+import { CLICK_REPLY,
+  NEW_POSTS,
+  GO_TO_COURSE,
+  DELETE_POST,
+} from './actions';
 
 function posts(state = [], action) {
   switch (action.type) {
+
     case 'NEW_POSTS':
       var result=state.slice();
       for(var n in action.data) {
@@ -15,7 +20,7 @@ function posts(state = [], action) {
 
     case CLICK_REPLY:
       return state.slice();
-      
+     
     default:
       return state;
   }

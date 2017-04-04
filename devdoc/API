@@ -61,3 +61,7 @@ correspond to a specific request, therefore notifications canot have
   }
 ```
 * `DELETE_POST(post)`
+
+# courses
+#### Supported requests
+* 'courses.goToCourse(room)'

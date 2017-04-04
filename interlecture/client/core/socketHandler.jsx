@@ -11,6 +11,7 @@ class SocketHandler {
     this.submitQuestion = this.submitQuestion.bind(this);
     this.submitReply = this.submitReply.bind(this);
     this.submitLike = this.submitLike.bind(this);
+    this.goToCourse = this.goToCourse.bind(this);
     this.submitDelete = this.submitDelete.bind(this);
   }
 
@@ -26,19 +27,26 @@ class SocketHandler {
   submitLike(event, postId) {
     event.preventDefault();
     this.socket.send(JSON.stringify(
-          { app: 'questions', command: 'support', post: postId}));
+          { app: 'questions', command: 'support', post: postId }));
   }
 
   submitDelete(event, postId) {
     event.preventDefault();
     this.socket.send(JSON.stringify(
-          { app: 'questions', command: 'delete', post: postId}));
+          { app: 'questions', command: 'delete', post: postId }));
   }
 
   submitQuestion({ value }) {
     if (value && value !== '') {
       this.socket.send(JSON.stringify(
             { app: 'questions', command: 'post', room: 'test', text: value }));
+    }
+  }
+
+  goToCourse({ value }) {
+    if (value && value !== '') {
+      this.socket.send(JSON.stringify(
+            { app: 'courses', command: 'goToCourse', room: value }));
     }
   }
 

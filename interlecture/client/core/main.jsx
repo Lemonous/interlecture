@@ -2,8 +2,9 @@ import React from 'react';
 import { render } from 'react-dom';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
-import Classroom from '../questions/classroom';
 import SocketHandler from './socketHandler';
+import Classroom from '../questions/classroom';
+import ChooseCourse from '../courses/chooseCourse';
 import posts from './reducers';
 
 const store = createStore(posts);
@@ -14,11 +15,18 @@ const classroom = {
   title: 'test',
   lecturer: 'gruppe69',
 };
+// <Classroom
+//   classroom={classroom}
+//   submitQuestion={sock.submitQuestion}
+//   submitReply={sock.submitReply}
+//   submitLike={sock.submitLike}
+//   />
 
 const Main = () => (
   <Provider store={store}>
     <div style={{ margin: '5pt 5%' }}>
       <a href="/logout/">Logout</a>
+      <ChooseCourse goToCourse={sock.goToCourse} />
       <Classroom
         classroom={classroom}
         posts={posts}
@@ -27,7 +35,6 @@ const Main = () => (
         submitLike={sock.submitLike}
         submitDelete={sock.submitDelete}
       />
-
     </div>
   </Provider>
 );
