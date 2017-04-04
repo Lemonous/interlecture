@@ -45,7 +45,7 @@ const PostItem = ({
                 &nbsp;
                 <FontAwesome name="reply" />
             </Button>
-            
+
             {(window.django2react.moderator_mode=='true' || window.django2react.my_uname==post.user) &&
                 <Button bsStyle="danger" onClick={event => (submitDelete(event,post.id))}>
                     Delete
@@ -53,7 +53,6 @@ const PostItem = ({
                     <FontAwesome name="remove-circle" />
                 </Button>
             }
-            
           </div>}</Col>
         <Col xs={4} md={4}>{
           <p>
