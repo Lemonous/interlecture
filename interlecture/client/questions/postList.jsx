@@ -30,8 +30,6 @@ const PostList = ({ posts, parent_id, ...props }) => (
 PostList.propTypes = {
   posts: React.PropTypes.arrayOf(React.PropTypes.object).isRequired,
   parent_id: React.PropTypes.number,
-  submitReply: React.PropTypes.func.isRequired,
-  submitLike: React.PropTypes.func.isRequired,
 };
 
 PostList.defaultProps = {

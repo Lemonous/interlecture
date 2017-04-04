@@ -53,6 +53,7 @@ test('Classroom looks like it should', () => {
       submitQuestion={onSubmit}
       submitReply={onSubmit}
       submitLike={onSubmit}
+      submitDelete={onSubmit}
       posts={questions}
     />);
   const tree = component.toJSON();

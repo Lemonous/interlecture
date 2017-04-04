@@ -9,6 +9,7 @@ const PostItem = ({
   color,
   submitLike,
   submitReply,
+  submitDelete,
   ...props
 }) => (
   <div
@@ -44,6 +45,13 @@ const PostItem = ({
                 &nbsp;
                 <FontAwesome name="reply" />
             </Button>
+            <Button
+              onClick={event => (submitDelete(event,post.id))}
+            >
+                Delete
+                &nbsp;
+                <FontAwesome name="remove-circle" />
+            </Button>
           </div>}</Col>
         <Col xs={4} md={4}>{
           <p>
@@ -62,7 +70,13 @@ const PostItem = ({
       onSubmitExtras={{ postId: post.id }}
     />
     
-    <PostList submitLike={submitLike} submitReply={submitReply} parent_id={post.id} {...props}/>
+    <PostList
+        submitLike={submitLike}
+        submitReply={submitReply}
+        submitDelete={submitDelete}
+        parent_id={post.id}
+        {...props}/>
+        
   </div>
 );
 PostItem.propTypes = {
@@ -73,6 +87,8 @@ PostItem.propTypes = {
   }).isRequired,
   color: React.PropTypes.string,
   submitLike: React.PropTypes.func.isRequired,
+  submitReply: React.PropTypes.func.isRequired,
+  submitDelete: React.PropTypes.func.isRequired,
 };
 
 PostItem.defaultProps = {

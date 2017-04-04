@@ -2,7 +2,6 @@ import React from 'react';
 import { ListGroup, ListGroupItem, Grid, Row, Col, Form } from 'react-bootstrap';
 import 'static/css/font-awesome.css';
 import { connect } from 'react-redux';
-import PostItem from './postItem';
 import PostList from './postList';
 import InputForm from './inputForm';
 
@@ -12,7 +11,7 @@ function mapStateToProps(state) {
   };
 }
 
-export const Classroom = ({ posts, classroom, submitQuestion, submitReply, submitLike }) => (
+export const Classroom = ({ classroom, submitQuestion, ...props }) => (
   <div style={{ marginTop: '50px', marginBottom: '40px' }}>
     <h2>{classroom.title}</h2>
     <Grid>
@@ -24,7 +23,7 @@ export const Classroom = ({ posts, classroom, submitQuestion, submitReply, submi
         </Col>
       </Row>
     </Grid>
-    <PostList posts={posts} submitReply={submitReply} submitLike={submitLike} />
+    <PostList {...props} />
     <div
       style={{
         position: 'fixed',
@@ -53,15 +52,12 @@ export const Classroom = ({ posts, classroom, submitQuestion, submitReply, submi
 );
 
 Classroom.propTypes = {
-  posts: React.PropTypes.arrayOf(React.PropTypes.object).isRequired,
   classroom: React.PropTypes.shape({
     id: React.PropTypes.number,
     title: React.PropTypes.string,
     lecturer: React.PropTypes.string,
   }).isRequired,
   submitQuestion: React.PropTypes.func.isRequired,
-  submitLike: React.PropTypes.func.isRequired,
-  submitReply: React.PropTypes.func.isRequired,
 };
 
 export default connect(mapStateToProps)(Classroom);
