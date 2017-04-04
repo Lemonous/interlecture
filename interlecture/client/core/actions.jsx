@@ -5,6 +5,10 @@ const DELETE_POST = 'DELETE_POST';
 const NEW_POSTS = 'NEW_POSTS';
 const GO_TO_COURSE = 'GO_TO_COURSE';
 
+/* Methods called from the server: */
+const NEW_POSTS = 'NEW_POSTS';
+const GO_TO_COURSE = 'GO_TO_COURSE';
+
 function serverAction(action) {
   return action;
 }
