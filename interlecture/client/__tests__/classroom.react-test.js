@@ -46,6 +46,10 @@ const classroom = {
   lecturer: 'gruppe69',
 };
 
+global.window={}
+window.django2react={}
+window.django2react.moderator_mode='false'
+
 test('Classroom looks like it should', () => {
   const component = renderer.create(
     <Classroom
