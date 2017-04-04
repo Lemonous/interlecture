@@ -11,6 +11,7 @@ class SocketHandler {
     this.submitQuestion = this.submitQuestion.bind(this);
     this.submitReply = this.submitReply.bind(this);
     this.submitLike = this.submitLike.bind(this);
+    this.submitDelete = this.submitDelete.bind(this);
   }
 
   handleRecieve(event) {
@@ -26,6 +27,12 @@ class SocketHandler {
     event.preventDefault();
     this.socket.send(JSON.stringify(
           { app: 'questions', command: 'support', post: postId}));
+  }
+
+  submitDelete(event, postId) {
+    event.preventDefault();
+    this.socket.send(JSON.stringify(
+          { app: 'questions', command: 'delete', post: postId}));
   }
 
   submitQuestion({ value }) {

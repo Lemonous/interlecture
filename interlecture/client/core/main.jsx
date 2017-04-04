@@ -25,6 +25,7 @@ const Main = () => (
         submitQuestion={sock.submitQuestion}
         submitReply={sock.submitReply}
         submitLike={sock.submitLike}
+        submitDelete={sock.submitDelete}
       />
 
     </div>
