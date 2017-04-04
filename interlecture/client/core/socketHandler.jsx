@@ -13,6 +13,7 @@ class SocketHandler {
     this.submitLike = this.submitLike.bind(this);
     this.goToCourse = this.goToCourse.bind(this);
     this.submitDelete = this.submitDelete.bind(this);
+    this.createCourse = this.createCourse.bind(this);
   }
 
   handleRecieve(event) {
@@ -47,6 +48,13 @@ class SocketHandler {
     if (value && value !== '') {
       this.socket.send(JSON.stringify(
             { app: 'courses', command: 'goToCourse', room: value }));
+    }
+  }
+
+  createCourse({ value }) {
+    if (value && value !== '') {
+      this.socket.send(JSON.stringify(
+            { app: 'courses', command: 'createCourse', courseCode: value }));
     }
   }
 

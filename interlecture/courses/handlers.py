@@ -21,6 +21,12 @@ def findCourse(request, room=None):
     except Room.DoesNotExist:
         roomDoesNotExist()
 
+@need('courseCode')
+def createCourse(request, courseCode=None):
+    print("creating course with name " + courseCode + "...")
+
+
 handlers={
     'goToCourse': findCourse,
+    'createCourse': createCourse,
   }

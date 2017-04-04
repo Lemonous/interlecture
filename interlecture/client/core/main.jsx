@@ -5,6 +5,7 @@ import { Provider } from 'react-redux';
 import SocketHandler from './socketHandler';
 import Classroom from '../questions/classroom';
 import ChooseCourse from '../courses/chooseCourse';
+import CreateCourse from '../courses/createCourse';
 import posts from './reducers';
 
 const store = createStore(posts);
@@ -27,6 +28,7 @@ const Main = () => (
     <div style={{ margin: '5pt 5%' }}>
       <a href="/logout/">Logout</a>
       <ChooseCourse goToCourse={sock.goToCourse} />
+      <CreateCourse createCourse={sock.createCourse} />
       <Classroom
         classroom={classroom}
         posts={posts}
