@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'engine',
     'interauth',
     'questions',
+    'courses',
 ]
 
 MIDDLEWARE_CLASSES = [

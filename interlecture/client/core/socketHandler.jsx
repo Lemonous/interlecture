@@ -39,7 +39,7 @@ class SocketHandler {
   goToCourse({ value }) {
     if (value && value !== '') {
       this.socket.send(JSON.stringify(
-            { app: 'courses', command: 'goToCourse', text: value }));
+            { app: 'courses', command: 'goToCourse', room: value }));
     }
   }
 
