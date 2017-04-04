@@ -1,9 +1,11 @@
+{% load static %}
 {% load render_bundle from webpack_loader %}
 
 <!doctype html>
 <html>
   <head>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'css/interlecture/base.css' %}">
   
     <style>
         html, body, body>#main {
