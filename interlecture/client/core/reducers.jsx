@@ -6,28 +6,21 @@ import { CLICK_REPLY,
 
 function posts(state = [], action) {
   switch (action.type) {
-    case NEW_POSTS:
-      var result = [...state];
-      for (const id in action.data) {
-        result[action.data[id].id] = action.data[id];
-      }
-      return result;
 
-    case DELETE_POST:
-      var result = [...state];
-      result.splice(action.post, 1);
+    case NEW_POSTS:
+      var result=state.slice();
+      for(var n in action.data) {
+          result[action.data[n].id]=action.data[n];
+        }
       return result;
+    
+    case DELETE_POST:
+      return state.filter(post => post.id!=action.post);
+      
 
     case CLICK_REPLY:
-      return [
-        ...state,
-      ];
-
-    case GO_TO_COURSE:
-      console.log('in reducers -> GO_TO_COURSE');
-      console.log(action.data);
-      return state;
-
+      return state.slice();
+     
     default:
       return state;
   }
