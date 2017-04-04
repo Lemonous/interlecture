@@ -45,6 +45,7 @@ correspond to a specific request, therefore notifications canot have
 * `questions.subscribe(room)`
 * `questions.post(room,text,*parent_post)`, where parent_post is post to follow up.
 * `questions.support(post)`
+* `questions.delete(post)`
 
 #### Generated notifications
 * `NEW_POSTS(data)`, where `data is a list of posts with following format:
@@ -59,3 +60,4 @@ correspond to a specific request, therefore notifications canot have
     supporters: //Number of supporters
   }
 ```
+* `DELETE_POST(post)`
