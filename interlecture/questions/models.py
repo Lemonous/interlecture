@@ -23,7 +23,7 @@ class Post(models.Model):
     parent_post = models.ForeignKey('self',on_delete=models.CASCADE,null=True)
     supporters = models.ManyToManyField(auth.User,related_name='supported')
     datetime = models.DateTimeField(auto_now_add=True)
-    
+
     def get(self,user=None):
         return {
             'id':self.id,
