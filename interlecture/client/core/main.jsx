@@ -26,7 +26,7 @@ const Main = () => (
   <Provider store={store}>
     <div style={{ margin: '5pt 5%' }}>
       <a href="/logout/">Logout</a>
-      <ChooseCourse goToCourse={({ value }) => console.log(value)} />
+      <ChooseCourse goToCourse={sock.goToCourse} />
     </div>
   </Provider>
 );
