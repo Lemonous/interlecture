@@ -16,12 +16,6 @@ const classroom = {
   title: 'test',
   lecturer: 'gruppe69',
 };
-// <Classroom
-//   classroom={classroom}
-//   submitQuestion={sock.submitQuestion}
-//   submitReply={sock.submitReply}
-//   submitLike={sock.submitLike}
-//   />
 
 const Main = () => (
   <Provider store={store}>
