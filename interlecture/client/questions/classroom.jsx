@@ -3,30 +3,17 @@ import { ListGroup, ListGroupItem, Grid, Row, Col, Form } from 'react-bootstrap'
 import 'static/css/font-awesome.css';
 import { connect } from 'react-redux';
 import QuestionItem from './questionItem';
-
-const listGroupItemStyle = {
-  borderRadius: 5,
-  border: '1px solid #888',
-  boxShadow: '0px 5px 35px rgba(0, 0, 0, .7)',
-  padding: '0px 0px',
-  marginLeft: '30px',
-  marginRight: '30px',
-  marginBottom: '30px',
-};
+import PostList from './postList';
+import InputForm from './inputForm';
 
 function mapStateToProps(state) {
   return {
-    questions: state,
+    questions: state.filter(v => v),
   };
 }
 
-function onReplySubmit(event, questionId) {
-  event.preventDefault();
-  console.log(questionId);
-}
-
-export const Classroom = ({ questions, classroom, onSubmit }) => (
-  <div style={{ marginTop: '50px' }}>
+export const Classroom = ({ questions, classroom, submitQuestion, submitReply, submitLike }) => (
+  <div style={{ marginTop: '50px', marginBottom: '40px' }}>
     <h2>{classroom.title}</h2>
     <Grid>
       <Row>
@@ -37,21 +24,31 @@ export const Classroom = ({ questions, classroom, onSubmit }) => (
         </Col>
       </Row>
     </Grid>
-    <ListGroup>
-      {
-        questions.map(question => (
-          <ListGroupItem key={question.id} style={listGroupItemStyle}>
-            <QuestionItem question={question} />
-            <Form onSubmit={event => onReplySubmit(event, question.id)} id={`replyTo${question.id}`}>
-              <input type="text" placeholder="Enter reply" className="form-control" />
-            </Form>
-          </ListGroupItem>
-        ))
-      }
-    </ListGroup>
-    <Form onSubmit={onSubmit} id="post">
-      <input type="text" placeholder="Enter message" className="form-control" />
-    </Form>
+    <PostList posts={questions} submitReply={submitReply} submitLike={submitLike} />
+    <div
+      style={{
+        position: 'fixed',
+        bottom: '0px',
+        width: '100%',
+        height: '50px',
+        paddingTop: '10px',
+        backgroundColor: '#fff',
+      }}
+    >
+      <div
+        style={{
+          width: '85%',
+          marginLeft: '30px',
+        }}
+      >
+        <InputForm
+          onSubmit={submitQuestion}
+          id={'submitQuestion'}
+          placeholder={'Enter question'}
+          submitButtonText={'Submit Question'}
+        />
+      </div>
+    </div>
   </div>
 );
 
@@ -62,7 +59,9 @@ Classroom.propTypes = {
     title: React.PropTypes.string,
     lecturer: React.PropTypes.string,
   }).isRequired,
-  onSubmit: React.PropTypes.func.isRequired,
+  submitQuestion: React.PropTypes.func.isRequired,
+  submitLike: React.PropTypes.func.isRequired,
+  submitReply: React.PropTypes.func.isRequired,
 };
 
 export default connect(mapStateToProps)(Classroom);

@@ -2,14 +2,10 @@ import React from 'react';
 import { Button, Grid, Row, Col } from 'react-bootstrap';
 import FontAwesome from 'react-fontawesome';
 
-
-function changeLook() {
-  console.log('changeLookClicked');
-}
-
 const QuestionItem = ({
   question,
   color,
+  submitLike,
 }) => (
   <div
     style={{
@@ -19,7 +15,7 @@ const QuestionItem = ({
   >
     <Grid>
       <Row className="show-grid">
-        <Col xs={12} md={8}>{
+        <Col xs={8} md={8}>{
           <div>
             <p>
               <FontAwesome name="user" />
@@ -32,25 +28,24 @@ const QuestionItem = ({
               { question.text }
             </p>
             <Button
-              onClick={changeLook}
+              onClick={event => (submitLike(event,question.id))}
             >
                 Like
                 &nbsp;
                 <FontAwesome name="thumbs-up" />
+                {question.supporters}
             </Button>
-            <Button
-              onClick={changeLook}
-            >
+            <Button>
                 Reply
                 &nbsp;
                 <FontAwesome name="reply" />
             </Button>
           </div>}</Col>
-        <Col xs={6} md={4}>{
+        <Col xs={4} md={4}>{
           <p>
             <FontAwesome name="clock-o" />
                 &nbsp;
-              TimeAndDate
+              {question.datetime.substr(0,19)}
           </p>}</Col>
 
       </Row>
@@ -64,6 +59,7 @@ QuestionItem.propTypes = {
     body: React.PropTypes.string,
   }).isRequired,
   color: React.PropTypes.string,
+  submitLike: React.PropTypes.func.isRequired,
 };
 
 QuestionItem.defaultProps = {

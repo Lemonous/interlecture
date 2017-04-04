@@ -8,6 +8,8 @@ module.exports = {
   entry: {
     app: './client/core/main',
     login: './client/core/login',
+    register: './client/core/register',
+    resend_activation: './client/core/resend_activation',
   },
 
   output: {
@@ -15,8 +17,7 @@ module.exports = {
     filename: '[name]-[hash].js',
   },
 
-  externals: [
-  ], // add all vendor libs
+  externals: [], // add all vendor libs
 
   plugins: [
     new ExtractTextPlugin('style.css'),
