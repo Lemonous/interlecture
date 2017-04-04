@@ -108,18 +108,6 @@ exports[`Classroom looks like it should 1`] = `
                     className="fa fa-reply"
                   />
                 </button>
-                <button
-                  className="btn btn-default"
-                  disabled={false}
-                  onClick={[Function]}
-                  type="button"
-                >
-                  Delete  
-                  <span
-                    aria-hidden={true}
-                    className="fa fa-remove-circle"
-                  />
-                </button>
               </div>
             </div>
             <div
@@ -256,18 +244,6 @@ exports[`Classroom looks like it should 1`] = `
                   <span
                     aria-hidden={true}
                     className="fa fa-reply"
-                  />
-                </button>
-                <button
-                  className="btn btn-default"
-                  disabled={false}
-                  onClick={[Function]}
-                  type="button"
-                >
-                  Delete  
-                  <span
-                    aria-hidden={true}
-                    className="fa fa-remove-circle"
                   />
                 </button>
               </div>
@@ -408,18 +384,6 @@ exports[`Classroom looks like it should 1`] = `
                     className="fa fa-reply"
                   />
                 </button>
-                <button
-                  className="btn btn-default"
-                  disabled={false}
-                  onClick={[Function]}
-                  type="button"
-                >
-                  Delete  
-                  <span
-                    aria-hidden={true}
-                    className="fa fa-remove-circle"
-                  />
-                </button>
               </div>
             </div>
             <div
@@ -558,18 +522,6 @@ exports[`Classroom looks like it should 1`] = `
                     className="fa fa-reply"
                   />
                 </button>
-                <button
-                  className="btn btn-default"
-                  disabled={false}
-                  onClick={[Function]}
-                  type="button"
-                >
-                  Delete  
-                  <span
-                    aria-hidden={true}
-                    className="fa fa-remove-circle"
-                  />
-                </button>
               </div>
             </div>
             <div
@@ -706,18 +658,6 @@ exports[`Classroom looks like it should 1`] = `
                   <span
                     aria-hidden={true}
                     className="fa fa-reply"
-                  />
-                </button>
-                <button
-                  className="btn btn-default"
-                  disabled={false}
-                  onClick={[Function]}
-                  type="button"
-                >
-                  Delete  
-                  <span
-                    aria-hidden={true}
-                    className="fa fa-remove-circle"
                   />
                 </button>
               </div>
