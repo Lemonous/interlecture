@@ -6,7 +6,6 @@ import PostList from './postList';
 
 const PostItem = ({
   post,
-  color,
   submitLike,
   submitReply,
   submitDelete,
@@ -14,71 +13,81 @@ const PostItem = ({
 }) => (
   <div
     style={{
-      padding: '10px',
-      backgroundColor: color,
+      width: '100%',
     }}
   >
-    <Grid>
-      <Row className="show-grid">
-        <Col xs={8} md={8}>{
-          <div>
-            <p>
-              <FontAwesome name="user" />
-                &nbsp;
-              <b>{ post.user }</b>
-            </p>
-            <p>
-                &nbsp;
-                &nbsp;
-              { post.text }
-            </p>
-            <Button
-              onClick={event => (submitLike(event,post.id))}
-            >
-                Like
-                &nbsp;
-                <FontAwesome name="thumbs-up" />
-                {post.supporters}
-            </Button>
-            <Button>
-                Reply
-                &nbsp;
-                <FontAwesome name="reply" />
-            </Button>
-            
-            {(window.django2react.moderator_mode=='true' || window.django2react.my_uname==post.user) &&
-                <Button bsStyle="danger" onClick={event => (submitDelete(event,post.id))}>
-                    Delete
-                    &nbsp;
-                    <FontAwesome name="remove-circle" />
-                </Button>
-            }
-            
-          </div>}</Col>
-        <Col xs={4} md={4}>{
+    <div style={{ float: 'right' }}>
+      <div style={{ width: '100%' }}>
+        <div style={{ float: 'left' }}>
+          <FontAwesome name="user" />
+          &nbsp;
+          <b>{ post.user }</b>
+        </div>
+        <div style={{ float: 'right' }}>
           <p>
             <FontAwesome name="clock-o" />
-                &nbsp;
-              {post.datetime.substr(0,19)}
-          </p>}</Col>
+            &nbsp;
+            {post.datetime.substr(0, 19)}
+          </p>
+        </div>
+        <div style={{ width: '100%' }}>
+          <div style={{ float: 'left' }}>
+            { post.text }
+          </div>
+          <div style={{ float: 'right' }} />
+          <Button
+            onClick={event => (submitLike(event, post.id))}
+          >
+            Like
+            &nbsp;
+            <FontAwesome name="thumbs-up" />
+            {post.supporters}
+          </Button>
+          <Button>
+            Reply
+            &nbsp;
+            <FontAwesome name="reply" />
+          </Button>
 
-      </Row>
-    </Grid>
-    <InputForm
-      onSubmit={submitReply}
-      id={`replyTo${post.id}`}
-      placeholder={'Enter reply'}
-      submitButtonText={'Submit Reply'}
-      onSubmitExtras={{ postId: post.id }}
-    />
-    
-    <PostList
+          {(window.django2react.moderator_mode === 'true' || window.django2react.my_uname === post.user) &&
+            <Button bsStyle="danger" onClick={event => (submitDelete(event, post.id))}>
+              Delete
+              &nbsp;
+              <FontAwesome name="remove-circle" />
+            </Button>
+          }
+        </div>
+        <div style={{ width: '100%' }}>
+          <InputForm
+            onSubmit={submitReply}
+            id={`replyTo${post.id}`}
+            placeholder={'Enter reply'}
+            submitButtonText={'Submit Reply'}
+            onSubmitExtras={{ postId: post.id }}
+          />
+        </div>
+      </div>
+      <PostList
         submitLike={submitLike}
         submitReply={submitReply}
         submitDelete={submitDelete}
         parent_id={post.id}
-        {...props}/>
-        
+        {...props}
+      />
+    </div>
+    <div
+      style={{
+        overflow: 'hidden',
+        paddingRight: '0.5rem',
+      }}
+    >
+      <div
+        style={{
+          backgroundColor: '#a53',
+          width: '50px',
+        }}
+      />
+    </div>
   </div>
 );
 PostItem.propTypes = {
@@ -87,13 +96,11 @@ PostItem.propTypes = {
     user: React.PropTypes.string,
     body: React.PropTypes.string,
   }).isRequired,
-  color: React.PropTypes.string,
   submitLike: React.PropTypes.func.isRequired,
   submitReply: React.PropTypes.func.isRequired,
   submitDelete: React.PropTypes.func.isRequired,
 };
 
 PostItem.defaultProps = {
-  color: '#fff',
 };
 export default PostItem;

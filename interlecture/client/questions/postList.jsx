@@ -14,13 +14,21 @@ const listGroupItemStyle = {
   paddingBottom: '5px',
 };
 
+const newStyle = {
+  border: '0px',
+  padding: '0px 0px',
+  marginLeft: '5px',
+  backgroundColor: '#f9f',
+  width: '100%',
+};
+
 const PostList = ({ posts, parent_id, ...props }) => (
   <ListGroup>
     {
-      posts.filter(post => (post.parent_post==parent_id))
+      posts.filter(post => (post.parent_post == parent_id))
         .map(post => (
-          <ListGroupItem key={post.id} style={listGroupItemStyle}>
-            <PostItem post={post} posts={posts} {...props}/>
+          <ListGroupItem key={post.id} style={newStyle}>
+            <PostItem post={post} posts={posts} {...props} />
           </ListGroupItem>
         ))
     }
