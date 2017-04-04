@@ -3,6 +3,9 @@ from engine.messaging import RequestHandlingException,RequestKeyError,need
 class RequestedObjectMissingException(RequestHandlingException):
     reportString="No {} '{}' found."
 
+class NoAccessRightsException(RequestHandlingException):
+    reportString="You are not allowed to {rights} object {obj}"
+
 def Provider(entity,by='id',access_rights=None):
     def _f(request,value):
         try:obj=entity.objects.get(**{by:value})

@@ -29,8 +29,14 @@ def support(request,post=None):
     post.save()
     broadcastPost(post)
 
+@need_object(Post,access_rights='delete')
+def delete(request,post=None):
+    serverMessage(post.room.channel(),type='DELETE_POST',post=post.id)
+    post.delete()
+
 handlers={
     'subscribe':subscribe,
     'post':post,
-    'support':support
+    'support':support,
+    'delete':delete
   }
