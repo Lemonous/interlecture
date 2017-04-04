@@ -10,7 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.10/ref/settings/
 """
 
-from interlecture.local_settings import SECRET_KEY, DEBUG, DATABASE, EMAIL
+from interlecture.local_settings import SECRET_KEY, DEBUG, DATABASE, EMAIL, ALLOWED_HOSTS
 
 import os
 
@@ -26,7 +26,7 @@ SECRET_KEY = SECRET_KEY
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = DEBUG
 
-ALLOWED_HOSTS = ['interlecture.no', 'www.interlecture.no']
+ALLOWED_HOSTS = ALLOWED_HOSTS
 
 # Application definition
 
@@ -44,7 +44,7 @@ INSTALLED_APPS = [
     'questions',
 ]
 
-MIDDLEWARE = [
+MIDDLEWARE_CLASSES = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
