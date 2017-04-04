@@ -4,9 +4,9 @@ import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import Classroom from '../questions/classroom';
 import SocketHandler from './socketHandler';
-import questions from './reducers';
+import posts from './reducers';
 
-const store = createStore(questions);
+const store = createStore(posts);
 const sock = new SocketHandler(`ws://${window.location.host}`, store);
 
 const classroom = {
@@ -21,6 +21,7 @@ const Main = () => (
       <a href="/logout/">Logout</a>
       <Classroom
         classroom={classroom}
+        posts={posts}
         submitQuestion={sock.submitQuestion}
         submitReply={sock.submitReply}
         submitLike={sock.submitLike}

@@ -2,17 +2,17 @@ import React from 'react';
 import { ListGroup, ListGroupItem, Grid, Row, Col, Form } from 'react-bootstrap';
 import 'static/css/font-awesome.css';
 import { connect } from 'react-redux';
-import QuestionItem from './questionItem';
+import PostItem from './postItem';
 import PostList from './postList';
 import InputForm from './inputForm';
 
 function mapStateToProps(state) {
   return {
-    questions: state.filter(v => v),
+    posts: state.filter(v => v),
   };
 }
 
-export const Classroom = ({ questions, classroom, submitQuestion, submitReply, submitLike }) => (
+export const Classroom = ({ posts, classroom, submitQuestion, submitReply, submitLike }) => (
   <div style={{ marginTop: '50px', marginBottom: '40px' }}>
     <h2>{classroom.title}</h2>
     <Grid>
@@ -24,7 +24,7 @@ export const Classroom = ({ questions, classroom, submitQuestion, submitReply, s
         </Col>
       </Row>
     </Grid>
-    <PostList posts={questions} submitReply={submitReply} submitLike={submitLike} />
+    <PostList posts={posts} submitReply={submitReply} submitLike={submitLike} />
     <div
       style={{
         position: 'fixed',
@@ -53,7 +53,7 @@ export const Classroom = ({ questions, classroom, submitQuestion, submitReply, s
 );
 
 Classroom.propTypes = {
-  questions: React.PropTypes.arrayOf(React.PropTypes.object).isRequired,
+  posts: React.PropTypes.arrayOf(React.PropTypes.object).isRequired,
   classroom: React.PropTypes.shape({
     id: React.PropTypes.number,
     title: React.PropTypes.string,
