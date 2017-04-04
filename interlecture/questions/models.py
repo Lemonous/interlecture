@@ -5,7 +5,7 @@ import channels
 
 class Room(models.Model):
     name = models.CharField(max_length=50,unique=True)
-    moderators = models.ManyToManyField(auth.User,related_name='moderates')
+    moderator = models.ManyToManyField(auth.User,related_name='moderates')
     
     def get_posts(self):
         return [post.get() for post in Post.objects.filter(room=self)]
@@ -24,10 +24,7 @@ class Post(models.Model):
     supporters = models.ManyToManyField(auth.User,related_name='supported')
     datetime = models.DateTimeField(auto_now_add=True)
     
-    def can_delete(self,user=None):
-        return self.user==user
-    
-    def get(self):
+    def get(self,user=None):
         return {
             'id':self.id,
             'room':self.room.name,
@@ -39,4 +36,7 @@ class Post(models.Model):
           }
     
     def request_access_rights(self,user,rights):
-        pass
+        if rights=='delete':
+            if not (self.user==user or self.room.moderator.filter(id=user.id).exists()):
+                from engine.access import NoAccessRightsException
+                raise  NoAccessRightsException(rights,self.id)
