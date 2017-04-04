@@ -5,6 +5,7 @@ import channels
 
 class Room(models.Model):
     name = models.CharField(max_length=50,unique=True)
+    moderators = models.ManyToManyField(auth.User,related_name='moderates')
     
     def get_posts(self):
         return [post.get() for post in Post.objects.filter(room=self)]
@@ -22,6 +23,9 @@ class Post(models.Model):
     parent_post = models.ForeignKey('self',on_delete=models.CASCADE,null=True)
     supporters = models.ManyToManyField(auth.User,related_name='supported')
     datetime = models.DateTimeField(auto_now_add=True)
+    
+    def can_delete(self,user=None):
+        return self.user==user
     
     def get(self):
         return {

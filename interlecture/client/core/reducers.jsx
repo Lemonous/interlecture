@@ -7,14 +7,14 @@ import { CLICK_REPLY,
 function posts(state = [], action) {
   switch (action.type) {
 
-    case 'NEW_POSTS':
+    case NEW_POSTS:
       var result=state.slice();
       for(var n in action.data) {
           result[action.data[n].id]=action.data[n];
         }
       return result;
     
-    case 'DELETE_POST':
+    case DELETE_POST:
       return state.filter(post => post.id!=action.post);
       
 
