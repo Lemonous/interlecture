@@ -9,10 +9,10 @@ function serverAction(action) {
   return action;
 }
 
-function clickReply(questionId) {
+function clickReply(id) {
   return {
     type: CLICK_REPLY,
-    questionId,
+    id,
   };
 }
 

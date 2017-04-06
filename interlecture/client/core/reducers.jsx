@@ -1,25 +1,40 @@
-import { CLICK_REPLY,
+import {
+  CLICK_REPLY,
   NEW_POSTS,
-  GO_TO_COURSE,
   DELETE_POST,
 } from './actions';
 
-function posts(state = [], action) {
+function posts(state = { posts: [], replyTo: undefined }, action) {
   switch (action.type) {
 
     case NEW_POSTS:
-      var result=state.slice();
-      for(var n in action.data) {
-          result[action.data[n].id]=action.data[n];
-        }
-      return result;
-    
+      var result = state.posts.slice();
+      for (const n in action.data) {
+        result[action.data[n].id] = action.data[n];
+      }
+      return {
+        posts: result,
+        replyTo: state.replyTo,
+      };
+
     case DELETE_POST:
-      return state.filter(post => post.id!=action.post);
-      
+      return {
+        posts: state.posts.filter(post => post.id !== action.post),
+        replyTo: state.replyTo,
+      };
+
 
     case CLICK_REPLY:
-      return state.slice();
+      if (action.id === state.replyTo) {
+        return {
+          posts: state.posts,
+          replyTo: undefined,
+        };
+      }
+      return {
+        posts: state.posts,
+        replyTo: action.id,
+      };
 
     default:
       return state;

@@ -8,6 +8,7 @@ env:
 
 notifications:
     slack: pu-69:FKDlXX5A52bGE9VOxo4T3BzR
+    email: false
 
 install:
     # Install django prerequisites
