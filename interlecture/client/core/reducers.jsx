@@ -20,7 +20,7 @@ function posts(state = [], action) {
 
     case CLICK_REPLY:
       return state.slice();
-     
+
     default:
       return state;
   }
