@@ -21,8 +21,6 @@ const Main = () => (
   <Provider store={store}>
     <div style={{ margin: '5pt 5%' }}>
       <a href="/logout/">Logout</a>
-      <ChooseCourse goToCourse={sock.goToCourse} />
-      <CreateCourse createCourse={sock.createCourse} />
       <Classroom
         classroom={classroom}
         posts={posts}
