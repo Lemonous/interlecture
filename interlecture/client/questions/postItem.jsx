@@ -53,6 +53,7 @@ const PostItem = ({
                     <FontAwesome name="remove-circle" />
                 </Button>
             }
+
           </div>}</Col>
         <Col xs={4} md={4}>{
           <p>
@@ -70,14 +71,14 @@ const PostItem = ({
       submitButtonText={'Submit Reply'}
       onSubmitExtras={{ postId: post.id }}
     />
-    
+
     <PostList
         submitLike={submitLike}
         submitReply={submitReply}
         submitDelete={submitDelete}
         parent_id={post.id}
         {...props}/>
-        
+
   </div>
 );
 PostItem.propTypes = {

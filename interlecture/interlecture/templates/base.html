@@ -31,12 +31,14 @@
         {% endfor %}
       {% endif %}
 
+      {% comment %}
       {% if app_name == 'app' %}
         window.django2react.classroom = {
           id: {{ classroom.pk }},
           title: {{ classroom.name }}
         }
       {% endif %}
+      {% endcomment %}
     </script>
     <div id=main> </div>
     {% render_bundle app_name %}

@@ -22,7 +22,7 @@ from questions.views import questions_view
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^course/(?P<room_name>.+)$', questions_view),
+    url(r'^course/(?P<room_name>.+)$', questions_view, name='course'),
     url(r'^courses/$', course_select_view, name='select-course'),
     url(r'^login/$', login_view, name='login'),
     url(r'^logout/$', logout_view, name='logout'),
