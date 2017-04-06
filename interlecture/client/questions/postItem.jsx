@@ -64,7 +64,6 @@ const PostItem = ({
             >
               <FontAwesome name="remove" size="2x" />
             </Button>
-<<<<<<< HEAD
           </OverlayTrigger>
         }
         <OverlayTrigger placement="top" overlay={tooltipForReply}>
