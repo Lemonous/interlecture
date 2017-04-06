@@ -57,9 +57,7 @@ def test(request,foo=None):
     request.reply(type='TEST',bar=foo)
 
 import questions.handlers
-import courses.handlers
 handlers={
     'questions':questions.handlers.handlers,
-    'courses':courses.handlers.handlers,
     'test':{'test':test}
   }

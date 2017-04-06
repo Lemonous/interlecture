@@ -11,6 +11,8 @@ import posts from './reducers';
 const store = createStore(posts);
 const sock = new SocketHandler(`ws://${window.location.host}`, store);
 
+
+
 const classroom = {
   id: 0,
   title: 'test',
@@ -21,8 +23,7 @@ const Main = () => (
   <Provider store={store}>
     <div style={{ margin: '5pt 5%' }}>
       <a href="/logout/">Logout</a>
-      <ChooseCourse goToCourse={sock.goToCourse} />
-      <CreateCourse createCourse={sock.createCourse} />
+      <ChooseCourse/>
       <Classroom
         classroom={classroom}
         posts={posts}
@@ -34,4 +35,5 @@ const Main = () => (
     </div>
   </Provider>
 );
-render(<Main />, document.getElementById('main'));
+
+render(<Main/>, document.getElementById('main'));
