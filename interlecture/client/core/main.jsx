@@ -22,8 +22,9 @@ const Main = () => (
         submitReply={sock.submitReply}
         submitLike={sock.submitLike}
         submitDelete={sock.submitDelete}
+        store={store}
       />
-     <MainPanel/>
+      <MainPanel />
     </div>
   </Provider>
 );

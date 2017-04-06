@@ -7,7 +7,8 @@ import InputForm from './inputForm';
 
 function mapStateToProps(state) {
   return {
-    posts: state.filter(v => v),
+    posts: state.posts.filter(v => v),
+    replyTo: state.replyTo,
   };
 }
 

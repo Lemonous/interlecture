@@ -3,6 +3,7 @@ import { Button, Tooltip, OverlayTrigger } from 'react-bootstrap';
 import FontAwesome from 'react-fontawesome';
 import InputForm from './inputForm';
 import PostList from './postList';
+import { clickReply } from '../core/actions';
 
 function buttonStyle(color) {
   return {
@@ -31,6 +32,10 @@ function getBorder(level) {
   return `10px solid rgb(${220 - (20 * level)}, ${160 - (40 * level)}, 0)`;
 }
 
+function clickReplyButton({ store, id }) {
+  store.dispatch(clickReply(id));
+}
+
 // <div style={{ float: 'left', width: '10px', height: '100px', backgroundColor: '#a33' }} />
 const PostItem = ({
   post,
@@ -38,6 +43,8 @@ const PostItem = ({
   submitReply,
   submitDelete,
   level,
+  store,
+  replyTo,
   ...props
 }) => (
   <div
@@ -68,6 +75,7 @@ const PostItem = ({
         }
         <OverlayTrigger placement="top" overlay={tooltipForReply}>
           <Button
+            onClick={event => (clickReplyButton({ store, id: post.id }))}
             style={buttonStyle('#33a')}
           >
             &nbsp;
@@ -110,19 +118,23 @@ const PostItem = ({
           </div>
         </div>
       </div>
-      <InputForm
-        onSubmit={submitReply}
-        id={`replyTo${post.id}`}
-        placeholder={'Enter reply'}
-        submitButtonText={'Submit Reply'}
-        onSubmitExtras={{ postId: post.id }}
-      />
+      {replyTo === post.id &&
+        <InputForm
+          onSubmit={submitReply}
+          id={`replyTo${post.id}`}
+          placeholder={'Enter reply'}
+          submitButtonText={'Submit Reply'}
+          onSubmitExtras={{ postId: post.id }}
+        />
+        }
       <PostList
         submitLike={submitLike}
         submitReply={submitReply}
         submitDelete={submitDelete}
         parent_id={post.id}
         level={level + 1}
+        store={store}
+        replyTo={replyTo}
         {...props}
       />
     </div>
