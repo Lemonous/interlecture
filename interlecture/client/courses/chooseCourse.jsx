@@ -2,7 +2,7 @@ import React from 'react';
 import { Jumbotron, Panel } from 'react-bootstrap';
 import InputForm from '../questions/inputForm';
 
-const ChooseCourse = ({ goToCourse }) => (
+const ChooseCourse = () => (
   <Jumbotron>
     <div style={{ textAlign: 'center', marginBottom: '50px' }}>
       <h1>Interlecture</h1>
@@ -18,7 +18,7 @@ const ChooseCourse = ({ goToCourse }) => (
     >
       <Panel>
         <InputForm
-          onSubmit={goToCourse}
+          onSubmit={(event)=>{window.location.href=window.location.origin+"/course/"+event.value;}}
           id={'courseCode'}
           placeholder={'Enter course code'}
           submitButtonText={'Go to lecture'}
@@ -27,9 +27,5 @@ const ChooseCourse = ({ goToCourse }) => (
     </div>
   </Jumbotron>
 );
-
-ChooseCourse.propTypes = {
-  goToCourse: React.PropTypes.func.isRequired,
-};
 
 export default ChooseCourse;

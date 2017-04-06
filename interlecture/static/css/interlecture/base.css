@@ -7,15 +7,15 @@
     --dark-blue: #0A2239;
     --orange: #EC7D10;
 }
-/*
+
 #main {
     background: white url("../../images/background.jpeg") no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
-}*/
-
+}
+/*
 .panel {
     box-shadow: 0 0 15px 1px var(--dark-gray);
     border: none;
@@ -54,3 +54,4 @@
     width: 250px;
     margin: 0 auto;
 }
+*/
