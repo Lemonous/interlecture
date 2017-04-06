@@ -39,7 +39,7 @@ class SocketHandler {
   submitQuestion({ value }) {
     if (value && value !== '') {
       this.socket.send(JSON.stringify(
-            { app: 'questions', command: 'post', room: 'test', text: value }));
+            { app: 'questions', command: 'post', room: window.django2react.classroom.name, text: value }));
     }
   }
 
@@ -52,7 +52,7 @@ class SocketHandler {
 
   handleOpen(event) {
     this.socket.send(JSON.stringify(
-        { app: 'questions', command: 'subscribe', room: 'test' }));
+        { app: 'questions', command: 'subscribe', room: window.django2react.classroom.name }));
   }
 }
 

@@ -4,10 +4,12 @@ import json
 
 def questions_view(request,room_name):
     if request.user.is_authenticated() and request.user.is_active:
-        room=Room.objects.get(name=room_name)
+        try: room=Room.objects.get(name=room_name)
+        except Room.DoesNotExist: return redirect(reverse('select-course'))
         args={
             'moderator_mode': 'true' if room.moderator.filter(id=request.user.id).exists() else 'false',
-            'my_uname': request.user.username
+            'my_uname': request.user.username,
+            'classroom': room.get(),
           }
         return render(request, 'base.html', context={'app_name': 'app','args':args})
     else:
