@@ -25,3 +25,32 @@
 .panel-body {
     margin-bottom: -15px;
 }
+
+.message-panel {
+    background-color: var(--light-blue);
+    color: white;
+    width: 300px;
+}
+
+.btn-primary {
+    background-color: var(--orange);
+    border: none;
+}
+
+.btn-link {
+    color: var(--light-blue);
+}
+
+.form-control {
+    width: 250px;
+}
+
+.btn {
+    width: 100px;
+    margin: 0 12.5px;
+}
+
+.btn.single {
+    width: 250px;
+    margin: 0 auto;
+}

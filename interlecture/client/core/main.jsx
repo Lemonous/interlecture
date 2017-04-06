@@ -12,7 +12,6 @@ import MainPanel from './mainPanel';
 const store = createStore(posts);
 const sock = new SocketHandler(`ws://${window.location.host}`, store);
 
-
 const classroom = {
   id: 0,
   title: 'test',
@@ -35,5 +34,4 @@ const Main = () => (
     </div>
   </Provider>
 );
-
-render(<Main/>, document.getElementById('main'));
+render(<Main />, document.getElementById('main'));
