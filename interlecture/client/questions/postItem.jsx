@@ -55,7 +55,7 @@ const PostItem = ({
       }}
     >
       <div style={{ float: 'right', width: '190px' }} >
-        {(window.django2react.moderator_mode === 'true' || window.django2react.my_uname === post.user) &&
+        {// (window.django2react.moderator_mode === 'true' || window.django2react.my_uname === post.user) &&
           <OverlayTrigger placement="top" overlay={tooltipForDelete}>
             <Button
               onClick={event => (submitDelete(event, post.id))}
