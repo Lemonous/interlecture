@@ -49,7 +49,7 @@ def logout_view(request):
 
 def register(request):
     if request.user.is_authenticated():
-        return HttpResponseRedirect(reverse('course-select'))
+        return HttpResponseRedirect(reverse('select-course'))
 
     context = {}
     if request.method == 'POST':
@@ -97,12 +97,12 @@ def activate(request, key):
             activation.user.is_active = True
             activation.user.save()
 
-    return HttpResponseRedirect(reverse('course-select'))
+    return HttpResponseRedirect(reverse('select-course'))
 
 
 def resend_activation_link(request):
     if request.user.is_authenticated:
-        return HttpResponseRedirect(reverse('course-select'))
+        return HttpResponseRedirect(reverse('select-course'))
 
     if request.method == 'POST':
         try:
