@@ -28,6 +28,7 @@ export const Classroom = ({ classroom, submitQuestion, ...props }) => (
       style={{
         position: 'fixed',
         bottom: '0px',
+        left: '0px',
         width: '100%',
         height: '50px',
         paddingTop: '10px',

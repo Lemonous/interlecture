@@ -7,10 +7,10 @@ import Classroom from '../questions/classroom';
 import ChooseCourse from '../courses/chooseCourse';
 import CreateCourse from '../courses/createCourse';
 import posts from './reducers';
+import MainPanel from './mainPanel';
 
 const store = createStore(posts);
 const sock = new SocketHandler(`ws://${window.location.host}`, store);
-
 
 
 const classroom = {
@@ -22,8 +22,8 @@ const classroom = {
 const Main = () => (
   <Provider store={store}>
     <div style={{ margin: '5pt 5%' }}>
-      <a href="/logout/">Logout</a>
-      <ChooseCourse/>
+      <MainPanel/>
+      
       <Classroom
         classroom={classroom}
         posts={posts}
