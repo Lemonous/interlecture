@@ -24,8 +24,9 @@ const tooltipForDelete = (
 );
 
 function getBorder(level) {
+  console.log(level);
   if (level > 4) {
-    return 'rbg(140, 0, 0)';
+    return '10px solid rgb(140, 0, 0)';
   }
   return `10px solid rgb(${220 - (20 * level)}, ${160 - (40 * level)}, 0)`;
 }
@@ -47,15 +48,15 @@ const PostItem = ({
     <div
       style={{
         borderLeft: getBorder(level),
-        borderBottomLeftRadius: '15px',
-        borderTopLeftRadius: '5px',
+        // borderBottomLeftRadius: '15px',
+        // borderTopLeftRadius: '5px',
         paddingLeft: '8px',
-        marginBottom: '5px',
+        marginTop: '5px',
         overflow: 'hidden',
       }}
     >
       <div style={{ float: 'right', width: '190px' }} >
-        {// (window.django2react.moderator_mode === 'true' || window.django2react.my_uname === post.user) &&
+        {(window.django2react.moderator_mode === 'true' || window.django2react.my_uname === post.user) &&
           <OverlayTrigger placement="top" overlay={tooltipForDelete}>
             <Button
               onClick={event => (submitDelete(event, post.id))}
@@ -109,6 +110,13 @@ const PostItem = ({
           </div>
         </div>
       </div>
+      <InputForm
+        onSubmit={submitReply}
+        id={`replyTo${post.id}`}
+        placeholder={'Enter reply'}
+        submitButtonText={'Submit Reply'}
+        onSubmitExtras={{ postId: post.id }}
+      />
       <PostList
         submitLike={submitLike}
         submitReply={submitReply}
@@ -136,7 +144,7 @@ PostItem.defaultProps = {
   level: 0,
 };
 export default PostItem;
-
+//
 // <div style={{ float: 'right' }}>
 //   <div style={{ width: '100%' }}>
 //     <div style={{ width: '100%' }}>
