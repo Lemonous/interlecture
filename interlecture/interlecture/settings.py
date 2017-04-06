@@ -41,8 +41,7 @@ INSTALLED_APPS = [
     'webpack_loader',
     'engine',
     'interauth',
-    'questions',
-    'courses',
+    'questions'
 ]
 
 MIDDLEWARE_CLASSES = [

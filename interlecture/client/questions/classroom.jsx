@@ -13,16 +13,7 @@ function mapStateToProps(state) {
 
 export const Classroom = ({ classroom, submitQuestion, ...props }) => (
   <div style={{ marginTop: '50px', marginBottom: '40px' }}>
-    <h2>{classroom.title}</h2>
-    <Grid>
-      <Row>
-        <Col sm={4} />
-        <Col sm={4} />
-        <Col sm={4}>
-          <p><b>lecturer: {classroom.lecturer}</b></p>
-        </Col>
-      </Row>
-    </Grid>
+
     <PostList {...props} />
     <div
       style={{

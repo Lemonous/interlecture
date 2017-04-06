@@ -33,10 +33,7 @@
 
       {% comment %}
       {% if app_name == 'app' %}
-        window.django2react.classroom = {
-          id: {{ classroom.pk }},
-          title: {{ classroom.name }}
-        }
+        window.django2react.classroom = room
       {% endif %}
       {% endcomment %}
     </script>

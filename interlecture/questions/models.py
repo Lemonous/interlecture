@@ -6,6 +6,7 @@ import channels
 class Room(models.Model):
     name = models.CharField(max_length=50,unique=True)
     moderator = models.ManyToManyField(auth.User,related_name='moderates')
+    lecturer = models.ForeignKey(auth.User,on_delete=models.CASCADE)
     
     def get_posts(self):
         return [post.get() for post in Post.objects.filter(room=self)]
@@ -15,6 +16,9 @@ class Room(models.Model):
     
     def request_access_rights(self,user,rights):
         pass
+     
+    def get(self):
+        return {'id':self.id,'name':self.name,'lecturer':self.lecturer.username}
 
 class Post(models.Model):
     room = models.ForeignKey(Room,on_delete=models.CASCADE)
