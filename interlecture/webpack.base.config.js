@@ -10,6 +10,7 @@ module.exports = {
     login: './client/core/login',
     register: './client/core/register',
     resend_activation: './client/core/resend_activation',
+    course_select: './client/courses/course_select',
   },
 
   output: {

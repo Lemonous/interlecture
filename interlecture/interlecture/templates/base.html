@@ -22,6 +22,23 @@
     <script>
       window.django2react={{ args|safe }};
       window.django2react.csrfToken="{{ csrf_token }}";
+
+      {% if messages and request.user %}
+        window.django2react.justLoggedIn=true;
+        window.django2react.username="{{ request.user.username }}";
+        {% for message in messages %}
+          {# This is simply to clear the message after displaying it once #}
+        {% endfor %}
+      {% endif %}
+
+      {% comment %}
+      {% if app_name == 'app' %}
+        window.django2react.classroom = {
+          id: {{ classroom.pk }},
+          title: {{ classroom.name }}
+        }
+      {% endif %}
+      {% endcomment %}
     </script>
     <div id=main> </div>
     {% render_bundle app_name %}

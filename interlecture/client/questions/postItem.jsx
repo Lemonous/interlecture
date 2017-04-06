@@ -64,6 +64,7 @@ const PostItem = ({
             >
               <FontAwesome name="remove" size="2x" />
             </Button>
+<<<<<<< HEAD
           </OverlayTrigger>
         }
         <OverlayTrigger placement="top" overlay={tooltipForReply}>
@@ -144,30 +145,3 @@ PostItem.defaultProps = {
   level: 0,
 };
 export default PostItem;
-//
-// <div style={{ float: 'right' }}>
-//   <div style={{ width: '100%' }}>
-//     <div style={{ width: '100%' }}>
-//       <InputForm
-//         onSubmit={submitReply}
-//         id={`replyTo${post.id}`}
-//         placeholder={'Enter reply'}
-//         submitButtonText={'Submit Reply'}
-//         onSubmitExtras={{ postId: post.id }}
-//         />
-//     </div>
-//   </div>
-// </div>
-// <div
-//   style={{
-//     overflow: 'hidden',
-//     paddingRight: '0.5rem',
-//   }}
-//   >
-//   <div
-//     style={{
-//       backgroundColor: '#a53',
-//       width: '50px',
-//     }}
-//     />
-// </div>
