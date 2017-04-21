@@ -11,6 +11,9 @@ function buttonStyle(color) {
     border: '0px',
     backgroundColor: 'transparent',
     float: 'right',
+    width: 'auto',
+    padding: '6px',
+    margin: '0',
   };
 }
 
@@ -27,9 +30,9 @@ const tooltipForDelete = (
 function getBorder(level) {
   console.log(level);
   if (level > 4) {
-    return '10px solid rgb(140, 0, 0)';
+    return '8px solid rgb(140, 0, 0)';
   }
-  return `10px solid rgb(${220 - (20 * level)}, ${160 - (40 * level)}, 0)`;
+  return `8px solid rgb(${220 - (20 * level)}, ${160 - (40 * level)}, 0)`;
 }
 
 function clickReplyButton({ store, id }) {
@@ -55,17 +58,16 @@ const PostItem = ({
     <div
       style={{
         borderLeft: getBorder(level),
-        // borderBottomLeftRadius: '15px',
-        // borderTopLeftRadius: '5px',
         paddingLeft: '8px',
-        marginTop: '5px',
+        marginTop: '8px',
         overflow: 'hidden',
       }}
     >
-      <div style={{ float: 'right', width: '190px' }} >
+      <div style={{ float: 'right', width: 'auto' }} >
         {(window.django2react.moderator_mode === 'true' || window.django2react.my_uname === post.user) &&
           <OverlayTrigger placement="top" overlay={tooltipForDelete}>
             <Button
+              className="post-list-link"
               onClick={event => (submitDelete(event, post.id))}
               style={buttonStyle('#a33')}
             >
@@ -75,15 +77,16 @@ const PostItem = ({
         }
         <OverlayTrigger placement="top" overlay={tooltipForReply}>
           <Button
+            className="post-list-link"
             onClick={event => (clickReplyButton({ store, id: post.id }))}
             style={buttonStyle('#33a')}
           >
-            &nbsp;
             <FontAwesome name="reply" size="2x" />
           </Button>
         </OverlayTrigger>
         <OverlayTrigger placement="top" overlay={tooltipForLike}>
           <Button
+            className="post-list-link"
             onClick={event => (submitLike(event, post.id))}
             style={buttonStyle('#280')}
           >
@@ -94,7 +97,6 @@ const PostItem = ({
               : null
             }
             <FontAwesome name="thumbs-up" size="2x" />
-            &nbsp;
           </Button>
         </OverlayTrigger>
       </div>

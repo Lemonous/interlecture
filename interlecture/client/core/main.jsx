@@ -14,7 +14,7 @@ const sock = new SocketHandler(`ws://${window.location.host}`, store);
 
 const Main = () => (
   <Provider store={store}>
-    <div style={{ margin: '5pt 5%' }}>
+    <div>
       <Classroom
         classroom={django2react.classroom}
         posts={posts}
