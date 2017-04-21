@@ -1,23 +1,25 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Classroom looks like it should 1`] = `
-<div
-  style={
-    Object {
-      "marginBottom": "40px",
-      "marginTop": "50px",
-    }
-  }
->
-  <ul
-    className="list-group"
+<div>
+  <div
     style={
       Object {
-        "marginBottom": "0px",
-        "width": "100%",
+        "margin": "50px 5% 40% 5%",
       }
     }
-  />
+  >
+    <ul
+      className="list-group"
+      style={
+        Object {
+          "backgroundColor": "white",
+          "marginBottom": "0px",
+          "width": "100%",
+        }
+      }
+    />
+  </div>
   <div
     style={
       Object {
@@ -33,7 +35,7 @@ exports[`Classroom looks like it should 1`] = `
     <div
       style={
         Object {
-          "marginLeft": "30px",
+          "margin": "0 auto",
           "width": "85%",
         }
       }
