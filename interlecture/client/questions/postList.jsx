@@ -21,7 +21,7 @@ const newStyle = {
 };
 
 const PostList = ({ posts, parent_id, ...props }) => (
-  <ListGroup style={{ width: '100%', marginBottom: '0px', backgroundColor: 'white', }}>
+  <ListGroup style={{ width: '100%', marginBottom: '0', backgroundColor: 'white', }}>
     {
       posts.filter(post => (post.parent_post === parent_id))
         .map(post => (

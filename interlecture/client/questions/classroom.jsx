@@ -14,7 +14,7 @@ function mapStateToProps(state) {
 
 export const Classroom = ({ classroom, submitQuestion, ...props }) => (
   <div>
-    <div style={{ margin: '50px 5% 40% 5%' }}>
+    <div style={{ margin: '80px 5% 80px 5%' }}>
       <PostList {...props} />
     </div>
 

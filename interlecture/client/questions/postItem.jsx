@@ -106,7 +106,7 @@ const PostItem = ({
           paddingLeft: '0.5rem',
         }}
       >
-        <div style={{ width: '100%' }} >
+        <div style={{ width: '100%', paddingTop: '3px' }} >
           <div style={{ float: 'left' }}>
             <b>{ post.user }</b>
           </div>
