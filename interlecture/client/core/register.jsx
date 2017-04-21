@@ -91,7 +91,7 @@ const Main = () => (
           }
         </bs.FormGroup>
         <bs.FormGroup>
-          <bs.Button bsStyle="primary" type="submit" block>Register</bs.Button>
+          <bs.Button bsStyle="primary" type="submit" className="single" block>Register</bs.Button>
         </bs.FormGroup>
         <input type="hidden" name="csrfmiddlewaretoken" value={window.django2react.csrfToken} />
       </bs.Form>
