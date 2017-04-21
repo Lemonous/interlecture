@@ -17,7 +17,7 @@ class DeleteTest(ChannelTestCase):
     def setUp(self):
         self.alice=MockUser('alice')
         
-        self.room=Room.objects.create(name='test');self.room.save()
+        self.room=Room.objects.create(name='test',lecturer=self.alice.user);self.room.save()
         self.p0=Post.objects.create(
             room=self.room,user=self.alice.user,text="BEEP")
         self.p0.save()
@@ -47,7 +47,7 @@ class PostTest(ChannelTestCase):
     def setUp(self):
         self.alice=MockUser('alice')
         
-        self.room=Room.objects.create(name='test');self.room.save()
+        self.room=Room.objects.create(name='test',lecturer=self.alice.user);self.room.save()
         self.p0=Post.objects.create(
             room=self.room,user=self.alice.user,text="Bob, are you here?")
         self.p0.save()
