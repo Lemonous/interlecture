@@ -3,9 +3,10 @@
 exports[`Classroom looks like it should 1`] = `
 <div>
   <div
+    className="panel"
     style={
       Object {
-        "margin": "80px 5% 80px 5%",
+        "margin": "300px 5% 80px 5%",
       }
     }
   >
@@ -25,6 +26,7 @@ exports[`Classroom looks like it should 1`] = `
       Object {
         "backgroundColor": "#fff",
         "bottom": "0px",
+        "boxShadow": "0 0 15px 1px #2C2D37",
         "height": "50px",
         "paddingTop": "10px",
         "position": "fixed",
