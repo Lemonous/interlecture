@@ -1,5 +1,6 @@
 import React from 'react';
 import { render } from 'react-dom';
+import Header from 'client/core/header';
 
 import * as bs from 'react-bootstrap';
 
@@ -11,8 +12,13 @@ const Main = () => (
       justifyContent: 'center',
       height: '100%',
       width: '100%',
+      flexDirection: 'column',
     }}
   >
+    <Header user={window.django2react.username}
+            firstname={window.django2react.firstname}
+            lastname={window.django2react.lastname}
+    />
 
     {window.django2react.doesNotExist &&
     <bs.Panel className={'message-panel'}>

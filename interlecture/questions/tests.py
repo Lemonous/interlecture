@@ -94,7 +94,7 @@ class PostTest(ChannelTestCase):
             text={'app':'questions','command':'support','post':self.p0.id})
         self.alice.client.receive()
         
-        self.assertEqual(self.p0.get()['supporters'],1)
+        self.assertEqual(self.p0.get()['supporters'],0)
     
     
     def test_object_not_found(self):

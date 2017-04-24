@@ -25,7 +25,10 @@ def post(request,room=None,parent_post=None,text=None):
 @need_object(Post)
 def support(request,post=None):
     post.room.request_access_rights(request,'write')
-    post.supporters.add(request.message.user)
+    if request.message.user in post.supporters.all():
+        post.supporters.remove(request.message.user)
+    else:
+        post.supporters.add(request.message.user)
     post.save()
     broadcastPost(post)
 

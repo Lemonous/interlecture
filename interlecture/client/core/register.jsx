@@ -1,5 +1,6 @@
 import React from 'react';
 import { render } from 'react-dom';
+import Header from 'header';
 
 import * as bs from 'react-bootstrap';
 
@@ -22,6 +23,10 @@ const Main = () => (
       width: '100%',
     }}
   >
+    <Header user={window.django2react.username}
+            firstname={window.django2react.firstname}
+            lastname={window.django2react.lastname}
+    />
     <bs.Panel>
       <bs.Form action="/register/" method="post">
         <bs.FormGroup>
@@ -91,7 +96,7 @@ const Main = () => (
           }
         </bs.FormGroup>
         <bs.FormGroup>
-          <bs.Button bsStyle="primary" type="submit" block>Register</bs.Button>
+          <bs.Button bsStyle="primary" type="submit" className="single" block>Register</bs.Button>
         </bs.FormGroup>
         <input type="hidden" name="csrfmiddlewaretoken" value={window.django2react.csrfToken} />
       </bs.Form>

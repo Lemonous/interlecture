@@ -13,9 +13,11 @@ function mapStateToProps(state) {
 }
 
 export const Classroom = ({ classroom, submitQuestion, ...props }) => (
-  <div style={{ marginTop: '50px', marginBottom: '40px' }}>
+  <div>
+    <div className="panel" style={{ margin: '300px 5% 80px 5%' }}>
+      <PostList {...props} />
+    </div>
 
-    <PostList {...props} />
     <div
       style={{
         position: 'fixed',
@@ -24,12 +26,13 @@ export const Classroom = ({ classroom, submitQuestion, ...props }) => (
         height: '50px',
         paddingTop: '10px',
         backgroundColor: '#fff',
+        boxShadow: '0 0 15px 1px #2C2D37',
       }}
     >
       <div
         style={{
           width: '85%',
-          marginLeft: '30px',
+          margin: '0 auto',
         }}
       >
         <InputForm

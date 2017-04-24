@@ -1,5 +1,6 @@
 import React from 'react';
 import { render } from 'react-dom';
+import Header from 'header';
 
 import * as bs from 'react-bootstrap';
 
@@ -13,10 +14,15 @@ const Main = () => (
       width: '100%',
     }}
   >
+    <Header user={window.django2react.username}
+            firstname={window.django2react.firstname}
+            lastname={window.django2react.lastname}
+    />
     <bs.Panel>
       <bs.Form action="/login/" method="post">
         <bs.FormGroup>
           <bs.FormControl
+            style={{ width: '100%' }}
             type="email" name="uname"
             placeholder="Email"
           />
