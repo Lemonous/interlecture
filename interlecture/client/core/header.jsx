@@ -69,11 +69,7 @@ function classroomTitleStyle() {
   };
 }
 
-const Header = ({
-                  user,
-                  firstname,
-                  lastname
-                }) => (
+const Header = ({ user, firstname, lastname }) => (
   <header style={headerStyle()}>
     <div style={menuStyle()}>
       {(user &&
@@ -81,18 +77,42 @@ const Header = ({
         <div>
           <p style={userLabelStyle()}>{firstname} {lastname} ({user})</p>
           {window.django2react.appName === 'app' &&
-          <bs.Form method="post" action="/courses/" style={{ display: 'inline-block' }}>
-            <input type="text" name="name" placeholder="Course code" style={headerInputStyle()} />
-            <input type="hidden" name="csrfmiddlewaretoken" value={window.django2react.csrfToken} />
+            <bs.Form
+              method="post"
+              action="/courses/"
+              style={{ display: 'inline-block', marginRight: '5px' }}
+            >
+              <input
+                type="text"
+                name="name"
+                placeholder="Find existing course"
+                style={headerInputStyle()}
+              />
+              <input
+                type="hidden"
+                name="csrfmiddlewaretoken"
+                value={window.django2react.csrfToken}
+              />
+            </bs.Form>}
+          <bs.Form method="post" action="/create-course/" style={{ display: 'inline-block' }}>
+            <input
+              type="text"
+              name="name"
+              placeholder="Create new course"
+              style={headerInputStyle()}
+            />
+            <input
+              type="hidden"
+              name="csrfmiddlewaretoken"
+              value={window.django2react.csrfToken}
+            />
           </bs.Form>
-          }
           <bs.Button bsStyle="link" style={headerButtonStyle()} href="/logout/">Logout</bs.Button>
-        </div>
+        </div>) ||
         /* End logged in code */
-      ) ||
-      /* Logged out code */
-      <p>&nbsp;</p>
-        /* End logged out code */
+        /* Logged out code */
+        <p>&nbsp;</p>
+      /* End logged out code */
       }
       <div style={logoStyle()}>
         INTERLECTURE
@@ -100,9 +120,12 @@ const Header = ({
 
       {window.django2react.classroom &&
         <div style={classroomTitleStyle()}>
-          {window.django2react.classroom.name.toUpperCase()} - {window.django2react.classroom.lecturer.toUpperCase()}
-        </div>
-      }
+          {window.django2react.classroom.name.toUpperCase()}
+          {' '}
+          -
+          {' '}
+          {window.django2react.classroom.lecturer.toUpperCase()}
+        </div>}
     </div>
   </header>
 );

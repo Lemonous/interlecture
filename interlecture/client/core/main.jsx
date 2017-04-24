@@ -5,10 +5,7 @@ import { Provider } from 'react-redux';
 import Header from 'header';
 import SocketHandler from './socketHandler';
 import Classroom from '../questions/classroom';
-import ChooseCourse from '../courses/chooseCourse';
-import CreateCourse from '../courses/createCourse';
 import posts from './reducers';
-import MainPanel from './mainPanel';
 
 const store = createStore(posts);
 const sock = new SocketHandler(`ws://${window.location.host}`, store);

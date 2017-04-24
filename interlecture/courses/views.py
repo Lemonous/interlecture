@@ -3,7 +3,6 @@ from django.shortcuts import render, reverse, redirect
 from questions.models import Room
 
 
-# Create your views here.
 def course_select_view(request):
     if not request.user.is_authenticated:
         return redirect(reverse('login'))
@@ -26,3 +25,17 @@ def course_select_view(request):
         'args': '{}'
     }
     return render(request, 'base.html', context=context)
+
+
+def course_create_view(request):
+    if not request.user.is_authenticated:
+        return redirect(reverse('login'))
+
+    if request.user.is_active:
+        if request.method == 'POST':
+            course = Room(name=request.POST['name'], lecturer=request.user)
+            course.save()
+
+            return redirect(reverse('course', args=[course.name]))
+
+    return redirect(reverse('select-course'))
