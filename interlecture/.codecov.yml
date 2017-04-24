@@ -1,4 +1,0 @@
-ignore:
-    - "interlecture/wsgi.py"
-    - "interlecture/local_settings.py"
-    - "interlecture/routing.py"
