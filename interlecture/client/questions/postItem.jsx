@@ -28,7 +28,6 @@ const tooltipForDelete = (
 );
 
 function getBorder(level) {
-  console.log(level);
   if (level > 4) {
     return '8px solid rgb(140, 0, 0)';
   }
@@ -69,7 +68,7 @@ const PostItem = ({
             <Button
               className="post-list-link"
               onClick={event => (submitDelete(event, post.id))}
-              style={buttonStyle('#a33')}
+              style={buttonStyle('#D7720F')}
             >
               <FontAwesome name="remove" size="2x" />
             </Button>
@@ -79,7 +78,7 @@ const PostItem = ({
           <Button
             className="post-list-link"
             onClick={event => (clickReplyButton({ store, id: post.id }))}
-            style={buttonStyle('#33a')}
+            style={buttonStyle('#53A2BE')}
           >
             <FontAwesome name="reply" size="2x" />
           </Button>
@@ -88,7 +87,7 @@ const PostItem = ({
           <Button
             className="post-list-link"
             onClick={event => (submitLike(event, post.id))}
-            style={buttonStyle('#280')}
+            style={buttonStyle('#78bd53')}
           >
             { post.supporters ?
               <b style={{ fontSize: '20px', marginRight: '10px' }}>
@@ -107,8 +106,8 @@ const PostItem = ({
         }}
       >
         <div style={{ width: '100%', paddingTop: '3px' }} >
-          <div style={{ float: 'left' }}>
-            <b>{ post.user }</b>
+          <div style={{ float: 'left', fontWeight: 'bold' }}>
+            { post.user }
           </div>
           <div style={{ float: 'left', marginLeft: '40px', color: '#999' }}>
             {post.datetime.substr(0, 16)}
