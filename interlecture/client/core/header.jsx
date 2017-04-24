@@ -10,6 +10,7 @@ function headerStyle() {
     position: 'absolute',
     top: 0,
     left: 0,
+    zIndex: 5,
   };
 }
 
