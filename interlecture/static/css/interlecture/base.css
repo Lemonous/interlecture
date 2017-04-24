@@ -21,6 +21,7 @@
     box-shadow: 0 0 15px 1px var(--dark-gray);
     border: none;
     border-radius: 0;
+    z-index: 10;
 }
 
 .panel-body {
