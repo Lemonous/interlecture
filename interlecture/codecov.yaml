@@ -1,0 +1,5 @@
+coverage:
+  ignore:
+    - "interlecture/wsgi.py"
+    - "interlecture/routing.py"
+    - "interlecture/settings.py"
