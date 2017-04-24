@@ -21,7 +21,7 @@ class SocketHandler {
 
   submitReply({ value, postId }) {
     this.socket.send(JSON.stringify(
-          { app: 'questions', command: 'post', room: 'test', text: value, parent_post: postId }));
+          { app: 'questions', command: 'post', room: window.django2react.classroom.name, text: value, parent_post: postId }));
   }
 
   submitLike(event, postId) {
