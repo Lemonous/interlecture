@@ -82,7 +82,6 @@ class UserForm(Form):
             if code == 'usernameInUse':
                 error_string += 'usernameInUse:true,'
 
-        print(error_string)
         return error_string
 
     def safe_data(self):
@@ -91,7 +90,6 @@ class UserForm(Form):
         first_name = self.cleaned_data.get('first_name')
         last_name = self.cleaned_data.get('last_name')
         email = self.cleaned_data.get('email')
-        print(username, first_name, last_name, email)
 
         if username:
             data_string += 'username:"%s",' % username

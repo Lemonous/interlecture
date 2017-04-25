@@ -7,5 +7,5 @@ class UserActivation(models.Model):
     activation_key = models.CharField(max_length=128)
     key_expires = models.DateTimeField()
 
-    def __str__(self):
+    def __str__(self):#pragma: nocover
         return "Key '%s' for %s expires on %s" % (self.activation_key, self.user, self.key_expires)
