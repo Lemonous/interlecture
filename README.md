@@ -8,7 +8,7 @@ Introduction
 
 Interlecture is a simple message board application we developed as a project in TDT4140 software development. It allows creating chat rooms (courses) and posting, liking and deleting messages there.
 
-The user interface is quite self-explanatory. The registration system only accepts ntnu.no/ntnu.edu emails, but this can easily be fixed by editing `interlecture/interaut
+The user interface is quite self-explanatory. The registration system only accepts ntnu.no/ntnu.edu emails, but this can easily be fixed by editing `interlecture/interauth/views.py`.
 
 System operator reference
 -------------------------
@@ -32,7 +32,7 @@ It is a good idea to set up python virtualenv, so that pip packages aren't insta
 Then use `pip` and `yarn` to install the rest of dependencies automatically:
 ```
 interlecture$  pip3 install -r requirements.txt
-(repository root)$ yarn
+interlecture$ yarn
 ```
 
 ### Configuration file
@@ -50,7 +50,7 @@ interlecture$ ../bin/python3 manage.py runserver <ip>:<port>
 You can skip `<ip>:<port>` for listening on <localhost:8000>. Now you can open the address in your browser. Server can be stopped with ^C.
 
 #### Advanced topics
-Required if running multiple server processe or multiple server machines.
+Only required if running multiple server processe or multiple server machines.
 
 ##### Using administrator account
 You can set up administrator account in order to be able to register users without activation mail and to remove users or classrooms. To do so, run
