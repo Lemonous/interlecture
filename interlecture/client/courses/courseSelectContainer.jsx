@@ -2,6 +2,6 @@ import React from 'react';
 import { render } from 'react-dom';
 import CourseSelect from './courseSelect.jsx';
 
-const courseSelectContainer = () => <CourseSelect />;
+const CourseSelectContainer = () => <CourseSelect />;
 
-render(<courseSelectContainer />, document.getElementById('main'));
+render(<CourseSelectContainer />, document.getElementById('main'));
