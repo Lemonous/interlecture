@@ -8,6 +8,8 @@ from django.template.loader import render_to_string
 from django.core.mail import send_mail
 from django.shortcuts import render, reverse
 
+from interlecture.local_settings import HOSTNAME,EMAIL_FROM
+
 import datetime
 import hashlib
 import random
@@ -137,11 +139,11 @@ def init_activation(user):
 
 
 def send_activation_mail(activation):
-    mail_body = render_to_string('activation_mail.html', context={'activation': activation})
+    mail_body = render_to_string('activation_mail.html', context={'activation': activation,'HOSTNAME':HOSTNAME})
     _ = send_mail(
         subject='Interlecture Account Activation',
         message='',
-        from_email='activation@interlecture.no',
+        from_email=EMAIL_FROM,
         recipient_list=[activation.user.email],
         html_message=mail_body
     )

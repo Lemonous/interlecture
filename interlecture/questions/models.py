@@ -1,12 +1,15 @@
 from django.db import models
 import django.contrib.auth.models as auth
 import channels
-
+ 
 
 class Room(models.Model):
     name = models.CharField(max_length=50,unique=True)
     moderator = models.ManyToManyField(auth.User,related_name='moderates')
     lecturer = models.ForeignKey(auth.User,on_delete=models.CASCADE)
+    
+    def __str__(self):
+        return self.name
     
     def get_posts(self):
         return [post.get() for post in Post.objects.filter(room=self)]
