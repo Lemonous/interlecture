@@ -2,30 +2,30 @@ import React from 'react';
 import { render } from 'react-dom';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
-import Classroom from '../questions/classroom';
+import Header from './header';
 import SocketHandler from './socketHandler';
-import questions from './reducers';
+import Classroom from '../questions/classroom';
+import posts from './reducers';
 
-const store = createStore(questions);
+const store = createStore(posts);
 const sock = new SocketHandler(`ws://${window.location.host}`, store);
-
-const classroom = {
-  id: 0,
-  title: 'test',
-  lecturer: 'gruppe69',
-};
 
 const Main = () => (
   <Provider store={store}>
-    <div style={{ margin: '5pt 5%' }}>
-      <a href="/logout/">Logout</a>
+    <div>
+      <Header user={window.django2react.username}
+              firstname={window.django2react.firstname}
+              lastname={window.django2react.lastname}
+      />
       <Classroom
-        classroom={classroom}
+        classroom={window.django2react.classroom}
+        posts={posts}
         submitQuestion={sock.submitQuestion}
         submitReply={sock.submitReply}
         submitLike={sock.submitLike}
+        submitDelete={sock.submitDelete}
+        store={store}
       />
-
     </div>
   </Provider>
 );

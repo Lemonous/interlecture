@@ -1,120 +1,90 @@
-# Interlecture [![Travis branch](https://img.shields.io/travis/PU-69/interlecture.svg)]() [![Codecov branch](https://img.shields.io/codecov/c/github/PU-69/interlecture.svg)]()
+[![Travis branch](https://img.shields.io/travis/PU-69/interlecture.svg)]() [![Codecov branch](https://img.shields.io/codecov/c/github/PU-69/interlecture.svg)]()
 
-1. [Basic Setup](#basic-setup)
-  1. [Installing Dependencies](#installing-dependencies)
-  2. [Installing Postgres](#installing-postgres)
-  3. [Testing that it works](#testing-that-it-works)
-2. [General Information](#general-information)
-3. [Using Jest](#using-jest)
+Interlecture 
+============
 
-## Basic setup
+Introduction
+------------
 
-### Installing Dependencies
+Interlecture is a simple message board application we developed as a project in TDT4140 software development. It allows creating chat rooms (courses) and posting, liking and deleting messages there.
 
-It would often be a good idea to use a virtual environment to set this project's packages and dependencies apart from other projects.
+The user interface is quite self-explanatory. The registration system only accepts ntnu.no/ntnu.edu emails, but this can easily be fixed by editing `interlecture/interauth/views.py`.
 
-Make sure pip3 and yarn are installed:
-_Mac OS_
+System operator reference
+-------------------------
+
+### Installign dependencies
+
+Mandatory dependencies you must install manually are `python3.6` (probably you have this already) and `yarn`.
+- On _Mac OS_: `brew install python3.6 yarn`
+- On _Ubuntu_: `sudo apt-get install python3.6 yarn`
+- On _Fedora_: `sudo dnf install python3.6 yarn`
+
+Note: while running python3.5 is not recommended, it is possible and only requiers replacing `hashlib.sha3_512` function in file `interlecture/interauth/views.py`.
+
+It is a good idea to set up python virtualenv, so that pip packages aren't installed system wide:
 ```
-brew install python3.6 yarn
-```
-
-_Ubuntu 16.04_
-```
-apt-get ugrade
-apt-get install python3.6 yarn
-```
-
-Set up the requirements:
-```
-pip3 install -r interlecture/requirements.txt
-yarn
+(repository root)$ pip3 install virtualenv
+(repository root)$ virtualenv .
+(repository root)$ cd interlecture
 ```
 
-If you are having problems installing `psycopg2`, try running this command instead:
+Then use `pip` and `yarn` to install the rest of dependencies automatically:
 ```
-env LDFLAGS="-I/usr/local/opt/openssl/include -L/usr/local/opt/openssl/lib" pip --no-cache install psycopg2
-```
-
-### Installing postgres
-
-_Install on Ubuntu / Mac OS_
-
-Install postgres: `brew install postgres` _or_ `apt-get install postgresql`
-
-On linux based systems you may need to follow theese instructions: http://dba.stackexchange.com/questions/52849/how-do-i-install-postgresql-in-debian-ubuntu
-
-Initialise a database (set the password to whatever you want): `initdb -D  ~/dbs/interlecture/ -U interlecture -W`
-
-Start the database: `pg_ctl -D ~/dbs/interlecture/ -l postgresql.log start`
-
-If the command pg_ctl is not found insert `PATH=$PATH:/usr/lib/postgresql/9.5/bin
-export PATH`
-into .profile and run `. .profile` (or exchange 9.5 with correct version number)
-
-Go into postgres with the new user, then create a new database:
-```
-psql -U interlecture -d template1
-[...]
-template1=# CREATE DATABASE interlecture;
+interlecture$  pip3 install -r requirements.txt
+interlecture$ yarn
 ```
 
-Make a `local_settings.py` file and define the variables that are imported in `settings.py`. User and database are both `interlecture`, host is usually `127.0.0.1`, and the default port is `5432`.
+### Configuration file
+Copy rename the file `(repository root) /interlecture/interlecture/local_settings.defailt.py` to `(repository root) /interlecture/interlecture/local_settings.py` and edit it to your preferences. For a debug run, you can leave the most as it is, but specify email host, port, username and password to send user activation emails. You also must set `SECRET_KEY` to some random quoted string.
 
-### Testing That It Works
-
-Test run django with `python manage.py runserver`. If it works, run `python manage.py migrate` to set up the database tables.
-
-In order to be able to log in you must first create a user by running
-./manage.py createsuperuser
-
-Create 'test' classroom using django-admin.
-
-You're done!
-
-## General Information
-
-The frontend is in interlecture/react/main.jsx.
-
-To rebuild frontend:
+### Running the server for the first time
 ```
-cd interlecture
-./node_modules/.bin/webpack
+interlecture$ yarn webpack
+interlecture$ ../bin/python3 manage.py migrate
+```
+The above two can be skipped on subsequent runs. Now start the server:
+```
+interlecture$ ../bin/python3 manage.py runserver <ip>:<port>
+```
+You can skip `<ip>:<port>` for listening on <localhost:8000>. Now you can open the address in your browser. Server can be stopped with ^C.
+
+#### Advanced topics
+Only required if running multiple server processe or multiple server machines.
+
+##### Using administrator account
+You can set up administrator account in order to be able to register users without activation mail and to remove users or classrooms. To do so, run
+```
+interlecture$ ../bin/python3 manage.py createsuperuser
+```
+and enter user data. You can then login at `http://yoursite/admin/` and access database using standard django admin panel. There are also some features that are currently only avaliable via admin panel, like setting more than one moderator to a room.
+
+##### Setting up PostgreSQL
+[PostgreSQL](https://www.postgresql.org/) is a advanced database managment system, which allows Refer to PostgreSQL documentation for information about installing PostgreSQL on your system. Once it is set up, create an empty database and change `DATABASE=...` variable in the `local_settings.py` to:
+```
+DATABASE={
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': <your database name>,
+        'USER': <...>,'PASSWORD': <...>,
+       'HOST': <...>,'PORT': <...>,
+    }
+```
+You must then re-run `manage.py migrate` before starting the server.
+
+##### Setting up redis
+[redis](https://redis.io/) is a in-memory data structure system and is the recommended backend for django-channels. Refer to redis documentation for information about installing it on your system. To use it as a messaging backend, you must first install asgi_redis:
+```
+(repository root)$ ./bin/pip install asgi_redis
+```
+Then swap the comment on `CHANNEL=` variable in `local_settings.py` and optionally edit the new value to point to your redis server. Now launch your redis server (simply `redis-server`) and start django server normaly.
+
+However, the point of redis is that you can run multiple "worker" threads in parallel, even on different machines as long as they share redis server and database. The server startup procedure is slightly changed then. First start the web interface:
+```
+interlecture$ ../bin/daphne interlecture.asgi:channel_layer
+```
+Then lanuch worker threads:
+```
+interlecture$ ../bin/python3 manage.py runworker
 ```
 
-To run the project:
-```
-python manage.py runserver
-```
-
-## Using Jest
-
-Jest is a test tool that is based on taking a "picture" of the app and compare future versions against this picture, looking for changes.
-
-The first time Jest is run it will save a snapshot-file that describes the end-product of the imported components, and every time a test is run after this it creates a temporary snapshot-file and compares it to the saved snapshot. If there is any difference at all the test will fail and the difference will be printed.
-
-To run all all jest tests simply type
-```
-yarn jest
-```
-
-If the test fails take a look at what the diff and see if it makes sense and run the application and see if the component looks like it should.
-If you did change something in the component and everything is working like you should you have to update the snapshot.
-To update a snapshot type
-```
-yarn jest -- -u
-```
-the "--" is for skipping yarn options and the "-u" is shorthand for update.
-
-To create a new test create a file named <component>.react-test.js in /interlecture/client/\_\_tests\_\_ where you import the component to be tested.
-In some components we are connecting the redux-state to the component, so that a redux-infused component is exported. To solve this problem we can mock the redux-state, which needs a bit of work to get up and running, or we can just export the component before the state is connected. This is the case for the Classroom component.
-Take a look at classroom.react-test.js to see a working example.
-
-If you want to run jest tests everytime you save a file that is being tested you can type
-```
-yarn test:watch
-```
-This has been defined in package.json, and is just a short for
-```
-yarn jest -- --watch
-```
+Refer to [channels documentation](https://channels.readthedocs.io/en/stable/deploying.html) for more information about its deployment facilities.

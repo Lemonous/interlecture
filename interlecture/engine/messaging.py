@@ -7,7 +7,7 @@ class RequestHandlingException(Exception):
     reportString="An exception occured while handling the request."
     def report(self):
         return self.reportString.format(*self.args)
- 
+
 class NoSuchRequestHandlerException(RequestHandlingException):
     reportString="No handler for request {}.{}"
 
@@ -25,7 +25,7 @@ class Request:
     def __init__(self,message):
         self.message=message
         self.text=json.loads(message.content['text'],object_hook=RequestDict)
-    
+
     def handle(self):
         try:
             try: handler=handlers[self.text.app][self.text.command]
@@ -34,10 +34,10 @@ class Request:
             else:return handler(self)
         except RequestHandlingException as e:self.reply(
             type='INVALID_REQUEST',message=e.report())
-    
+
     def send(self,**kwargs):
         serverMessage(self.message.reply_channel,**kwargs)
-      
+
     def reply(self,**kwargs):
         try: self.send(request_id=self.text.request_id,**kwargs)
         except RequestKeyError:pass

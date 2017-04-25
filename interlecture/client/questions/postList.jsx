@@ -1,8 +1,7 @@
 import React from 'react';
 import { ListGroup, ListGroupItem } from 'react-bootstrap';
 import 'static/css/font-awesome.css';
-import QuestionItem from './questionItem';
-import InputForm from './inputForm';
+import PostItem from './postItem';
 
 const listGroupItemStyle = {
   borderRadius: 5,
@@ -15,21 +14,19 @@ const listGroupItemStyle = {
   paddingBottom: '5px',
 };
 
-const PostList = ({ posts, parent_id, submitReply, submitLike }) => (
-  <ListGroup>
+const newStyle = {
+  border: '0px',
+  padding: '0px 0px',
+  width: '100%',
+};
+
+const PostList = ({ posts, parent_id, ...props }) => (
+  <ListGroup style={{ width: '100%', marginBottom: '0', backgroundColor: 'white', }}>
     {
-      posts.filter(post => (post.parent_post==parent_id))
+      posts.filter(post => (post.parent_post === parent_id))
         .map(post => (
-          <ListGroupItem key={post.id} style={listGroupItemStyle}>
-            <QuestionItem question={post} submitLike={submitLike} />
-            <InputForm
-              onSubmit={submitReply}
-              id={`replyTo${post.id}`}
-              placeholder={'Enter reply'}
-              submitButtonText={'Submit Reply'}
-              onSubmitExtras={{ postId: post.id }}
-            />
-            <PostList posts={posts} parent_id={post.id} submitReply={submitReply} submitLike={submitLike} />
+          <ListGroupItem key={post.id} style={newStyle}>
+            <PostItem post={post} posts={posts} {...props} />
           </ListGroupItem>
         ))
     }
@@ -39,8 +36,6 @@ const PostList = ({ posts, parent_id, submitReply, submitLike }) => (
 PostList.propTypes = {
   posts: React.PropTypes.arrayOf(React.PropTypes.object).isRequired,
   parent_id: React.PropTypes.number,
-  submitReply: React.PropTypes.func.isRequired,
-  submitLike: React.PropTypes.func.isRequired,
 };
 
 PostList.defaultProps = {

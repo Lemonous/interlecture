@@ -10,6 +10,7 @@ module.exports = {
     login: './client/core/login',
     register: './client/core/register',
     resend_activation: './client/core/resend_activation',
+    course_select: './client/courses/courseSelectContainer',
   },
 
   output: {
@@ -19,9 +20,7 @@ module.exports = {
 
   externals: [], // add all vendor libs
 
-  plugins: [
-    new ExtractTextPlugin('style.css'),
-  ], // add all common plugins here
+  plugins: [new ExtractTextPlugin('style.css')], // add all common plugins here
 
   module: {
     rules: require('./webpack.loaders.js'),

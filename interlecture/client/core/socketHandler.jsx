@@ -11,6 +11,8 @@ class SocketHandler {
     this.submitQuestion = this.submitQuestion.bind(this);
     this.submitReply = this.submitReply.bind(this);
     this.submitLike = this.submitLike.bind(this);
+    this.submitDelete = this.submitDelete.bind(this);
+    this.createCourse = this.createCourse.bind(this);
   }
 
   handleRecieve(event) {
@@ -19,25 +21,38 @@ class SocketHandler {
 
   submitReply({ value, postId }) {
     this.socket.send(JSON.stringify(
-          { app: 'questions', command: 'post', room: 'test', text: value, parent_post: postId }));
+          { app: 'questions', command: 'post', room: window.django2react.classroom.name, text: value, parent_post: postId }));
   }
 
   submitLike(event, postId) {
     event.preventDefault();
     this.socket.send(JSON.stringify(
-          { app: 'questions', command: 'support', post: postId}));
+          { app: 'questions', command: 'support', post: postId }));
+  }
+
+  submitDelete(event, postId) {
+    event.preventDefault();
+    this.socket.send(JSON.stringify(
+          { app: 'questions', command: 'delete', post: postId }));
   }
 
   submitQuestion({ value }) {
     if (value && value !== '') {
       this.socket.send(JSON.stringify(
-            { app: 'questions', command: 'post', room: 'test', text: value }));
+            { app: 'questions', command: 'post', room: window.django2react.classroom.name, text: value }));
+    }
+  }
+
+  createCourse({ value }) {
+    if (value && value !== '') {
+      this.socket.send(JSON.stringify(
+            { app: 'courses', command: 'createCourse', courseCode: value }));
     }
   }
 
   handleOpen(event) {
     this.socket.send(JSON.stringify(
-        { app: 'questions', command: 'subscribe', room: 'test' }));
+        { app: 'questions', command: 'subscribe', room: window.django2react.classroom.name }));
   }
 }
 

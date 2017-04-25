@@ -46,6 +46,10 @@ const classroom = {
   lecturer: 'gruppe69',
 };
 
+global.window={}
+window.django2react={}
+window.django2react.moderator_mode='false'
+
 test('Classroom looks like it should', () => {
   const component = renderer.create(
     <Classroom
@@ -53,7 +57,8 @@ test('Classroom looks like it should', () => {
       submitQuestion={onSubmit}
       submitReply={onSubmit}
       submitLike={onSubmit}
-      questions={questions}
+      submitDelete={onSubmit}
+      posts={questions}
     />);
   const tree = component.toJSON();
   expect(tree).toMatchSnapshot();

@@ -1,0 +1,15 @@
+
+[run]
+source =
+      manage.py
+      questions/
+      interauth/
+      interlecture/
+      engine/    
+omit =
+      */views.py
+      */apps.py
+      interlecture/wsgi.py
+      interlecture/asgi.py
+      */migrations/*
+

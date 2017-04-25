@@ -1,11 +1,14 @@
 from django.core.exceptions import ObjectDoesNotExist
 from django.http import HttpResponseRedirect
+from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.template.loader import render_to_string
 from django.core.mail import send_mail
 from django.shortcuts import render, reverse
+
+from interlecture.local_settings import HOSTNAME,EMAIL_FROM
 
 import datetime
 import hashlib
@@ -20,14 +23,16 @@ def login_view(request):
     context = {'app_name': 'login'}
 
     if request.user.is_authenticated():
-        return HttpResponseRedirect(reverse('app'))
+        return HttpResponseRedirect(reverse('select-course'))
 
     elif request.method == 'POST':
         user = authenticate(username=request.POST['uname'], password=request.POST['passwd'])
 
         if user is not None:
             login(request, user)
-            return HttpResponseRedirect(reverse('app'))
+            if request.user.is_authenticated():
+                messages.info(request, "True")
+            return HttpResponseRedirect(reverse('select-course'))
 
         else:
             context['args'] = '{failedLogin:true,}'
@@ -46,7 +51,7 @@ def logout_view(request):
 
 def register(request):
     if request.user.is_authenticated():
-        return HttpResponseRedirect(reverse('app'))
+        return HttpResponseRedirect(reverse('select-course'))
 
     context = {}
     if request.method == 'POST':
@@ -94,12 +99,12 @@ def activate(request, key):
             activation.user.is_active = True
             activation.user.save()
 
-    return HttpResponseRedirect(reverse('app'))
+    return HttpResponseRedirect(reverse('select-course'))
 
 
 def resend_activation_link(request):
     if request.user.is_authenticated:
-        return HttpResponseRedirect(reverse('app'))
+        return HttpResponseRedirect(reverse('select-course'))
 
     if request.method == 'POST':
         try:
@@ -134,11 +139,11 @@ def init_activation(user):
 
 
 def send_activation_mail(activation):
-    mail_body = render_to_string('activation_mail.html', context={'activation': activation})
+    mail_body = render_to_string('activation_mail.html', context={'activation': activation,'HOSTNAME':HOSTNAME})
     _ = send_mail(
         subject='Interlecture Account Activation',
         message='',
-        from_email='activation@interlecture.no',
+        from_email=EMAIL_FROM,
         recipient_list=[activation.user.email],
         html_message=mail_body
     )

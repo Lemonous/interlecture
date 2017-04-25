@@ -1,0 +1,178 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CourseSelect looks like it should 1`] = `
+<div
+  style={
+    Object {
+      "alignItems": "center",
+      "display": "flex",
+      "flexDirection": "column",
+      "height": "100%",
+      "justifyContent": "center",
+      "width": "100%",
+    }
+  }
+>
+  <header
+    style={
+      Object {
+        "background": "linear-gradient(to bottom, rgba(0, 0, 0, 255), rgba(0, 0, 0, 0))",
+        "height": "200px",
+        "left": 0,
+        "position": "absolute",
+        "top": 0,
+        "width": "100%",
+        "zIndex": 5,
+      }
+    }
+  >
+    <div
+      style={
+        Object {
+          "color": "white",
+          "padding": "5px 10px",
+          "textAlign": "right",
+          "width": "100%",
+        }
+      }
+    >
+      <div>
+        <p
+          style={
+            Object {
+              "float": "left",
+              "height": "34px",
+              "padding": "6px 12px",
+            }
+          }
+        >
+          bob
+           
+          bob
+           (
+          bob
+          )
+        </p>
+        <form
+          action="/create-course/"
+          className=""
+          method="post"
+          style={
+            Object {
+              "display": "inline-block",
+            }
+          }
+        >
+          <input
+            name="name"
+            placeholder="Create new course"
+            style={
+              Object {
+                "border": "none",
+                "borderRadius": "2px",
+                "color": "black",
+                "padding": "6px 12px",
+              }
+            }
+            type="text"
+          />
+          <input
+            name="csrfmiddlewaretoken"
+            type="hidden"
+            value="bob"
+          />
+        </form>
+        <a
+          className="btn btn-link"
+          href="/logout/"
+          onClick={[Function]}
+          style={
+            Object {
+              "color": "white",
+            }
+          }
+        >
+          Logout
+        </a>
+      </div>
+      <div
+        style={
+          Object {
+            "color": "white",
+            "fontFamily": "Raleway, sans-serif",
+            "fontSize": "50pt",
+            "fontWeight": "300",
+            "marginTop": "50px",
+            "textAlign": "center",
+            "width": "100%",
+          }
+        }
+      >
+        INTERLECTURE
+      </div>
+    </div>
+  </header>
+  <div
+    className="message-panel panel panel-default"
+    id={undefined}
+  >
+    <div
+      className="panel-body"
+    >
+      <p
+        style={
+          Object {
+            "marginBottom": "15px",
+          }
+        }
+      >
+        Welcome to Interlecture, 
+        bob
+      </p>
+    </div>
+  </div>
+  <div
+    className="panel panel-default"
+    id={undefined}
+  >
+    <div
+      className="panel-body"
+    >
+      <form
+        action="/courses/"
+        className=""
+        method="post"
+      >
+        <div
+          className="form-group"
+        >
+          <input
+            className="form-control"
+            defaultValue="bob"
+            id={undefined}
+            name="name"
+            placeholder="Course code"
+            type="text"
+          />
+        </div>
+        <div
+          className="form-group"
+        >
+          <button
+            className="single btn btn-primary btn-block"
+            disabled={false}
+            type="submit"
+          >
+            Go to course
+          </button>
+        </div>
+        <input
+          name="csrfmiddlewaretoken"
+          type="hidden"
+          value="bob"
+        />
+      </form>
+    </div>
+  </div>
+</div>
+`;

@@ -1,10 +1,13 @@
+{% load static %}
 {% load render_bundle from webpack_loader %}
 
 <!doctype html>
 <html>
   <head>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css">
-  
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway:300,400">
+    <link rel="stylesheet" href="{% static 'css/interlecture/base.css' %}">
+
     <style>
         html, body, body>#main {
           padding: 0;
@@ -13,15 +16,27 @@
           height: 100%;
         }
     </style>
-  
+
   </head>
-  
-  <body>
+
+  <body id="main">
     <script>
-      window.django2react={{args|safe}};
+      window.django2react={{ args|safe }};
       window.django2react.csrfToken="{{ csrf_token }}";
+      window.django2react.appName="{{ app_name }}";
+      {% if request.user %}
+        window.django2react.username="{{ request.user.username }}";
+        window.django2react.firstname="{{ request.user.first_name }}";
+        window.django2react.lastname="{{ request.user.last_name }}";
+      {% endif %}
+
+      {% if messages and request.user %}
+        window.django2react.justLoggedIn=true;
+        {% for message in messages %}
+          {# This is simply to clear the message after displaying it once #}
+        {% endfor %}
+      {% endif %}
     </script>
-    <div id=main> </div>
     {% render_bundle app_name %}
   </body>
 </html>
