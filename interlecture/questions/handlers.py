@@ -21,7 +21,7 @@ def post(request,room=None,parent_post=None,text=None):
     post=Post(room=room,user=request.message.user,text=text,parent_post=parent_post)
     post.save()
     broadcastPost(post)
-
+    
 @need_object(Post)
 def support(request,post=None):
     post.room.request_access_rights(request,'write')
@@ -36,7 +36,7 @@ def support(request,post=None):
 def delete(request,post=None):
     serverMessage(post.room.channel(),type='DELETE_POST',post=post.id)
     post.delete()
-
+    
 handlers={
     'subscribe':subscribe,
     'post':post,
