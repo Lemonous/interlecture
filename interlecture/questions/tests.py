@@ -16,6 +16,7 @@ class MockUser:
 class DeleteTest(ChannelTestCase):
     def setUp(self):
         self.alice=MockUser('alice')
+        self.bob=MockUser('bob')
         
         self.room=Room.objects.create(name='test',lecturer=self.alice.user);self.room.save()
         self.p0=Post.objects.create(
@@ -25,11 +26,15 @@ class DeleteTest(ChannelTestCase):
             room=self.room,user=self.alice.user,text="BOOP",parent_post=self.p0)
         self.p1.save()
 
-
     def test_delete(self):
+        self.bob.client.send('websocket.receive',
+            text={'app':'questions','command':'delete','room':'test','post':self.p0.id})
+        self.assertEqual(Post.objects.get(id=self.p0.id),self.p0)
+        
         self.alice.client.send_and_consume('websocket.receive',
             text={'app':'questions','command':'subscribe','room':'test'})
         self.alice.client.receive()
+        self.alice.client.consume('websocket.receive');self.alice.client.receive()
         
         self.alice.client.send_and_consume('websocket.receive',
             text={'app':'questions','command':'delete','room':'test','post':self.p0.id})
@@ -40,6 +45,8 @@ class DeleteTest(ChannelTestCase):
         
         with self.assertRaises(Post.DoesNotExist):
             Post.objects.get(id=self.p0.id)
+        
+        with self.assertRaises(Post.DoesNotExist):
             Post.objects.get(id=self.p1.id)
 
 
@@ -48,6 +55,8 @@ class PostTest(ChannelTestCase):
         self.alice=MockUser('alice')
         
         self.room=Room.objects.create(name='test',lecturer=self.alice.user);self.room.save()
+        self.assertEqual(self.room.get()['lecturer'],self.alice.user.username)
+        
         self.p0=Post.objects.create(
             room=self.room,user=self.alice.user,text="Bob, are you here?")
         self.p0.save()
