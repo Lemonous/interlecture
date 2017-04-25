@@ -49,10 +49,10 @@ def course_create_view(request):
         return redirect(reverse('login'))
 
     if request.user.is_active:
-        if request.method == 'POST':
-            course = Room(name=request.POST['name'], lecturer=request.user)
-            course.save()
-
+        if request.method == 'POST' and 'name' in request.POST:
+            try:course=Room.objects.get(name=request.POST['name'])
+            except Room.DoesNotExist:
+                course = Room(name=request.POST['name'], lecturer=request.user)
+                course.save()
             return redirect(reverse('course', args=[course.name]))
-
     return redirect(reverse('select-course'))
