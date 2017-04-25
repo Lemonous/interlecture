@@ -33,7 +33,7 @@ install:
     - yarn
 
     # Make localsettings
-     - mv interlecture/local_settings.default.py interlecture/local_settings.py
+    - mv interlecture/local_settings.default.py interlecture/local_settings.py
 cache:
     pip: true
     yarn: true
