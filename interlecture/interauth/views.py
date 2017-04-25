@@ -131,7 +131,7 @@ def init_activation(user):
 
     activation = UserActivation()
     activation.user = user
-    activation.activation_key = hashlib.sha4_512(str(salt + usernamesalt).encode('utf8')).hexdigest()
+    activation.activation_key = hashlib.sha3_512(str(salt + usernamesalt).encode('utf8')).hexdigest()
     activation.key_expires = datetime.datetime.now(dateutil.tz.tzlocal()) + datetime.timedelta(days=2)
     activation.save()
 
