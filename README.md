@@ -41,7 +41,6 @@ Copy rename the file `(repository root) /interlecture/interlecture/local_setting
 ### Running the server for the first time
 ```
 interlecture$ yarn webpack
-```
 interlecture$ ../bin/python3 manage.py migrate
 ```
 The above two can be skipped on subsequent runs. Now start the server:
@@ -64,11 +63,11 @@ and enter user data. You can then login at `http://yoursite/admin/` and access d
 [PostgreSQL](https://www.postgresql.org/) is a advanced database managment system, which allows Refer to PostgreSQL documentation for information about installing PostgreSQL on your system. Once it is set up, create an empty database and change `DATABASE=...` variable in the `local_settings.py` to:
 ```
 DATABASE={
--        'ENGINE': 'django.db.backends.postgresql',
--        'NAME': <your database name>,
--        'USER': <...>,'PASSWORD': <...>,
--        'HOST': <...>,'PORT': <...>,
--    }
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': <your database name>,
+        'USER': <...>,'PASSWORD': <...>,
+       'HOST': <...>,'PORT': <...>,
+    }
 ```
 You must then re-run `manage.py migrate` before starting the server.
 
