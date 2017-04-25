@@ -47,7 +47,7 @@ The above two can be skipped on subsequent runs. Now start the server:
 ```
 interlecture$ ../bin/python3 manage.py runserver <ip>:<port>
 ```
-You can skip <ip>:<port> for listening on <localhost:8000>. Now you can open the address in your browser. Server can be stopped with ^C.
+You can skip `<ip>:<port>` for listening on <localhost:8000>. Now you can open the address in your browser. Server can be stopped with ^C.
 
 #### Advanced topics
 Required if running multiple server processe or multiple server machines.
