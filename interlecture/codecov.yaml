@@ -2,4 +2,3 @@ coverage:
   ignore:
     - "interlecture/interlecture/wsgi.py"
     - "interlecture/interlecture/routing.py"
-    - "interlecture/interlecture/settings.py"
