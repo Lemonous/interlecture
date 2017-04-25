@@ -2,6 +2,4 @@ coverage:
   ignore:
     - "interlecture/interlecture/wsgi.py"
     - "interlecture/interlecture/routing.py"
-    - "**/tests.py"
-    - "**/__tests__"
     - "**/views.py"
