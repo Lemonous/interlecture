@@ -10,4 +10,6 @@ omit =
       */views.py
       */apps.py
       interlecture/wsgi.py
+      interlecture/asgi.py
       */migrations/*
+
