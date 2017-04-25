@@ -101,11 +101,7 @@ const Header = ({ user, firstname, lastname }) => (
               placeholder="Create new course"
               style={headerInputStyle()}
             />
-            <input
-              type="hidden"
-              name="csrfmiddlewaretoken"
-              value={window.django2react.csrfToken}
-            />
+            <input type="hidden" name="csrfmiddlewaretoken" value={window.django2react.csrfToken} />
           </bs.Form>
           <bs.Button bsStyle="link" style={headerButtonStyle()} href="/logout/">Logout</bs.Button>
         </div>) ||
@@ -124,7 +120,7 @@ const Header = ({ user, firstname, lastname }) => (
           {' '}
           -
           {' '}
-          {window.django2react.classroom.lecturer.toUpperCase()}
+          {window.django2react.lecturer_name.toUpperCase()}
         </div>}
     </div>
   </header>

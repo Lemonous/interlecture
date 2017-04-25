@@ -13,6 +13,7 @@ def questions_view(request, room_name):
             'moderator_mode': 'true' if room.moderator.filter(id=request.user.id).exists() else 'false',
             'my_uname': request.user.username,
             'classroom': room.get(),
+            'lecturer_name': '%s %s' % (room.lecturer.first_name, room.lecturer.last_name)
         }
         return render(request, 'base.html', context={'app_name': 'app', 'args': args})
     else:
