@@ -5,6 +5,97 @@ from interauth.models import UserActivation
 from django.contrib.auth.models import User
 
 
+class BadUserRegistrationTestCase(TestCase):
+    def setUp(self):
+        self.user_form = UserForm(
+            {'username': '',
+             'first_name': '',
+             'last_name': '',
+             'email': '',
+             'password': '',
+             'confirm_password': ''}
+        )
+    
+    def testReject(self):
+        self.assertNotEqual(self.user_form.d2r_friendly_errors(),'')
+        self.assertFalse(self.user_form.is_valid())
+        
+class BadUserRegistrationTestCase2(TestCase):
+    def setUp(self):
+        User.objects.create_user(
+            username='alice',
+            first_name='Alice',
+            last_name='Seleznyova',
+            email='as@ntnu.edu',
+            password='drowssap',
+            is_active=False
+        )
+        self.user_form = UserForm(
+            {'username': 'alice',
+             'first_name': 'Alice',
+             'last_name': 'Seleznyova',
+             'email': 'as@ntnu.edu',
+             'password': 'drowssap',
+             'confirm_password': 'drowssap'}
+        )
+    
+    def testReject(self):
+        self.assertNotEqual(self.user_form.d2r_friendly_errors(),'')
+        self.assertFalse(self.user_form.is_valid())
+
+class BadUserRegistrationTestCase5(TestCase):
+    def setUp(self):
+        User.objects.create_user(
+            username='alice',
+            first_name='Alice',
+            last_name='Seleznyova',
+            email='as@ntnu.edu',
+            password='drowssap',
+            is_active=False
+        )
+        self.user_form = UserForm(
+            {'username': 'alice',
+             'first_name': 'Alice',
+             'last_name': 'Seleznyova',
+             'email': 'as@ntnu.no',
+             'password': 'drowssap',
+             'confirm_password': 'drowssap'}
+        )
+    
+    def testReject(self):
+        self.assertNotEqual(self.user_form.d2r_friendly_errors(),'')
+        self.assertFalse(self.user_form.is_valid())
+        
+class BadUserRegistrationTestCase3(TestCase):
+    def setUp(self):
+        self.user_form = UserForm(
+            {'username': 'dsa',
+             'first_name': 'asd',
+             'last_name': 'sad',
+             'email': 'x@gmail.com',
+             'password': 'dsa',
+             'confirm_password': 'dsb'}
+        )
+    
+    def testReject(self):
+        self.assertNotEqual(self.user_form.d2r_friendly_errors(),'')
+        self.assertFalse(self.user_form.is_valid())
+        
+class BadUserRegistrationTestCase4(TestCase):
+    def setUp(self):
+        self.user_form = UserForm(
+            {'username': 'dsa',
+             'first_name': 'asd',
+             'last_name': 'sad',
+             'email': 'x@gmail.com',
+             'password': 'dsa',
+             'confirm_password': 'dsa'}
+        )
+    
+    def testReject(self):
+        self.assertNotEqual(self.user_form.d2r_friendly_errors(),'')
+        self.assertFalse(self.user_form.is_valid())
+        
 class UserRegistrationTestCase(TestCase):
     def setUp(self):
         self.user_form = UserForm(
@@ -48,6 +139,7 @@ class UserRegistrationTestCase(TestCase):
 
     def test_activation(self):
         self._test_form_is_valid()
+        self.user_form.safe_data()
         self._test_form_can_create_user()
         self._test_user_not_yet_activated()
         self._test_activation_function_creates_activation_object()

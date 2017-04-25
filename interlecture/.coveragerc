@@ -6,3 +6,7 @@ source =
       interauth/
       interlecture/
       engine/    
+omit =
+      */views.py
+      */apps.py
+      interlecture/wsgi.py
