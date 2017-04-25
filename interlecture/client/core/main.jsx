@@ -2,7 +2,7 @@ import React from 'react';
 import { render } from 'react-dom';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
-import Header from 'header';
+import Header from './header';
 import SocketHandler from './socketHandler';
 import Classroom from '../questions/classroom';
 import posts from './reducers';
