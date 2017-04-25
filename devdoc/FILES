@@ -2,7 +2,9 @@
 /interlecture/                  Django project
 /interlecture/interlecture/     Global project config
 /interlecture/*/                Django app (corresponds to one independent feature)
-/interlecture/*/js/             Javascript files goes here
-            ./engine            Application engine and websocket multiplexing
-            ./login             User login/logout
+/interlecture/engine            Application engine and websocket multiplexing
+/interlecture/interauth         User auth
+/interlecture/questions         Message board app
+/interlecture/static            CSS, js bundles, etc…
+/interlecture/client            Javascript files goes here
 /devdoc/                        Developers' documentation

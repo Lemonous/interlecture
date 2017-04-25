@@ -10,7 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.10/ref/settings/
 """
 
-from interlecture.local_settings import SECRET_KEY, DEBUG, DATABASE, EMAIL, ALLOWED_HOSTS
+from interlecture.local_settings import SECRET_KEY, DEBUG, DATABASE, EMAIL, ALLOWED_HOSTS, CHANNEL
 
 import os
 
@@ -126,17 +126,9 @@ STATICFILES_DIRS = [
 ################################################################
 
 # Here comes channel stuff
-CHANNEL_LAYERS = {
-    "default": {
-        "BACKEND": None,
-        "ROUTING": "interlecture.routing.channel_routing",
-    },
-}
+CHANNEL_LAYERS = {'default': CHANNEL}
 
-if DEBUG:
-    CHANNEL_LAYERS['default']["BACKEND"] = "asgiref.inmemory.ChannelLayer"
-else:# pragma: no cover
-    raise Exception("We are in production, but no channel backend is set up!!!")# codecov skip end
+CHANNEL_LAYERS['default']['ROUTING']='interlecture.routing.channel_routing'
 
 WEBPACK_LOADER = {
     'DEFAULT': {
@@ -145,12 +137,9 @@ WEBPACK_LOADER = {
     }
 }
 
-if not DEBUG:# pragma: no cover
-    EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-else:
-    EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-    EMAIL_HOST = EMAIL['HOST']
-    EMAIL_PORT = EMAIL['PORT']
-    EMAIL_HOST_USER = EMAIL['USER']
-    EMAIL_HOST_PASSWORD = EMAIL['PASSWORD']
-    EMAIL_USE_TLS = True
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = EMAIL['HOST']
+EMAIL_PORT = EMAIL['PORT']
+EMAIL_HOST_USER = EMAIL['USER']
+EMAIL_HOST_PASSWORD = EMAIL['PASSWORD']
+EMAIL_USE_TLS = True
