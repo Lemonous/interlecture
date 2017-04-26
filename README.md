@@ -111,7 +111,7 @@ However, the point of redis is that you can run multiple "worker" threads in par
 $ daphne interlecture.asgi:channel_layer
 ```
 
-Then launch worker threads:
+Then launch the worker threads:
 
 ```bash
 $ python manage.py runworker
