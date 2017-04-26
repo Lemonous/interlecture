@@ -23,7 +23,7 @@ Prerequisites that you need to run the project are `python3.6` and `yarn`. Insta
 
 Note: while running python3.5 or lower is not recommended, it is possible and only requires replacing the `hashlib.sha3_512` function in `interlecture/interauth/views.py` with any other hashing function.
 
-It is a good idea to set up `virtualenv`, so that python packages aren't installed system wide. These commands can be run from the project root, for instance (e.g. the folder where README.md lies):
+It is a good idea to set up `virtualenv`, so that python packages aren't installed system wide. These commands can be run anywhere you want, for instance in the project root (e.g. the folder where README.md lies). The virtualenvironment will be put in whichever folder you are currently in:
 
 ```bash
 $ pip3 install virtualenv
