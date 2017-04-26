@@ -44,7 +44,7 @@ CHANNEL = {'BACKEND': 'asgiref.inmemory.ChannelLayer'}
 CHANNEL = {
     'BACKEND': 'asgi_redis.RedisChannelLayer',
     'hosts': [
-        ('localhost',6379)
+        ('localhost', 6379)
     ]
 }
 """
