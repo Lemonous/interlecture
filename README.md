@@ -35,7 +35,7 @@ Change `ENV_NAME` to something appropriate.
 
 You can now enable virtualenv by sourcing the `activate` file in the virtualenv `bin` folder, and disable it by simply running `deactivate` at any time.
 
-Then use `pip` and `yarn` to install the rest of the project dependencies automatically:
+Then use `pip` and `yarn` to install the rest of the project dependencies automatically. From the project root, run:
 
 ```bash
 $ cd interlecture
@@ -66,21 +66,21 @@ $ python manage.py runserver <ip>:<port>
 
 You can skip `<ip>:<port>` to listen on the default, `localhost:8000`. Now you can open the address in your browser. Server can be stopped with ^C.
 
-#### Advanced topics
-Only required if running multiple server processe or multiple server machines.
+### Advanced topics
+Only required if running multiple server processes or multiple server machines.
 
-##### Using administrator account
-You can set up administrator account in order to be able to register users without activation mail and to remove users or classrooms. To do so, go to the `interlecture` folder and run this command:
+#### Using administrator account
+You can set up an administrator account in order to be able to register users without sending an activation mail, to create new classrooms, to remove users or classrooms, and to set moderators in a classroom. To do so, go to the `interlecture` folder and run this command:
 
 ```bash
 $ python manage.py createsuperuser
 ```
 
-and enter user data. You can then login at `http://<ip>:<port>/admin/` and administrate the site using the standard Django admin panel. There are also some features that are currently only avaliable via admin panel, like setting other users than the teacher as moderators to a room.
+Enter your user data. You can then login at `http://<ip>:<port>/admin/` and administrate the site using the standard Django admin panel. There are also some features that are currently only available via the admin panel, like setting other users than the teacher as moderators to a room.
 
-##### Setting up PostgreSQL
+#### Setting up PostgreSQL
 
-[PostgreSQL](https://www.postgresql.org/) is a advanced database managment system, which runs much better and safer on larger systems than SQLite does. Refer to the PostgreSQL documentation for information about installing PostgreSQL on your system. Once it is set up, create an empty database and change the `DATABASE` variable in the `local_settings.py` to connect to Postgres (if you used the default `local_settings`, simply comment out the SQLite config and uncomment the Postgres config:
+[PostgreSQL](https://www.postgresql.org/) is an advanced database managment system, which runs much better and safer on larger systems than SQLite does. Refer to the PostgreSQL documentation for information about installing PostgreSQL on your system. Once it is set up, create an empty database and change the `DATABASE` variable in the `local_settings.py` to connect to Postgres (if you used the default `local_settings`, simply comment out the SQLite config and uncomment the Postgres config):
 
 ```python
 DATABASE = {
@@ -95,26 +95,26 @@ DATABASE = {
 
 You must then re-run `manage.py migrate` before starting the server.
 
-##### Setting up redis
+#### Setting up redis
 
-[redis](https://redis.io/) is an in-memory data structure system and is the recommended backend for django-channels. Refer to redis documentation for information about installing it on your system. To use it as a messaging backend, you must first install `asgi_redis`:
+[redis](https://redis.io/) is an in-memory data structure system and is the recommended backend for django-channels. Refer to the redis documentation for information about installing it on your system. To use it as a messaging backend, you must first install `asgi_redis`:
 
 ```bash
 $ pip install asgi_redis
 ```
 
-Then swap the comment on `CHANNEL` variable in `local_settings.py` and optionally edit the new value to point to your redis server. Now launch your redis server (simply `redis-server`) and start the Django server normally.
+Then swap the comment on `CHANNEL` variable in `local_settings.py` and optionally edit the new value to point to your redis server. Now launch your redis server (simply run `redis-server`) and start the Django server normally.
 
-However, the point of redis is that you can run multiple "worker" threads in parallel, even on different machines as long as they share a single Redis server and database. The server startup procedure is slightly changed then. First start the web interface:
+However, the point of redis is that you can run multiple "worker" threads in parallel — even on different machines — as long as they share a single Redis server and database. The server startup procedure is slightly changed then. First start the web interface:
 
 ```bash
 $ daphne interlecture.asgi:channel_layer
 ```
 
-Then lanuch worker threads:
+Then launch worker threads:
 
 ```bash
 $ python manage.py runworker
 ```
 
-Refer to the [channels documentation](https://channels.readthedocs.io/en/stable/deploying.html) for more information about its deployment facilities.
+Refer to the [channels documentation](https://channels.readthedocs.io/en/stable/deploying.html) for more information about its deployment capabilities.
