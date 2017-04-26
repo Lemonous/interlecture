@@ -47,3 +47,4 @@ CHANNEL = {
         ('localhost',6379)
     ]
 }
+"""
